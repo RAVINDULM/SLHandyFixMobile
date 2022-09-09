@@ -18,17 +18,16 @@ const COLORS = { primary: "#2538B8", white: "#fff" };
 const AuthHomeServProv = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <View style={[tw`bg-white flex-row z-100 `]}>
+      {/* <View style={[tw`bg-white flex-row z-100 `]}>
         <TouchableOpacity
           style={{ padding: 10 }}
           onPress={() => {
             navigation.navigate("Home");
           }}
         >
-          {/* <Text>Back</Text> */}
           <FontAwesomeIcon icon={faChevronLeft} size={30} />
         </TouchableOpacity>
-      </View>
+      </View> */}
       <View>
         <Image
           source={require("../assests/imgs/TopLeftCorner.png")}

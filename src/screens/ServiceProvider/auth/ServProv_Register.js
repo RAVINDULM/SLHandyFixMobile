@@ -1,14 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { TextInput } from "react-native-paper";
-import {
-  RadioButton,
-  List,
-  Checkbox,
-  Button,
-  Avatar,
-  Appbar,
-} from "react-native-paper";
+
 // import Multiselect from "multiselect-react-dropdown";
 // import DatePicker from 'react-native-date-picker'
 // import SelectDropdown from "react-native-select-dropdown";
@@ -32,7 +25,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import tw from "twrnc";
 // import { HeaderBackButton } from 'react-navigation';
 // import { Appbar } from 'react-native-paper'
-import { Card, Title, Paragraph } from "react-native-paper";
 // import SelectBox from "react-native-multi-selectbox";
 
 // define provinces list
@@ -54,9 +46,6 @@ const ServProv_Register = ({ navigation }) => {
     qualifications: Yup.string().required("Required"),
     age: Yup.string().required("Required"),
   });
-
-  // const [selectedTeam, setSelectedTeam] = useState({});
-  // const [selectedValue, setSelectedValue] = useState("");
   return (
     <SafeAreaView
       style={{
@@ -64,35 +53,8 @@ const ServProv_Register = ({ navigation }) => {
         flexDirection: "column",
         justifyContent: "center",
         margin: 10,
-        // alignItems: "center",
-        // backgroundColor: 'yellow'
       }}
     >
-      {/* <Appbar.Header>
-      <Appbar.BackAction onPress={() => navigation.navigate("AuthHomeServProv")} />
-    </Appbar.Header> */}
-
-      {/* <Card>
-        <Card.Content>
-          <View style={{ flexDirection: "row" }}>
-            <View style={{ flexDirection: "column" }}>
-              <Title>Plumbing work</Title>
-              <Text>Location : Seeduwa</Text>
-              <Paragraph>Card content</Paragraph>
-              <View style={{ flexDirection: "row" }}>
-              <Avatar.Image size={24} source={require("../../../assests/imgs/User01.jpg")} />
-              <Text>John doe</Text>
-              </View>
-            </View>
-            <View style={{ flexDirection: "column" }}>
-              <Button mode="outlined" onPress={() => console.log("Pressed")}> Accept </Button>
-              <Button mode="outlined" onPress={() => console.log("Pressed")}> Reject</Button>
-              <Button mode="outlined" onPress={() => console.log("Pressed")}> View more</Button>
-            </View>
-          </View>
-        </Card.Content>
-      </Card> */}
-
       <Formik
         initialValues={{
           fName: "",
@@ -142,17 +104,16 @@ const ServProv_Register = ({ navigation }) => {
         }) => (
           <View>
             <ScrollView>
-              <View style={[tw`bg-white flex-row z-100 `]}>
+              {/* <View style={[tw`bg-white flex-row z-100 `]}>
                 <TouchableOpacity
                   style={{ padding: 10 }}
                   onPress={() => {
                     navigation.navigate("AuthHomeServProv");
                   }}
                 >
-                  {/* <Text>Back</Text> */}
                   <FontAwesomeIcon icon={faChevronLeft} size={30} />
                 </TouchableOpacity>
-              </View>
+              </View> */}
               {/* ----------------------------------------------------------- Heading -------------------------------------------- */}
 
               <Text
@@ -163,11 +124,21 @@ const ServProv_Register = ({ navigation }) => {
                   marginBottom: 30,
                 }}
               >
-                Create Account Reuest
+                Create Account Request
               </Text>
 
               {/* ----------------------------------------------------------- Heading -------------------------------------------- */}
 
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "500",
+                  color: "#333",
+                  marginBottom: 10,
+                }}
+              >
+                Basic Information
+              </Text>
               <View>
                 {/* <View
                   style={{
@@ -184,18 +155,6 @@ const ServProv_Register = ({ navigation }) => {
                     imageStyle={{ borderRadius: 60 }}
                   />
                 </View> */}
-                {/* <DatePicker
-        modal
-        open={open}
-        date={date}
-        onConfirm={(date) => {
-          setOpen(false)
-          setDate(date)
-        }}
-        onCancel={() => {
-          setOpen(false)
-        }}
-      /> */}
                 {/* ----------------------------------------------------------- First Name -------------------------------------------- */}
                 <TextInput
                   label="First Name"
