@@ -24,6 +24,7 @@ import ChatScreen from "../screens/Chat";
 import { Appbar } from "react-native-paper";
 import { Menu } from "react-native-paper";
 import { Searchbar } from "react-native-paper";
+import { Avatar } from "react-native-paper";
 
 // icons libraries
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -33,6 +34,7 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 
+import servProStack from "./ServProvAppStack";
 // create stack and tab navigator variables
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -55,6 +57,7 @@ const MessageStack = ({ navigation, back }) => {
 
   return (
     <Stack.Navigator>
+      {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
       <Stack.Screen
         name="Message"
         // {{setName(name)}}
@@ -65,8 +68,6 @@ const MessageStack = ({ navigation, back }) => {
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
-              {/* {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-              <Appbar.Content title="Messages" /> */}
               <Appbar.Content title={route.name} />
               {/* <Appbar.Action
                       icon="search"
@@ -124,6 +125,14 @@ const MessageStack = ({ navigation, back }) => {
                   disabled
                 />
               </Menu>
+
+              <TouchableOpacity>
+                <Avatar.Icon
+                  size={30}
+                  style={{ backgroundColor: "black", marginRight: 10 }}
+                  onPress={() => navigation.navigate("HomeScreen")}
+                />
+              </TouchableOpacity>
             </Appbar.Header>
           ),
         })}
@@ -131,9 +140,6 @@ const MessageStack = ({ navigation, back }) => {
       <Stack.Screen
         name="Chat"
         component={ChatScreen}
-        // options={{
-        //   header: (props) => <CustomAppBar {...props} />,
-        // }}
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
@@ -160,7 +166,7 @@ const TabNavigator = () => {
     >
       <Tab.Screen
         name="HomeScreen"
-        component={HomeScreen}
+        component={servProStack}
         options={{
           tabBarBadgeStyle: { backgroundColor: "yellow" },
           tabBarIcon: ({ color, size }) => (

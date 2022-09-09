@@ -20,7 +20,7 @@ function AppNav() {
   const { isLoading, userToken } = useContext(AuthContext);
   return (
     <NavigationContainer>
-      <AuthStack />
+      <ServProvAppStack />
     </NavigationContainer>
   );
   // var decoded = jwt_decode(userToken);
