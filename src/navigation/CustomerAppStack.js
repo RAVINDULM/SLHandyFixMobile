@@ -31,16 +31,17 @@ const CustomerAppStack = () => {
         fontFamily: 'Roboto-Medium',
         fontSize: 15,
       },  }}>
+
       <Drawer.Screen name="Home" component={Cus_Home} />
       <Drawer.Screen name="My Profile" component={Cus_Profile} />
       <Drawer.Screen name="Edit Profile" component={Cus_EditProfile} />
+
       <Drawer.Screen name="My Service" component={Cus_Service} />
       {/* <Drawer.Screen name="Cus_Profile" component={Cus_Profile} /> */}
       <Drawer.Screen name="Place Jobs" component={Cus_PlaceJobs} />
       <Drawer.Screen name="Job Advertisements" component={Cus_JobAD} />
       <Drawer.Screen name="Post Job Advertisements" component={Cus_PostJobAD} />
       <Drawer.Screen name="Recently Placed Jobs" component={Cus_RecentJob} />
-
     </Drawer.Navigator>
   );
 };

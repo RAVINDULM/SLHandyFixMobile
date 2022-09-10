@@ -16,7 +16,7 @@ import {
 } from "react-native";
 
 
-function Cus_Service(navigation) {
+function Cus_Service({navigation}) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
