@@ -58,7 +58,7 @@ function Cus_JobAD() {
                                           imageStyle={{ borderRadius: 25 }}
                                         />
                                   </View>
-                                  <View style={{backgroundColor:"yellow"}}><CardTitle 
+                                  <View style={{backgroundColor:"red"}}><CardTitle 
                                           title="Plumber" 
                                           subtitle="1 day ago"
                                         /></View>
