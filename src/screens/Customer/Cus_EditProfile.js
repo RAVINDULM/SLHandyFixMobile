@@ -1,21 +1,25 @@
-// import React from 'react'
 import React, { useState } from "react";
+// import PhotoUpload from 'react-native-photo-upload'
 
 import {
   SafeAreaView,
+  Image,
+  ImageBackground,
   ScrollView,
   StyleSheet,
-  ImageBackground,
+  FlatList,
   View,
   Text,
+  StatusBar,  
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 
 import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
-function Cus_PlaceJobs(navigation ) {
+function Cus_EditProfile(navigation) {
 
   const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");
@@ -38,7 +42,7 @@ function Cus_PlaceJobs(navigation ) {
             />
           </TouchableOpacity>
           <Text style={{ fontSize: 18}}>
-            Place job 
+            Edit Profile
           </Text>
       
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -52,6 +56,28 @@ function Cus_PlaceJobs(navigation ) {
 
 
         <View style={styles.content}>
+
+        {/* <PhotoUpload
+          onPhotoSelect={avatar => {
+            if (avatar) {
+              console.log('Image base64 string: ', avatar)
+            }
+          }}
+        >
+          <Image
+            style={{
+              paddingVertical: 30,
+              width: 150,
+              height: 150,
+              borderRadius: 75
+            }}
+            resizeMode='cover'
+            source={{
+              uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+            }}
+          />
+        </PhotoUpload> */}
+
           <Formik 
             initialValues={{ title: '' }} 
             // validate={values => {
@@ -75,34 +101,42 @@ function Cus_PlaceJobs(navigation ) {
               <View>
                 <TextInput 
                   style= {styles.textinput}
-                  onChangeText={handleChange('title')}
-                  value={values.title}
-                  label="Title"
-                  placeholder="Enter your job title..."
+                  onChangeText={handleChange('firstname')}
+                  value={values.firstname}
+                  label="First Name"
+                  placeholder="Enter your first name..."
+                />
+
+                <TextInput 
+                  style= {styles.textinput}
+                  onChangeText={handleChange('lastname')}
+                  value={values.lastname}
+                  label="Last Name"
+                  placeholder="Enter your last name..."
+                />
+
+                <TextInput 
+                  style= {styles.textinput}
+                  onChangeText={handleChange('phonenumber')}
+                  value={values.phonenumber}
+                  label="Phone Number"
+                  placeholder="Enter your phone number..."
                 />
 
                 <TextInput
                   style= {styles.textinput}
-                  onChangeText={handleChange('requireddate')}
-                  value={values.requireddate}
-                  label="Required Date"
+                  onChangeText={handleChange('dateofbirth')}
+                  value={values.dateofbirth}
+                  label="Date of Birth"
                   placeholder="mm/dd/yyyy"
                 />
                 
                 <TextInput
                   style= {styles.textinput}
-                  onChangeText={handleChange('description')}
-                  value={values.description}
-                  label="Job description"
-                  placeholder="Enter your job details here..."
-                />
-
-                <TextInput
-                  style= {styles.textinput}
-                  onChangeText={handleChange('location')}
-                  value={values.location}
-                  label="Location"
-                  placeholder="Enter the address where you want the job to occur..."
+                  onChangeText={handleChange('address')}
+                  value={values.address}
+                  label="Address"
+                  placeholder="Enter your address here..."
                 />
 
                 <Picker
@@ -116,23 +150,10 @@ function Cus_PlaceJobs(navigation ) {
                   <Picker.Item label="Hambantota" value="d4" />
                   <Picker.Item label="Colombo" value="d5" />
                 </Picker>
-
-                <Picker
-                  selectedCategory={selectedCategory}
-                  style={styles.picker}
-                  onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
-                >
-                  <Picker.Item label="Category" value="c1" />
-                  <Picker.Item label="Plumber" value="c2" />
-                  <Picker.Item label="Mason" value="c3" />
-                  <Picker.Item label="Eleectrician" value="c4" />
-                  <Picker.Item label="Carpenter" value="c5" />
-                  <Picker.Item label="Painter" value="c6" />
-                </Picker>
-
+                
                 <View style={styles.buttonview}>
                     <Button onPress={handleChange} style={styles.buttonCancel} color="white">Cancel</Button>
-                    <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Submit</Button>  
+                    <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Update</Button>  
                 </View>
 
                 
@@ -141,8 +162,6 @@ function Cus_PlaceJobs(navigation ) {
           </Formik>        
         </View>
       </ScrollView>
-
-    
     </SafeAreaView>
   )
 }
@@ -196,4 +215,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Cus_PlaceJobs
+export default Cus_EditProfile
