@@ -14,13 +14,9 @@ import {
   Dimensions,
 } from "react-native";
 
-import { Avatar } from 'react-native-paper';
-import { Button } from 'react-native-paper';
+import { DataTable } from 'react-native-paper';
 
-
-
-  
-function Cus_Profile({navigation}) {
+function Cus_RecentJob({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
     <ScrollView style={{ padding: 20 }}>
@@ -49,14 +45,30 @@ function Cus_Profile({navigation}) {
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.view}>
+        
+        <DataTable>
+        <DataTable.Header>
+          <DataTable.Title >ID</DataTable.Title>
+          <DataTable.Title >Job Title</DataTable.Title>
+          <DataTable.Title >Service Provider</DataTable.Title>
+          <DataTable.Title >Date of Job Done</DataTable.Title>
+        </DataTable.Header>
 
-        <Avatar.Image size={125} align={"center"}  source={require("../../assests/imgs/User01.jpg")} />
+        <DataTable.Row>
+       <DataTable.Cell >1</DataTable.Cell>
+       <DataTable.Cell >Painting</DataTable.Cell>
+       <DataTable.Cell >John Doe</DataTable.Cell>
+       <DataTable.Cell >20/08/2022</DataTable.Cell>
+     </DataTable.Row>
 
-        </View> 
-        <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-            Edit Profile
-  </Button>    
+     <DataTable.Row>
+       <DataTable.Cell >2</DataTable.Cell>
+       <DataTable.Cell >Plumbing</DataTable.Cell>
+       <DataTable.Cell >Jane Doe</DataTable.Cell>
+       <DataTable.Cell >10/08/2022</DataTable.Cell>
+     </DataTable.Row>
+
+      </DataTable>
 
         </ScrollView>
     </SafeAreaView>
@@ -64,16 +76,4 @@ function Cus_Profile({navigation}) {
   )
 }
 
-export default Cus_Profile
-
-const styles = StyleSheet.create ({
-	view : {
-	  flexDirection: "row",
-      marginTop : 50,
-      marginLeft : 100
-	},
-  //no change here
- 	img: {
-    marginRight : 25
- 	}
-})
+export default Cus_RecentJob

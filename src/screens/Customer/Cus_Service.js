@@ -1,10 +1,11 @@
 import React from 'react'
+import { Searchbar } from 'react-native-paper';
 
 import {
   SafeAreaView,
+  Image,
   ScrollView,
   ImageBackground,
-  Image,
   StyleSheet,
   FlatList,
   View,
@@ -14,16 +15,14 @@ import {
   Dimensions,
 } from "react-native";
 
-import { Avatar } from 'react-native-paper';
-import { Button } from 'react-native-paper';
 
+function Cus_Service({navigation}) {
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const onChangeSearch = query => setSearchQuery(query);
 
-
-  
-function Cus_Profile({navigation}) {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-    <ScrollView style={{ padding: 20 }}>
+    <SafeAreaView>
+        <ScrollView style={{ padding: 20 }}>
         <View
           style={{
             flexDirection: "row",
@@ -39,8 +38,9 @@ function Cus_Profile({navigation}) {
             />
           </TouchableOpacity>
           <Text style={{ fontSize: 18}}>
-            Hello John Doe
+            My Services
           </Text>
+      
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <ImageBackground
               source={require("../../assests/imgs/User01.jpg")}
@@ -49,31 +49,19 @@ function Cus_Profile({navigation}) {
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.view}>
 
-        <Avatar.Image size={125} align={"center"}  source={require("../../assests/imgs/User01.jpg")} />
+        <Searchbar
+            // icon="camera"
+            placeholder="Search Category"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+        />
 
-        </View> 
-        <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-            Edit Profile
-  </Button>    
+      </ScrollView>
 
-        </ScrollView>
+        
     </SafeAreaView>
-
   )
 }
 
-export default Cus_Profile
-
-const styles = StyleSheet.create ({
-	view : {
-	  flexDirection: "row",
-      marginTop : 50,
-      marginLeft : 100
-	},
-  //no change here
- 	img: {
-    marginRight : 25
- 	}
-})
+export default Cus_Service

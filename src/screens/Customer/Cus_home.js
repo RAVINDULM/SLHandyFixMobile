@@ -8,6 +8,10 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+
+
+const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 const Cus_home = ({ navigation }) => {
   return (
@@ -38,6 +42,23 @@ const Cus_home = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
+
+                <Card>
+            <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+            <Card.Content>
+              <Title>Card title</Title>
+              <Paragraph>Card content</Paragraph>
+            </Card.Content>
+            <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+            <Card.Actions>
+              <TouchableOpacity>
+              <Button mode = "outlined">Cancel</Button>
+              </TouchableOpacity>
+              <Button>Ok</Button>
+            </Card.Actions>
+          </Card>
+
+        
       </ScrollView>
     </SafeAreaView>
   );

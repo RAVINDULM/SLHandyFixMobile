@@ -18,11 +18,11 @@ import jwt_decode from "jwt-decode";
 
 function AppNav() {
   const { isLoading, userToken } = useContext(AuthContext);
-  //   return (
-  //     <NavigationContainer>
-  //        <AuthStack />
-  //        </NavigationContainer>
-  // );
+    return (
+      <NavigationContainer>
+         <CustomerAppStack />
+         </NavigationContainer>
+  );
   // var decoded = jwt_decode(userToken);
   // console.log("decoded values: ", decoded);
   // console.log("App nav user token :", userToken);
