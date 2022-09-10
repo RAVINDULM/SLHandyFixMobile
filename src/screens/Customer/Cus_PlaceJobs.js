@@ -15,10 +15,10 @@ import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
-function Cus_PlaceJobs() {
+function Cus_PlaceJobs(navigation ) {
 
   const [selectedValue, setSelectedValue] = useState("district");
-  const [selectedCategory, setSelectedCategory] = useState("district");
+  const [selectedCategory, setSelectedCategory] = useState("category");
 
   return (
     <SafeAreaView>
@@ -49,9 +49,9 @@ function Cus_PlaceJobs() {
             />
           </TouchableOpacity>
         </View>
-      </ScrollView>
 
-    <View style={styles.content}>
+
+        <View style={styles.content}>
           <Formik 
             initialValues={{ title: '' }} 
             // validate={values => {
@@ -102,12 +102,11 @@ function Cus_PlaceJobs() {
                   onChangeText={handleChange('location')}
                   value={values.location}
                   label="Location"
-                  placeholder="Enter the address where your want the job to occur..."
+                  placeholder="Enter the address where you want the job to occur..."
                 />
 
                 <Picker
                   selectedValue={selectedValue}
-                  // placeholder="District"
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                 >
@@ -123,9 +122,7 @@ function Cus_PlaceJobs() {
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
                 >
-                  <Picker.Item 
-                  style={styles.picker} 
-                  label="Category" value="c1" />
+                  <Picker.Item label="Category" value="c1" />
                   <Picker.Item label="Plumber" value="c2" />
                   <Picker.Item label="Mason" value="c3" />
                   <Picker.Item label="Eleectrician" value="c4" />
@@ -133,16 +130,20 @@ function Cus_PlaceJobs() {
                   <Picker.Item label="Painter" value="c6" />
                 </Picker>
 
-                <Button onPress={handleSubmit} style={styles.button}>Submit.</Button>
+                <View style={styles.buttonview}>
+                    <Button onPress={handleChange} style={styles.buttonCancel} color="white">Cancel</Button>
+                    <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Submit</Button>  
+                </View>
+
+                
               </View>
             )}
           </Formik>        
-          </View>
-    </SafeAreaView>
+        </View>
+      </ScrollView>
 
     
-
-
+    </SafeAreaView>
   )
 }
 
@@ -155,7 +156,14 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
   },
-  button: {
+  buttonSubmit: {
+    width:140,
+    marginTop: 26,
+    paddingVertical: 10,
+    backgroundColor: "#2538B8"
+  },
+  buttonCancel: {
+    width:140,
     marginTop: 26,
     paddingVertical: 10,
     backgroundColor: "silver"
@@ -168,6 +176,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
         borderBottomColor: '#ccc',
+        backgroundColor:"#fff",
         borderBottomWidth: 1,
         paddingBottom: 3,
         marginBottom: 10,
@@ -178,7 +187,12 @@ const styles = StyleSheet.create({
         paddingBottom: 3,
         marginBottom: 10,
         height: 50,
-        width: 320,
+        width: 300,
+  },
+  buttonview :{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-around',
   }
 })
 

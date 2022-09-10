@@ -16,7 +16,16 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+// const optionsPerPage = [2, 3, 4];
+
 const Cus_home = ({ navigation }) => {
+
+  // const [page, setPage] = React.useState<number>(0);
+  // const [itemsPerPage, setItemsPerPage] = React.useState(optionsPerPage[0]);
+
+  // React.useEffect(() => {
+  //   setPage(0);
+  // }, [itemsPerPage]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -47,10 +56,8 @@ const Cus_home = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-      </ScrollView>
 
-
-      <View
+        <View
       style={styles.fabcontainer}>
           <Badge 
           style={styles.badge}
@@ -66,49 +73,61 @@ const Cus_home = ({ navigation }) => {
         <Text
         style={{fontSize: 20,
                 color: "#fff",
-                marginLeft:15,
-                marginRight: 15,
                 fontWeight: '500',
                 backgroundColor: "#2538B8"}}>Recently placed jobs</Text>
         <DataTable.Header>
-          {/* <DataTable.Title numeric>#</DataTable.Title> */}
+          <DataTable.Title >#</DataTable.Title>
           <DataTable.Title>Job Title</DataTable.Title>
           <DataTable.Title>Service Provider</DataTable.Title>
-          <DataTable.Title numeric>Date of job done</DataTable.Title>
+          <DataTable.Title>Date of job done</DataTable.Title>
         </DataTable.Header>
 
         <DataTable.Row>
-          {/* <DataTable.Cell numeric>1</DataTable.Cell> */}
+          <DataTable.Cell>1</DataTable.Cell>
           <DataTable.Cell>Plumbing</DataTable.Cell>
           <DataTable.Cell>John Perera</DataTable.Cell>
-          <DataTable.Cell numeric>2022/08/02</DataTable.Cell>
+          <DataTable.Cell>2022/08/02</DataTable.Cell>
         </DataTable.Row>
 
         <DataTable.Row>
-          {/* <DataTable.Cell numeric>2</DataTable.Cell> */}
+          <DataTable.Cell>2</DataTable.Cell>
           <DataTable.Cell>Painting</DataTable.Cell>
           <DataTable.Cell>Nimal Guruge</DataTable.Cell>
-          <DataTable.Cell numeric>2022/08/10</DataTable.Cell>
+          <DataTable.Cell>2022/08/10</DataTable.Cell>
         </DataTable.Row>
 
         <DataTable.Row>
-          {/* <DataTable.Cell numeric>3</DataTable.Cell> */}
+          <DataTable.Cell>3</DataTable.Cell>
           <DataTable.Cell>Electrical</DataTable.Cell>
           <DataTable.Cell>Larry Joe</DataTable.Cell>
-          <DataTable.Cell numeric>2022/08/23</DataTable.Cell>
+          <DataTable.Cell>2022/08/23</DataTable.Cell>
         </DataTable.Row>
 
         <DataTable.Row>
-          {/* <DataTable.Cell numeric>4</DataTable.Cell> */}
+          <DataTable.Cell>4</DataTable.Cell>
           <DataTable.Cell>Masonary</DataTable.Cell>
           <DataTable.Cell>Sugath Perera</DataTable.Cell>
-          <DataTable.Cell numeric>2022/06/02</DataTable.Cell>
+          <DataTable.Cell>2022/06/02</DataTable.Cell>
         </DataTable.Row>
 
-      </DataTable>
+        {/* <DataTable.Pagination
+        page={page}
+        numberOfPages={3}
+        onPageChange={(page) => setPage(page)}
+        label="1-2 of 6"
+        optionsPerPage={optionsPerPage}
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={setItemsPerPage}
+        showFastPagination
+        optionsLabel={'Rows per page'}
+      /> */}
 
+      </DataTable>
       </View>
-   
+      </ScrollView>
+
+
+      
 
       {/* <View
         style={styles.fabcontainer}
@@ -155,7 +174,7 @@ const Cus_home = ({ navigation }) => {
 
       fabcontainer: {
         justifyContent:"space-around",
-        backgroundColor: 'red',
+        backgroundColor: 'green',
         display: "flex",
         flexDirection: "row",
         flex: 2,
@@ -177,8 +196,8 @@ const Cus_home = ({ navigation }) => {
         // paddingHorizontal: 30,
         display: 'flex',
         flex: 3,
-        marginLeft: 10,
-        marginRight: 10,
+        // marginLeft: 10,
+        // marginRight: 10,
       }, 
     })
 
