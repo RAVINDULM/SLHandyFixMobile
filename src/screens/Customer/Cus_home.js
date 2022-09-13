@@ -47,13 +47,13 @@ const Cus_home = ({ navigation }) => {
   const hideDialog = () => setVisible(false);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", marginTop:10}}>
       <ScrollView style={{ padding: 20 }}>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 20,
+            marginTop: 20
           }}
         >
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -133,8 +133,8 @@ const Cus_home = ({ navigation }) => {
                       onPress={() => console.log("Pressed date")}
                       style={{ marginBottom: 5 }}
                     >
-                      <View>
-                        <FontAwesomeIcon icon={faCalendar} size={0} />
+                      <View style={{paddingRight:10}}>
+                        <FontAwesomeIcon icon={faCalendar} size={0}/>
                       </View>
                       <Text>12/08/2022</Text>
                     </Chip>
@@ -178,7 +178,7 @@ const Cus_home = ({ navigation }) => {
                       onPress={() => console.log("Pressed date")}
                       style={{ marginBottom: 5 }}
                     >
-                      <View>
+                      <View style={{paddingRight:10}}>
                         <FontAwesomeIcon icon={faCalendar} size={0} />
                       </View>
                       <Text>12/08/2022</Text>
@@ -223,7 +223,7 @@ const Cus_home = ({ navigation }) => {
                       onPress={() => console.log("Pressed date")}
                       style={{ marginBottom: 5 }}
                     >
-                      <View>
+                      <View style={{paddingRight:10}}>
                         <FontAwesomeIcon icon={faCalendar} size={0} />
                       </View>
                       <Text>12/08/2022</Text>
