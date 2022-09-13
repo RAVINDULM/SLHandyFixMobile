@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 // import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { FAB } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-import { Badge } from 'react-native-paper';
-import { DataTable } from 'react-native-paper';
+
+import {
+  faCalendar,
+  faChevronLeft,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faMugSaucer } from "@fortawesome/free-solid-svg-icons/faMugSaucer";
+
+import { Card, Title, Paragraph, Chip } from "react-native-paper";
+import {
+  RadioButton,
+  List,
+  Checkbox,
+  Button,
+  Avatar,
+  Appbar,
+  IconButton ,
+} from "react-native-paper";
 
 
 import {
@@ -15,10 +31,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-
-
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 // const optionsPerPage = [2, 3, 4];
 
@@ -30,6 +42,9 @@ const Cus_home = ({ navigation }) => {
   // React.useEffect(() => {
   //   setPage(0);
   // }, [itemsPerPage]);
+
+  const [visible, setVisible] = React.useState(false);
+  const hideDialog = () => setVisible(false);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -61,81 +76,218 @@ const Cus_home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-      </ScrollView>
+{/* ---------------------------number cards---------------------------------- */}
 
+      <View style={{display:'flex', flexDirection:'row',justifyContent:'space-around'}}>
 
+          <View style={styles.mainContainer}>
+              <View style={styles.subcontainer}>
+                    <Text style={{ fontSize:35,color:'white', marginLeft:15}}>4</Text>
+              </View>
+
+              <View style={{justifyContent:'center'}}>
+                    <Text style={{fontSize:20}}>Placed Jobs</Text>
+              </View>
+          </View>
+
+          <View style={styles.mainContainer}>
+              <View style={styles.subcontainer}>
+                    <Text style={{ fontSize:35,color:'white', marginLeft:15}}>4</Text>
+              </View>
+
+              <View style={{justifyContent:'center'}}>
+                    <Text style={{fontSize:20}}>Accepted Jobs</Text>
+              </View>
+          </View>
+
+          <View style={styles.mainContainer}>
+              <View style={styles.subcontainer}>
+                    <Text style={{ fontSize:35,color:'white', marginLeft:15}}>4</Text>
+              </View>
+
+              <View style={{justifyContent:'center'}}>
+                    <Text style={{fontSize:20}}>Completed Jobs</Text>
+              </View>
+          </View> 
+      </View>
+
+     
       
 
-      {/* <View
-        style={styles.fabcontainer}
-      >
-          <FAB
-              // icon="plus"
-              label="20"
-              accessibilityLabel="service"
-              testID="service"
-              style={styles.fab}
-              onPress={() => console.log('Pressed')}
-          />
-          <FAB
-              // icon="plus"
-              label="20"
-              style={styles.fab}
-              onPress={() => console.log('Pressed')}
-          />
-           <FAB
-              // icon="plus"
-              label="30"
-              style={styles.fab}
-              onPress={() => console.log('Pressed')}
-          />
-      </View> */}
+{/* ----------------------------------------------------ongoing job cards--------------------------------------------------------- */}
+      <View style={{backgroundColor:'lightgrey',paddingTop:10}}>
+          
+          <View style={{alignItems:'center'}}>
+              <Text style={{fontSize: 20,
+                        color: "black",
+                        fontWeight: '500'}}>Ongoing jobs
+              </Text>
+          </View>
+        <View>
+            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+              <Card.Content>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flexDirection: "column",paddingRight:20 }}>
+                    <Title>Plumbing work</Title>
+                    <Chip
+                      onPress={() => console.log("Pressed date")}
+                      style={{ marginBottom: 5 }}
+                    >
+                      <View>
+                        <FontAwesomeIcon icon={faCalendar} size={0} />
+                      </View>
+                      <Text>12/08/2022</Text>
+                    </Chip>
+                    <View style={{ flexDirection: "row" }}>
+                      <Avatar.Image
+                        size={24}
+                        source={require("../../assests/imgs/User01.jpg")}
+                        style={{ marginRight: 10, marginLeft: 10 }}
+                      />
+                      <Text>John Michelle</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "column", paddingLeft: 20 }}>
+                    <Button
+                      style={{ marginBottom: 10 ,borderRadius: 5, backgroundColor: 'green'}}
+                      color="white"
+                    >
+                      {" "}
+                      New
+                    </Button>
+                    <Button
+                      mode="outlined"
+                      onPress={() => console.log("Pressed")}
+                    >
+                      {" "}
+                      View more
+                    </Button>
+                  </View>
+                </View>
+              </Card.Content>
+            </Card>
+        </View>
 
+        <View>
+            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+              <Card.Content>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flexDirection: "column",paddingRight:20 }}>
+                    <Title>Electrical work</Title>
+                    <Chip
+                      onPress={() => console.log("Pressed date")}
+                      style={{ marginBottom: 5 }}
+                    >
+                      <View>
+                        <FontAwesomeIcon icon={faCalendar} size={0} />
+                      </View>
+                      <Text>12/08/2022</Text>
+                    </Chip>
+                    <View style={{ flexDirection: "row" }}>
+                      <Avatar.Image
+                        size={24}
+                        source={require("../../assests/imgs/User01.jpg")}
+                        style={{ marginRight: 10, marginLeft: 10 }}
+                      />
+                      <Text>Jithru Perera</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "column", paddingLeft: 20 }}>
+                    <Button
+                      style={{ marginBottom: 10 ,borderRadius: 5, backgroundColor: 'goldenrod'}}
+                      color="white"
+                    >
+                      {" "}
+                      Ongoing
+                    </Button>
+                    <Button
+                      mode="outlined"
+                      onPress={() => console.log("Pressed")}
+                    >
+                      {" "}
+                      View more
+                    </Button>
+                  </View>
+                </View>
+              </Card.Content>
+            </Card>
+        </View>
+
+        <View>
+            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+              <Card.Content>
+                <View style={{ flexDirection: "row"}}>
+                  <View style={{ flexDirection: "column" ,paddingRight:20 }}>
+                    <Title>Masonary work</Title>
+                    <Chip
+                      onPress={() => console.log("Pressed date")}
+                      style={{ marginBottom: 5 }}
+                    >
+                      <View>
+                        <FontAwesomeIcon icon={faCalendar} size={0} />
+                      </View>
+                      <Text>12/08/2022</Text>
+                    </Chip>
+                    <View style={{ flexDirection: "row" }}>
+                      <Avatar.Image
+                        size={24}
+                        source={require("../../assests/imgs/User01.jpg")}
+                        style={{ marginRight: 10, marginLeft: 10 }}
+                      />
+                      <Text>Eric Mic</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "column", paddingLeft: 20 }}>
+                    <Button
+                      style={{ marginBottom: 10 ,borderRadius: 5, backgroundColor: 'goldenrod'}}
+                      color="white"
+                    >
+                      {" "}
+                      ongoing
+                    </Button>
+                    <Button
+                      mode="outlined"
+                      onPress={() => console.log("Pressed")}
+                    >
+                      {" "}
+                      View more
+                    </Button>
+                  </View>
+                </View>
+              </Card.Content>
+            </Card>
+        </View>
+
+      </View>
+      </ScrollView>
     </SafeAreaView>  
   );
 };
 
     const styles = StyleSheet.create({
-      fab: {
-        // position: 'absolute',
+      mainContainer: {
+        display:'flex',
+        flexDirection:'row',
+        flexWrap:'wrap',
+        alignItems:'baseline',
+        justifyContent:'center',
+        width:100,
+        height:120,
+        backgroundColor: "#F3F5F7", 
         margin: 10,
-        left: 0,
-        height:96,
-        width:96,
-        justifyContent: "center",
-        fontSize: 40,
-        // fontWeight: 250,
-        // borderRadius:48,
-        // top: 80,
+        elevation:10,
+        borderRadius:5
       },
 
-      fabcontainer: {
-        justifyContent:"space-around",
-        backgroundColor: 'green',
-        display: "flex",
-        flexDirection: "row",
-        flex: 2,
-      },
-
-      badge:{
-        size: 50,
-        height: 50,
-        width: 50,
-        marginBottom: 20,
-        // borderRadius: 25,
-        justifyContent: "center",
-        fontSize:25,
-        backgroundColor: "blue",
-      },
-
-      tablecontainer: {
-        // paddingTop: 100,
-        // paddingHorizontal: 30,
-        display: 'flex',
-        flex: 3,
-        // marginLeft: 10,
-        // marginRight: 10,
-      }, 
+      subcontainer: {
+        backgroundColor:'#2538B8',
+        borderRadius:25,
+        marginBottom:15,
+        marginTop:6,
+        width:50,
+        height:50,
+        justifyContent:'center'
+      }
     })
 
 export default Cus_home;
