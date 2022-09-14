@@ -15,6 +15,7 @@ import Cus_JobAD from '../screens/Customer/Cus_JobAD';
 import Cus_PostJobAD from '../screens/Customer/Cus_PostJobAD';
 import Cus_RecentJob from '../screens/Customer/Cus_RecentJob';
 import Cus_spProfileView from '../screens/Customer/Cus_spProfileView';
+import Cus_viewJobAD from '../screens/Customer/Cus_viewJobAD';
 
 // import TabNavigator from './TabNavigator';
 
@@ -44,6 +45,7 @@ const CustomerAppStack = () => {
       <Drawer.Screen name="Post Job Advertisements" component={Cus_PostJobAD} />
       <Drawer.Screen name="Recently Placed Jobs" component={Cus_RecentJob} />
       <Drawer.Screen name="sp profile view" component={Cus_spProfileView} />
+      <Drawer.Screen name="job ad view" component={Cus_viewJobAD} />
     </Drawer.Navigator>
   );
 };
