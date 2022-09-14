@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 import {
@@ -10,17 +9,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMugSaucer } from "@fortawesome/free-solid-svg-icons/faMugSaucer";
 
-import { Card, Title, Paragraph, Chip } from "react-native-paper";
 import {
-  RadioButton,
-  List,
-  Checkbox,
   Button,
   Avatar,
-  Appbar,
-  IconButton ,
+  Card, 
+  Title,
+  Chip
 } from "react-native-paper";
-
 
 import {
   View,
@@ -28,7 +23,6 @@ import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
-  TextInput,
   TouchableOpacity,
 } from "react-native";
 
@@ -130,7 +124,7 @@ const Cus_home = ({ navigation }) => {
                   <View style={{ flexDirection: "column",paddingRight:20 }}>
                     <Title>Plumbing work</Title>
                     <Chip
-                      onPress={() => console.log("Pressed date")}
+                      // onPress={() => console.log("Pressed date")}
                       style={{ marginBottom: 5 }}
                     >
                       <View style={{paddingRight:10}}>
@@ -175,7 +169,7 @@ const Cus_home = ({ navigation }) => {
                   <View style={{ flexDirection: "column",paddingRight:20 }}>
                     <Title>Electrical work</Title>
                     <Chip
-                      onPress={() => console.log("Pressed date")}
+                      // onPress={() => console.log("Pressed date")}
                       style={{ marginBottom: 5 }}
                     >
                       <View style={{paddingRight:10}}>
@@ -220,7 +214,7 @@ const Cus_home = ({ navigation }) => {
                   <View style={{ flexDirection: "column" ,paddingRight:20 }}>
                     <Title>Masonary work</Title>
                     <Chip
-                      onPress={() => console.log("Pressed date")}
+                      // onPress={() => console.log("Pressed date")}
                       style={{ marginBottom: 5 }}
                     >
                       <View style={{paddingRight:10}}>

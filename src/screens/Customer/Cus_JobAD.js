@@ -1,11 +1,18 @@
 import React from 'react'
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+import { CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+
+import {
+  Button,
+  Avatar,
+  Card, 
+  Title,
+  Chip
+} from "react-native-paper";
 
 import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
-  Button,
   Image,
   StyleSheet,
   FlatList,
@@ -48,56 +55,209 @@ function Cus_JobAD() {
               </TouchableOpacity>
             </View>
 
-            <Card style={{borderWidth:1, borderColor:'black'}}>
-                        <View style={{display:'flex',flexDirection:'row'}}>
-                            <View style={{display:'flex',flexDirection:'row'}}>
-                                  <View style={{width:50, marginLeft:5,marginTop:15}}>
-                                        <ImageBackground
-                                          source={require("../../assests/imgs/User01.jpg")}
-                                          style={{ width: 40, height: 40 }}
-                                          imageStyle={{ borderRadius: 25 }}
-                                        />
-                                  </View>
-                                  <View style={{backgroundColor:"red"}}><CardTitle 
-                                          title="Plumber" 
-                                          subtitle="1 day ago"
-                                        /></View>
-                                      
-                                        
+{/* ---------------------------------job ad cards------------------------------------------------- */}
+           <View style={{ flexDirection: "column" }}>
+              <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+                  <Card.Content>
+                      <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+                            <View style={{ margin: 1,height:60,width:50}}>
+                                  <Avatar.Image
+                                    size={50}
+                                    source={require("../../assests/imgs/User01.jpg")}/>
                             </View>
-                              <View style={{width:265}}>
-                                {/* <Card> */}
-                                    {/* <CardImage 
-                                      source={{uri: 'http://placehold.it/480x270'}} 
-                                      title="Above all i am here"
-                                    /> */}
-                                    {/* <CardTitle 
-                                      title="Plumber" 
-                                      subtitle="1 day ago"
-                                    /> */}
-                                     <ImageBackground
-                                        source={require("../../assests/imgs/option.png")}
-                                        style={{ width: 30, height: 30 }}
-                                        imageStyle={{ borderRadius: 25 }}
-                                      />
-                                    <Text style={{paddingLeft:15}}>Matara</Text>
 
-                                    {/* <CardContent text="Matara"></CardContent> */}
-                                    <CardContent text="I’m searching experienced plumber for repair my house. 
-                                    Please apply if you have experienced that duty." />
-                              </View>
-                        </View>
+                            <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+                            <Title>Plumbing work</Title>
+                            <Text style={{color:"grey"}}>3 days ago</Text>
+                            </View>
 
-                        <CardAction 
-                          separator={true} 
-                          inColumn={false}>
+                            <View style={{  margin: 1,height:60,width:70}}>
+                            <Text style={{marginTop:5}}>(Completed)</Text>
+                            </View>
+                           
+                            <View style={{ margin: 1,height:60,width:30}}>
+                              <ImageBackground
+                                source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+                                style={{ width: 30, height: 30 }}
+                              />
+                            </View>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,
+                                    //  backgroundColor: "green", 
+                                     margin: 1,
+                                     height:30,  
+                                     flexDirection: "row",
+                                     alignItems: "center",
+                                     paddingLeft:55 }}>
+                            <ImageBackground
+                              source={require("../../assests/icons/icons8-location-50.png")}
+                              style={{ width: 25, height: 25 }}
+                              />
+                            <Text style={{paddingLeft: 2,
+                                          fontSize: 16,
+                                          width: 150,}}> Anuradhapura</Text>
+                       </View>
+
+                      <View style={{ flexDirection: "row" , 
+                                     margin: 1,
+                                     height:60,
+                                     borderBottomColor: 'black',
+                                     borderBottomWidth: 1,}}>
+                        <Text>I’m searching experienced plumber for repair my house. 
+                                    Please apply if you have experienced that duty.</Text>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+                            <ImageBackground
+                              source={require("../../assests/icons/user.png")}
+                              style={{ width: 25, height: 25 ,marginTop:10}}
+                              />
                           <CardButton
                             onPress={() => {}}
                             title="Service provider's requests"
                             color="blue"
                           />
-                        </CardAction>
-            </Card>
+                      </View>
+                  </Card.Content>
+              </Card>
+           </View>
+
+           <View style={{ flexDirection: "column" }}>
+              <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+                  <Card.Content>
+                      <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+                            <View style={{ margin: 1,height:60,width:50}}>
+                                  <Avatar.Image
+                                    size={50}
+                                    source={require("../../assests/imgs/User01.jpg")}/>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+                            <Title>Plumbing work</Title>
+                            <Text style={{color:"grey"}}>3 days ago</Text>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:70}}>
+                            <Text style={{marginTop:5}}>(Completed)</Text>
+                            </View>
+                           
+                            <View style={{ margin: 1,height:60,width:30}}>
+                              <ImageBackground
+                                source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+                                style={{ width: 30, height: 30 }}
+                              />
+                            </View>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,
+                                    //  backgroundColor: "green", 
+                                     margin: 1,
+                                     height:30,  
+                                     flexDirection: "row",
+                                     alignItems: "center",
+                                     paddingLeft:55 }}>
+                            <ImageBackground
+                              source={require("../../assests/icons/icons8-location-50.png")}
+                              style={{ width: 25, height: 25 }}
+                              />
+                            <Text style={{paddingLeft: 2,
+                                          fontSize: 16,
+                                          width: 150,}}> Anuradhapura</Text>
+                       </View>
+
+                      <View style={{ flexDirection: "row" , 
+                                     margin: 1,
+                                     height:60,
+                                     borderBottomColor: 'black',
+                                     borderBottomWidth: 1,}}>
+                        <Text>I’m searching experienced plumber for repair my house. 
+                                    Please apply if you have experienced that duty.</Text>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+                            <ImageBackground
+                              source={require("../../assests/icons/user.png")}
+                              style={{ width: 25, height: 25 ,marginTop:10}}
+                              />
+                          <CardButton
+                            onPress={() => {}}
+                            title="Service provider's requests"
+                            color="blue"
+                          />
+                      </View>
+                  </Card.Content>
+              </Card>
+           </View>
+
+           <View style={{ flexDirection: "column" }}>
+              <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+                  <Card.Content>
+                      <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+                            <View style={{ margin: 1,height:60,width:50}}>
+                                  <Avatar.Image
+                                    size={50}
+                                    source={require("../../assests/imgs/User01.jpg")}/>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+                            <Title>Plumbing work</Title>
+                            <Text style={{color:"grey"}}>3 days ago</Text>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:70}}>
+                            <Text style={{marginTop:5}}>(Completed)</Text>
+                            </View>
+                           
+                            <View style={{ margin: 1,height:60,width:30}}>
+                              <ImageBackground
+                                source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+                                style={{ width: 30, height: 30 }}
+                              />
+                            </View>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,
+                                    //  backgroundColor: "green", 
+                                     margin: 1,
+                                     height:30,  
+                                     flexDirection: "row",
+                                     alignItems: "center",
+                                     paddingLeft:55 }}>
+                            <ImageBackground
+                              source={require("../../assests/icons/icons8-location-50.png")}
+                              style={{ width: 25, height: 25 }}
+                              />
+                            <Text style={{paddingLeft: 2,
+                                          fontSize: 16,
+                                          width: 150,}}> Anuradhapura</Text>
+                       </View>
+
+                      <View style={{ flexDirection: "row" , 
+                                     margin: 1,
+                                     height:60,
+                                     borderBottomColor: 'black',
+                                     borderBottomWidth: 1,}}>
+                        <Text>I’m searching experienced plumber for repair my house. 
+                                    Please apply if you have experienced that duty.</Text>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+                            <ImageBackground
+                              source={require("../../assests/icons/user.png")}
+                              style={{ width: 25, height: 25 ,marginTop:10}}
+                              />
+                          <CardButton
+                            onPress={() => {}}
+                            title="Service provider's requests"
+                            color="blue"
+                          />
+                      </View>
+                  </Card.Content>
+              </Card>
+           </View>
+
+
       </ScrollView>
     </SafeAreaView>
   )
