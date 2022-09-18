@@ -222,7 +222,7 @@ function Cus_Service({navigation}) {
                     <Button
                       style={{ marginBottom: 10 }}
                       mode="outlined"
-                      onPress={() => console.log("")}
+                      onPress={() => {navigation.navigate('sp profile view')}}
                     >
                       {" "}
                       View more
