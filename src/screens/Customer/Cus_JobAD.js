@@ -1,23 +1,32 @@
-import React from 'react'
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+import React, { useState } from "react";
+import { CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+
+import {
+  Button,
+  Avatar,
+  Card, 
+  Title,
+  Chip
+} from "react-native-paper";
+import { Picker } from '@react-native-picker/picker';
 
 import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
-  Button,
   Image,
   StyleSheet,
-  FlatList,
   View,
   Text,
   StatusBar,  
   TouchableOpacity,
-  Dimensions,
 } from "react-native";
 
 
 function Cus_JobAD() {
+
+  const [selectedValue, setSelectedValue] = useState("all");
+
   return (
     <SafeAreaView>
         <ScrollView style={{ padding: 20 }}>
@@ -48,59 +57,248 @@ function Cus_JobAD() {
               </TouchableOpacity>
             </View>
 
-            <Card style={{borderWidth:1, borderColor:'black'}}>
-                        <View style={{display:'flex',flexDirection:'row'}}>
-                            <View style={{display:'flex',flexDirection:'row'}}>
-                                  <View style={{width:50, marginLeft:5,marginTop:15}}>
-                                        <ImageBackground
-                                          source={require("../../assests/imgs/User01.jpg")}
-                                          style={{ width: 40, height: 40 }}
-                                          imageStyle={{ borderRadius: 25 }}
-                                        />
-                                  </View>
-                                  <View style={{backgroundColor:"red"}}><CardTitle 
-                                          title="Plumber" 
-                                          subtitle="1 day ago"
-                                        /></View>
-                                      
-                                        
+{/* ---------------------------------job ad cards------------------------------------------------- */}
+          <View style={{ flexDirection: "column" }}>
+            <View style={{display:'flex'}}>
+              <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+
+              <Picker
+                  selectedValue={selectedValue}
+                  style={styles.pickertag}
+                  onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                >
+                  <Picker.Item label="All" value="d1" />
+                  <Picker.Item label="Completed" value="d2" />
+                  <Picker.Item label="New" value="d3" />
+                  <Picker.Item label="Ongoing" value="d4" />
+                </Picker>
+
+                <TouchableOpacity>
+                  <Button style={styles.addbutton} color="white">Add new</Button>
+                </TouchableOpacity>
+
+              </View>  
+            </View>
+
+              <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+                  <Card.Content>
+                      <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+                            <View style={{ margin: 1,height:60,width:50}}>
+                                  <Avatar.Image
+                                    size={50}
+                                    source={require("../../assests/imgs/User01.jpg")}/>
                             </View>
-                              <View style={{width:265}}>
-                                {/* <Card> */}
-                                    {/* <CardImage 
-                                      source={{uri: 'http://placehold.it/480x270'}} 
-                                      title="Above all i am here"
-                                    /> */}
-                                    {/* <CardTitle 
-                                      title="Plumber" 
-                                      subtitle="1 day ago"
-                                    /> */}
-                                     <ImageBackground
-                                        source={require("../../assests/imgs/option.png")}
-                                        style={{ width: 30, height: 30 }}
-                                        imageStyle={{ borderRadius: 25 }}
-                                      />
-                                    <Text style={{paddingLeft:15}}>Matara</Text>
 
-                                    {/* <CardContent text="Matara"></CardContent> */}
-                                    <CardContent text="I’m searching experienced plumber for repair my house. 
-                                    Please apply if you have experienced that duty." />
-                              </View>
-                        </View>
+                            <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+                            <Title>Plumbing work</Title>
+                            <Text style={{color:"grey"}}>3 days ago</Text>
+                            </View>
 
-                        <CardAction 
-                          separator={true} 
-                          inColumn={false}>
+                            <View style={{  margin: 1,height:60,width:70}}>
+                            <Text style={{marginTop:5}}>(Completed)</Text>
+                            </View>
+                           
+                            <View style={{ margin: 1,height:60,width:30}}>
+                              <TouchableOpacity>
+                                  <ImageBackground
+                                  onPress={() => {}}
+                                  source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+                                  style={{ width: 30, height: 30 }}
+                                />
+                              </TouchableOpacity>
+                             
+                            </View>
+                      </View>
+
+                      <View style={styles.secondViewtag}>
+                            <ImageBackground
+                              source={require("../../assests/icons/icons8-location-50.png")}
+                              style={{ width: 25, height: 25 }}
+                              />
+                            <Text style={{paddingLeft: 2,fontSize: 16, width: 150,}}> Anuradhapura</Text>
+                       </View>
+
+                      <View style={styles.thirdViewtag}>
+                        <Text>I’m searching experienced plumber for repair my house. 
+                                    Please apply if you have experienced that duty.</Text>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+                            <ImageBackground
+                              source={require("../../assests/icons/user.png")}
+                              style={{ width: 25, height: 25 ,marginTop:10}}
+                              />
                           <CardButton
                             onPress={() => {}}
                             title="Service provider's requests"
                             color="blue"
                           />
-                        </CardAction>
-            </Card>
+                      </View>
+                  </Card.Content>
+              </Card>
+           </View>
+
+           <View style={{ flexDirection: "column" }}>
+              <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+                  <Card.Content>
+                      <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+                            <View style={{ margin: 1,height:60,width:50}}>
+                                  <Avatar.Image
+                                    size={50}
+                                    source={require("../../assests/imgs/User01.jpg")}/>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+                            <Title>Plumbing work</Title>
+                            <Text style={{color:"grey"}}>3 days ago</Text>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:70}}>
+                            <Text style={{marginTop:5}}>(Completed)</Text>
+                            </View>
+                           
+                            <View style={{ margin: 1,height:60,width:30}}>
+                            <TouchableOpacity>
+                                  <ImageBackground
+                                  onPress={() => {}}
+                                  source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+                                  style={{ width: 30, height: 30 }}
+                                />
+                              </TouchableOpacity>
+                            </View>
+                      </View>
+
+                      <View style={styles.secondViewtag}>
+                            <ImageBackground
+                              source={require("../../assests/icons/icons8-location-50.png")}
+                              style={{ width: 25, height: 25 }}
+                              />
+                            <Text style={{paddingLeft: 2,fontSize: 16,width: 150,}}> Anuradhapura</Text>
+                       </View>
+
+                      <View style={styles.thirdViewtag}>
+                        <Text>I’m searching experienced plumber for repair my house. 
+                                    Please apply if you have experienced that duty.</Text>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+                            <ImageBackground
+                              source={require("../../assests/icons/user.png")}
+                              style={{ width: 25, height: 25 ,marginTop:10}}
+                              />
+                          <CardButton
+                            onPress={() => {}}
+                            title="Service provider's requests"
+                            color="blue"
+                          />
+                      </View>
+                  </Card.Content>
+              </Card>
+           </View>
+
+           <View style={{ flexDirection: "column" }}>
+              <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+                  <Card.Content>
+                      <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+                            <View style={{ margin: 1,height:60,width:50}}>
+                                  <Avatar.Image
+                                    size={50}
+                                    source={require("../../assests/imgs/User01.jpg")}/>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+                            <Title>Plumbing work</Title>
+                            <Text style={{color:"grey"}}>3 days ago</Text>
+                            </View>
+
+                            <View style={{  margin: 1,height:60,width:70}}>
+                            <Text style={{marginTop:5}}>(Completed)</Text>
+                            </View>
+                           
+                            <View style={{ margin: 1,height:60,width:30}}>
+                            <TouchableOpacity>
+                                  <ImageBackground
+                                  onPress={() => {}}
+                                  source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+                                  style={{ width: 30, height: 30 }}
+                                />
+                              </TouchableOpacity>
+                            </View>
+                      </View>
+
+                      <View style={styles.secondViewtag}>
+                            <ImageBackground
+                              source={require("../../assests/icons/icons8-location-50.png")}
+                              style={{ width: 25, height: 25 }}
+                              />
+                            <Text style={{paddingLeft: 2,fontSize: 16, width: 150,}}> Anuradhapura</Text>
+                       </View>
+
+                      <View style={styles.thirdViewtag}>
+                        <Text>I’m searching experienced plumber for repair my house. 
+                                    Please apply if you have experienced that duty.</Text>
+                      </View>
+
+                      <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+                            <ImageBackground
+                              source={require("../../assests/icons/user.png")}
+                              style={{ width: 25, height: 25 ,marginTop:10}}
+                              />
+                          <CardButton
+                            onPress={() => {}}
+                            title="Service provider's requests"
+                            color="blue"
+                          />
+                      </View>
+                  </Card.Content>
+              </Card>
+           </View>
+
+
       </ScrollView>
     </SafeAreaView>
   )
 }
+
+
+const styles = StyleSheet.create({
+  pickertag: {
+    borderBottomColor: '#ccc',
+    backgroundColor:"lightgrey",
+    borderBottomWidth: 1,
+    paddingBottom: 3,
+    marginBottom: 10,
+    marginTop:5,
+    height: 50,
+    width: 130,
+  },
+
+  addbutton: {
+    borderRadius: 5,
+    marginTop:5,
+    width:120,
+    height:50,
+    justifyContent:'center',
+    backgroundColor: '#2538B8'
+  },
+
+  secondViewtag:{
+    flexDirection: "row" ,
+    margin: 1,
+    height:30,  
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft:55 
+  },
+
+  thirdViewtag:{
+    flexDirection: "row" , 
+    margin: 1,
+    height:60,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+  }
+})
+
 
 export default Cus_JobAD
