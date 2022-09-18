@@ -23,7 +23,7 @@ import {
 } from "react-native";
 
 
-function Cus_JobAD() {
+function Cus_JobAD({navigation}) {
 
   const [selectedValue, setSelectedValue] = useState("all");
 

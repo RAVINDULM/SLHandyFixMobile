@@ -36,7 +36,8 @@ const CustomerAppStack = () => {
 
       <Drawer.Screen name="Home" component={Cus_Home} />
       <Drawer.Screen name="My Profile" component={Cus_Profile} />
-      <Drawer.Screen name="Edit Profile" component={Cus_EditProfile} />
+      
+      <Drawer.Screen name="Edit Profile" options={{headerShown:false}} component={Cus_EditProfile} />
 
       <Drawer.Screen name="My Service" component={Cus_Service} />
       {/* <Drawer.Screen name="Cus_Profile" component={Cus_Profile} /> */}
