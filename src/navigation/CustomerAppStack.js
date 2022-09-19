@@ -19,6 +19,8 @@ import Cus_viewJobAD from '../screens/Customer/Cus_viewJobAD';
 
 // import TabNavigator from './TabNavigator';
 
+import customer_profile_stack from '../../src/navigation/CustomerStacks/Cus_ProfileStack'
+
 const Drawer = createDrawerNavigator();
 
 const CustomerAppStack = () => {
@@ -35,9 +37,9 @@ const CustomerAppStack = () => {
       },  }}>
 
       <Drawer.Screen name="Home" component={Cus_Home} />
-      <Drawer.Screen name="My Profile" component={Cus_Profile} />
+      <Drawer.Screen name="My Profile" component={customer_profile_stack} />
       
-      <Drawer.Screen name="Edit Profile" options={{headerShown:false}} component={Cus_EditProfile} />
+      {/* <Drawer.Screen name="Edit Profile" component={Cus_EditProfile} /> */}
 
       <Drawer.Screen name="My Service" component={Cus_Service} />
       {/* <Drawer.Screen name="Cus_Profile" component={Cus_Profile} /> */}

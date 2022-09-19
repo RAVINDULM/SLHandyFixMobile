@@ -27,7 +27,7 @@ function Cus_EditProfile({navigation}) {
   return (
     <SafeAreaView>
     <ScrollView style={{ padding: 20 }}>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -52,7 +52,7 @@ function Cus_EditProfile({navigation}) {
               imageStyle={{ borderRadius: 25 }}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
 
 
         <View style={styles.content}>
