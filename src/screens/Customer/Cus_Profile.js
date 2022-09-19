@@ -168,10 +168,10 @@ const Cus_Profile = ({ navigation }) => {
                 // ,backgroundColor: 'white'
               }}
             >
-              <ImageBackground
+              {/* <ImageBackground
                 source={require("../../assests/icons/icons8-edit-30.png")}
                 style={{ width: 25, height: 25 }}
-              />
+              /> */}
             </View>
           </View>
         </View>
