@@ -92,6 +92,7 @@ import {
 import CustomButton from "../../components/CustomButton";
 import { Ionicons } from "@expo/vector-icons";
 
+
 const Cus_Profile = ({ navigation }) => {
   return (
     <SafeAreaView
@@ -167,10 +168,10 @@ const Cus_Profile = ({ navigation }) => {
                 // ,backgroundColor: 'white'
               }}
             >
-              <ImageBackground
+              {/* <ImageBackground
                 source={require("../../assests/icons/icons8-edit-30.png")}
                 style={{ width: 25, height: 25 }}
-              />
+              /> */}
             </View>
           </View>
         </View>
@@ -413,7 +414,7 @@ const Cus_Profile = ({ navigation }) => {
           margin: 10,
         }}
       >
-        <CustomButton label={"Edit Profile"} />
+        <CustomButton label={"Edit Profile"} onPress={()=>{navigation.navigate('Edit Profile')}}/>
       </View>
     </SafeAreaView>
   );

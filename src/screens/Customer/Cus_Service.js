@@ -54,7 +54,7 @@ function Cus_Service({navigation}) {
   return (
     <SafeAreaView>
         <ScrollView style={{ padding: 20 }}>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -79,7 +79,7 @@ function Cus_Service({navigation}) {
               imageStyle={{ borderRadius: 25 }}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         <Searchbar
             // icon="camera"
@@ -222,7 +222,7 @@ function Cus_Service({navigation}) {
                     <Button
                       style={{ marginBottom: 10 }}
                       mode="outlined"
-                      onPress={() => console.log("")}
+                      onPress={() => {navigation.navigate('Service Provider Profile')}}
                     >
                       {" "}
                       View more
