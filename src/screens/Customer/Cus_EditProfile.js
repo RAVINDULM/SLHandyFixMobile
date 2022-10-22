@@ -31,9 +31,11 @@ function Cus_EditProfile({navigation}) {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 20,
+            // marginTop: ,
           }}
         >
+         
+        </View>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <ImageBackground
               source={require("../../assests/imgs/menu.png")}

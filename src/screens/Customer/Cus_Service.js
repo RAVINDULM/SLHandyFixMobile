@@ -230,7 +230,7 @@ function Cus_Service({navigation}) {
                     </Button>
                     <Button
                       mode="outlined"
-                      onPress={() => console.log("Pressed")}
+                      onPress={() => navigation.navigate("Cus_PlaceJobs")}
                     >
                       {" "}
                       Place Your Job
