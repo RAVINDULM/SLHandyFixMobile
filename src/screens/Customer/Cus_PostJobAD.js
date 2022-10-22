@@ -22,41 +22,19 @@ import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
 import * as ImagePicker from 'expo-image-picker';
-
-
 //import DateTimePicker from '@react-native-community/datetimepicker';
-
 
 function Cus_PostJobAD({navigation}) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-    <ScrollView style={{ padding: 20 }}>
+    <ScrollView style={{ paddingLeft: 20, paddingRight: 20,paddingBottom: 20, }}>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 20,
-          }}
-        >
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/menu.png")}
-              style={{ width: 30, height: 30 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 18}}>
-            Hello John Doe
-          </Text>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/User01.jpg")}
-              style={{ width: 40, height: 40 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-        </View>
-        
+            // marginTop: 20,
+          }}/>
+
         <View style={styles.content}>
           <Formik 
             initialValues={{ title: '' }} 

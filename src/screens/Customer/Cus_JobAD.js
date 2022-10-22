@@ -22,8 +22,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-
-function Cus_JobAD() {
+  const Cus_JobAD = ({ navigation }) => {
 
   const [selectedValue, setSelectedValue] = useState("all");
 
@@ -34,28 +33,9 @@ function Cus_JobAD() {
               style={{
                 flexDirection: "row",
                 justifyContent: "space-between",
-                marginTop: 20,
+                // marginTop: 20,
               }}
-            >
-              <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <ImageBackground
-                  source={require("../../assests/imgs/menu.png")}
-                  style={{ width: 30, height: 30 }}
-                  imageStyle={{ borderRadius: 25 }}
-                />
-              </TouchableOpacity>
-              <Text style={{ fontSize: 18}}>
-                Job Advertisements
-              </Text>
-          
-              <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <ImageBackground
-                  source={require("../../assests/imgs/User01.jpg")}
-                  style={{ width: 40, height: 40 }}
-                  imageStyle={{ borderRadius: 25 }}
-                />
-              </TouchableOpacity>
-            </View>
+            />
 
 {/* ---------------------------------job ad cards------------------------------------------------- */}
           <View style={{ flexDirection: "column" }}>
@@ -73,9 +53,12 @@ function Cus_JobAD() {
                   <Picker.Item label="Ongoing" value="d4" />
                 </Picker>
 
-                <TouchableOpacity>
-                  <Button style={styles.addbutton} color="white">Add new</Button>
-                </TouchableOpacity>
+                {/* <TouchableOpacity > */}
+                  <Button 
+                      style={styles.addbutton} color="white" 
+                      onPress={() => navigation.navigate("Cus_PostJobAD")}> Add new
+                  </Button>
+                {/* </TouchableOpacity> */}
 
               </View>  
             </View>
@@ -99,9 +82,8 @@ function Cus_JobAD() {
                             </View>
                            
                             <View style={{ margin: 1,height:60,width:30}}>
-                              <TouchableOpacity>
+                              <TouchableOpacity onPress={() => navigation.navigate("Cus_viewJobAD")}>
                                   <ImageBackground
-                                  onPress={() => {}}
                                   source={require("../../assests/icons/icons8-menu-vertical-32.png")}
                                   style={{ width: 30, height: 30 }}
                                 />

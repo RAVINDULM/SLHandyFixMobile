@@ -27,29 +27,9 @@ function Cus_PlaceJobs(navigation ) {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginTop: 20,
+            // marginTop: 20,
           }}
-        >
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/menu.png")}
-              style={{ width: 30, height: 30 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 18}}>
-            Place job 
-          </Text>
-      
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/User01.jpg")}
-              style={{ width: 40, height: 40 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-        </View>
-
+        />
 
         <View style={styles.content}>
           <Formik 

@@ -104,23 +104,6 @@ const Cus_Profile = ({ navigation }) => {
         // backgroundColor: 'yellow'
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 20,
-        }}
-      >
-        {/* <Text style={{ fontSize: 18}}>
-          </Text>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/User01.jpg")}
-              style={{ width: 40, height: 40 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity> */}
-      </View>
 
       <ScrollView style={{ padding: 20 }}>
         {/*---------------------------------------------------------- Profile picture section -----------------------------------------------------------------------------------*/}
@@ -130,7 +113,7 @@ const Cus_Profile = ({ navigation }) => {
             alignContent: "center",
             alignItems: "center",
             // ,backgroundColor: 'blue'
-            paddingTop: 50,
+            // paddingTop: 0,
           }}
         >
           <ImageBackground
@@ -150,7 +133,7 @@ const Cus_Profile = ({ navigation }) => {
               style={{
                 flexDirection: "column",
                 alignItems: "center",
-                paddingRight: 10,
+                paddingRight: 30,
               }}
             >
               <Text style={{ fontSize: 18, fontWeight: "bold" }}>
@@ -167,10 +150,10 @@ const Cus_Profile = ({ navigation }) => {
                 // ,backgroundColor: 'white'
               }}
             >
-              <ImageBackground
+              {/* <ImageBackground
                 source={require("../../assests/icons/icons8-edit-30.png")}
                 style={{ width: 25, height: 25 }}
-              />
+              /> */}
             </View>
           </View>
         </View>
@@ -413,7 +396,7 @@ const Cus_Profile = ({ navigation }) => {
           margin: 10,
         }}
       >
-        <CustomButton label={"Edit Profile"} />
+        <CustomButton label={"Edit Profile"} onPress={() => navigation.navigate("Cus_EditProfile")}/>
       </View>
     </SafeAreaView>
   );
