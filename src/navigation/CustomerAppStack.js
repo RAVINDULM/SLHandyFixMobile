@@ -20,6 +20,10 @@ import CusServiceProviderStack from './CusStacks/CusSpList';
 // import Cus_viewJobAD from '../screens/Customer/Cus_viewJobAD';
 // import TabNavigator from './TabNavigator';
 // import Cus_spProfileView from '../screens/Customer/Cus_spProfileView';
+
+import customer_profile_stack from '../../src/navigation/CustomerStacks/Cus_ProfileStack'
+import customer_myservicesStack from '../../src/navigation/CustomerStacks/MyServicesStack'
+
 const Drawer = createDrawerNavigator();
 
 const CustomerAppStack = () => {

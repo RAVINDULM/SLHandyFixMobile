@@ -19,7 +19,7 @@ import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
-function Cus_EditProfile(navigation) {
+function Cus_EditProfile({navigation}) {
 
   const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");
@@ -27,7 +27,7 @@ function Cus_EditProfile(navigation) {
   return (
     <SafeAreaView>
     <ScrollView style={{ padding: 20 }}>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -36,6 +36,25 @@ function Cus_EditProfile(navigation) {
         >
          
         </View>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <ImageBackground
+              source={require("../../assests/imgs/menu.png")}
+              style={{ width: 30, height: 30 }}
+              imageStyle={{ borderRadius: 25 }}
+            />
+          </TouchableOpacity>
+          <Text style={{ fontSize: 18}}>
+            Edit Profile
+          </Text>
+      
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <ImageBackground
+              source={require("../../assests/imgs/User01.jpg")}
+              style={{ width: 40, height: 40 }}
+              imageStyle={{ borderRadius: 25 }}
+            />
+          </TouchableOpacity>
+        </View> */}
 
 
         <View style={styles.content}>

@@ -15,7 +15,7 @@ import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
-function Cus_PlaceJobs(navigation ) {
+function Cus_PlaceJobs({navigation} ) {
 
   const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");

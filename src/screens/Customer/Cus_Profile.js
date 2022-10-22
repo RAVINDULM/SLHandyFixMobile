@@ -92,6 +92,7 @@ import {
 import CustomButton from "../../components/CustomButton";
 import { Ionicons } from "@expo/vector-icons";
 
+
 const Cus_Profile = ({ navigation }) => {
   return (
     <SafeAreaView
