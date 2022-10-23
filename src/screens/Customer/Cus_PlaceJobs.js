@@ -12,19 +12,40 @@ import {
 } from "react-native";
 
 import { Picker } from '@react-native-picker/picker';
-import { Formik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import * as Yup from "yup";
 import Axios from "axios";
 import { Button, TextInput, Appbar } from 'react-native-paper';
+import { clockRunning } from "react-native-reanimated";
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { format } from "date-fns";
 
-function Cus_PlaceJobs({navigation} ) {
+function Cus_PlaceJobs({ navigation }) {
 
-  const [selectedValue, setSelectedValue] = useState("district");
-  const [selectedCategory, setSelectedCategory] = useState("category");
+  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [pickdate, setdatevalue] = useState(new Date());
+
+  console.log(pickdate);
+
+  const onChange = (event, selecteddate) => {
+    if (event.type != "dismissed") {
+      setdatevalue(selecteddate);
+    }
+  }
+
+  const showdatepicker = () => {
+    DateTimePickerAndroid.open({
+      onChange,
+      value: new Date(),
+      minimumDate: new Date(),
+      mode: "date"
+    })
+  }
 
   return (
     <SafeAreaView>
-    <ScrollView style={{ padding: 20 }}>
+      <ScrollView style={{ padding: 20 }}>
         <View
           style={{
             flexDirection: "row",
@@ -34,98 +55,118 @@ function Cus_PlaceJobs({navigation} ) {
         />
 
         <View style={styles.content}>
-          <Formik 
-            initialValues={{ title: '' }} 
-            // validate={values => {
-            //   let errors = {};
-            //   if (!values.email) {
-            //     errors.email = 'Required';
-            //   } else if (
-            //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            //   ) {
-            //     errors.email = 'Invalid email address';
-            //   }
-            //   return errors;
-            // }}
-            onSubmit={values => {
-                Alert.alert(JSON.stringify(values, null, 2));
-                Keyboard.dismiss();
-              }
-            }
+          <Formik
+            initialValues={{ title: '', requireddate: '', description: '', location: '', district: '', category: '' }}
+            onSubmit={(values) => {
+              // console.log(selectedValue);
+
+              // console.log(selectedCategory);
+              // console.log("Function called", values);
+              Axios.post(
+                "http://192.168.8.101:5000/api/v1/customer1/submitJobRequest",
+                {
+                  title: values.title,
+                  requiredDate: pickdate,
+                  description: values.description,
+                  location: values.location,
+                  district: selectedValue,
+                  category: selectedCategory,
+                  customerId: 1,
+                  serviceProviderId: 1,
+                  status: 1,
+                  image: "gggg",
+                }
+              ).then((response) => {
+                if (response.data.error) {
+                  alert(response.data.error)
+                } else {
+                  alert("Your request has been sent successfully!");
+                  navigation.navigate('Cus_Service');
+                }
+              });
+
+            }}
           >
-            {({ handleChange, handleSubmit, values, errors }) => (
+            {({ handleChange, handleSubmit, values, errors,resetForm }) => (
               <View>
-                <TextInput 
-                  style= {styles.textinput}
+                <TextInput
+                  style={styles.textinput}
                   onChangeText={handleChange('title')}
                   value={values.title}
                   label="Title"
+                  mode="outlined"
                   placeholder="Enter your job title..."
                 />
+                {/* <Button onPress={showdatepicker} style={styles.buttonCancel} color="white">Cancel</Button> */}
+                {/* <button onPress={()=>{showdatepicker()}}><Text>asdfgh</Text></button> */}
+                <TouchableOpacity onPress={showdatepicker}>
+                  <TextInput
+                    disabled
+                    style={styles.textinput}
+                    // onChangeText={handleChange('requireddate')}
+                    value={format(pickdate, "MMMM do, yyyy ")}
+                    label="Required Date"
+                    mode="outlined"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </TouchableOpacity>
 
                 <TextInput
-                  style= {styles.textinput}
-                  onChangeText={handleChange('requireddate')}
-                  value={values.requireddate}
-                  label="Required Date"
-                  placeholder="mm/dd/yyyy"
-                />
-                
-                <TextInput
-                  style= {styles.textinput}
+                  style={styles.textinput}
                   onChangeText={handleChange('description')}
                   value={values.description}
                   label="Job description"
+                  mode="outlined"
                   placeholder="Enter your job details here..."
                 />
 
                 <TextInput
-                  style= {styles.textinput}
+                  style={styles.textinput}
                   onChangeText={handleChange('location')}
                   value={values.location}
                   label="Location"
+                  mode="outlined"
                   placeholder="Enter the address where you want the job to occur..."
                 />
 
                 <Picker
-                placeholder="Start Year" 
                   selectedValue={selectedValue}
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                 >
-                  <Picker.Item label="District" enabled={false}/>
-                  <Picker.Item label="Matara" value="d2" />
-                  <Picker.Item label="Galle" value="d3" />
-                  <Picker.Item label="Hambantota" value="d4" />
-                  <Picker.Item label="Colombo" value="d5" />
+                  <Picker.Item label="District" enabled={false} />
+                  <Picker.Item label="Matara" value="Matara" />
+                  <Picker.Item label="Galle" value="Galle" />
+                  <Picker.Item label="Hambantota" value="Hambantota" />
+                  <Picker.Item label="Colombo" value="Colombo" />
                 </Picker>
 
                 <Picker
-                  selectedCategory={selectedCategory}
+                  selectedValue={selectedCategory}
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
                 >
-                  <Picker.Item label="Category"enabled={false} />
-                  <Picker.Item label="Plumber" value="c2" />
-                  <Picker.Item label="Mason" value="c3" />
-                  <Picker.Item label="Eleectrician" value="c4" />
-                  <Picker.Item label="Carpenter" value="c5" />
-                  <Picker.Item label="Painter" value="c6" />
+                  <Picker.Item label="Category" enabled={false} />
+                  <Picker.Item label="Plumber" value="Plumber" />
+                  <Picker.Item label="Mason" value="Mason" />
+                  <Picker.Item label="Electrician" value="Electrician" />
+                  <Picker.Item label="Carpenter" value="Carpenter" />
+                  <Picker.Item label="Painter" value="Painter" />
                 </Picker>
 
                 <View style={styles.buttonview}>
-                    <Button onPress={handleChange} style={styles.buttonCancel} color="white">Cancel</Button>
-                    <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Submit</Button>  
+                  <Button onPress={resetForm} style={styles.buttonCancel} color="white">Cancel</Button>
+                  <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Submit</Button>
                 </View>
 
-                
+
               </View>
             )}
-          </Formik>        
+          </Formik>
         </View>
       </ScrollView>
 
-    
+
     </SafeAreaView>
   )
 }
@@ -140,13 +181,13 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   buttonSubmit: {
-    width:140,
+    width: 110,
     marginTop: 26,
     paddingVertical: 10,
     backgroundColor: "#2538B8"
   },
   buttonCancel: {
-    width:140,
+    width: 110,
     marginTop: 26,
     paddingVertical: 10,
     backgroundColor: "silver"
@@ -155,27 +196,27 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: 230,
     fontSize: 16,
-    color : "#000"
+    color: "#000"
   },
   textinput: {
-        borderBottomColor: '#ccc',
-        backgroundColor:"#fff",
-        borderBottomWidth: 1,
-        paddingBottom: 3,
-        marginBottom: 10,
+    borderBottomColor: '#ccc',
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    paddingBottom: 3,
+    marginBottom: 10,
   },
   picker: {
-        borderBottomColor: '#ccc',
-        borderBottomWidth: 1,
-        paddingBottom: 3,
-        marginBottom: 10,
-        height: 50,
-        width: 300,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+    paddingBottom: 3,
+    marginBottom: 10,
+    height: 50,
+    width: 300,
   },
-  buttonview :{
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'space-around',
+  buttonview: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   }
 })
 
