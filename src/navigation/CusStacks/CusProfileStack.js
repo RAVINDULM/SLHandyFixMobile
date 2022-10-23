@@ -20,6 +20,7 @@ import Cus_Profile from "../../screens/Customer/Cus_Profile";
 import Cus_EditProfile from "../../screens/Customer/Cus_EditProfile";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 const Stack = createStackNavigator();
 
 const CusProfileStack = ({ navigation }) => {
@@ -50,14 +51,11 @@ const CusProfileStack = ({ navigation }) => {
         options={({ route, navigation }) => ({
             header: () => (
               <Appbar.Header style={{ backgroundColor: "white" }}>
-                <Appbar.BackAction onPress={() => navigation.navigate("Cus_Profile")}/>
-                {/* <TouchableOpacity onPress={() => navigation.navigate("Cus_Profile")}>
-                  <FontAwesomeIcon
-                    icon={faStepBackward}
-                    size={24}
-                    style={{ marginLeft: 10 }}
-                  />
-                </TouchableOpacity> */}
+                {/* <Appbar.BackAction onPress={() => navigation.navigate("Cus_Profile")}/> */}
+                <TouchableOpacity onPress={() => navigation.navigate("Cus_Profile")}>
+                <Ionicons name="arrow-back-outline" size={30} />
+               
+                </TouchableOpacity>
                 {/* <Appbar.Content title={route.name} /> */}
                 <Appbar.Content title="Edit Profile" />
               </Appbar.Header>

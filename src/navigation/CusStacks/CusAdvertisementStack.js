@@ -21,6 +21,7 @@ import Cus_viewJobAD from "../../screens/Customer/Cus_viewJobAD";
 import Cus_PostJobAD from "../../screens/Customer/Cus_PostJobAD";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 const Stack = createStackNavigator();
 
 const CusAdvertisementStack = ({ navigation }) => {
@@ -72,11 +73,7 @@ const CusAdvertisementStack = ({ navigation }) => {
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
               <TouchableOpacity onPress={() => navigation.navigate("Cus_JobAD")}>
-                <FontAwesomeIcon
-                  icon={faStepBackward}
-                  size={24}
-                  style={{ marginLeft: 10 }}
-                />
+              <Ionicons name="arrow-back-outline" size={30} />
               </TouchableOpacity>
               {/* <Appbar.Content title={route.name} /> */}
               <Appbar.Content title="Add New Advertisement" />
