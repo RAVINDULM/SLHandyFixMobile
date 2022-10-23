@@ -20,6 +20,7 @@ import Cus_home from "../../screens/Customer/Cus_home";
 import Cus_spProfileView from "../../screens/Customer/Cus_spProfileView";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Ionicons } from "@expo/vector-icons";
 const Stack = createStackNavigator();
 
 const CusHomeStack = ({ navigation }) => {
@@ -51,11 +52,7 @@ const CusHomeStack = ({ navigation }) => {
             header: () => (
               <Appbar.Header style={{ backgroundColor: "white" }}>
                 <TouchableOpacity onPress={() => navigation.navigate("Cus_Home")}>
-                  <FontAwesomeIcon
-                    icon={faStepBackward}
-                    size={24}
-                    style={{ marginLeft: 10 }}
-                  />
+                <Ionicons name="arrow-back-outline" size={30} />
                 </TouchableOpacity>
                 {/* <Appbar.Content title={route.name} /> */}
                 <Appbar.Content title="Service Provider Profile" />

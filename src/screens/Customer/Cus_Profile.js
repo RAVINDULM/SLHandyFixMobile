@@ -121,20 +121,26 @@ const Cus_Profile = ({ navigation }) => {
             source={require("../../assests/imgs/avatar.jpg")}
             style={{ width: 120, height: 120 }}
             imageStyle={{ borderRadius: 60 }}
+            
           />
           <View
             style={{
+             
               flexDirection: "row",
               justifyContent: "center",
+              alignItems:"center",
               paddingLeft: 30,
               // backgroundColor: 'red'
             }}
           >
             <View
               style={{
+               
                 flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "center",
                 paddingRight: 30,
+                // backgroundColor: 'black'
               }}
             >
               <Text style={{ fontSize: 18, fontWeight: "bold" }}>
@@ -162,7 +168,7 @@ const Cus_Profile = ({ navigation }) => {
 
         {/*---------------------------------------------------------- Profile details heading section---------------------------------------------------------- */}
         <View style={{ paddingTop: 20, paddingBottom: 10 }}>
-          <Text style={{ fontSize: 16, fontWeight: "bold" }}>PROFILE</Text>
+          <Text style={{ fontSize: 17, fontWeight: "bold" }}>PROFILE</Text>
         </View>
         <View
           style={{
@@ -178,7 +184,8 @@ const Cus_Profile = ({ navigation }) => {
             flexDirection: "row",
             // justifyContent: 'center',
             alignItems: "center",
-            margin: 10,
+            marginTop: 16,
+            margin:10,
             // backgroundColor: 'green'
           }}
         >
@@ -193,9 +200,10 @@ const Cus_Profile = ({ navigation }) => {
               fontSize: 16,
               fontWeight: "bold",
               width: 150,
+
             }}
           >
-            Enuli Diaz
+            Enuli Diazz
           </Text>
           {/* <TextInput
             placeholder="Name"
