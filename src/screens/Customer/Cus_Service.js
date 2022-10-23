@@ -39,6 +39,8 @@ import {
 
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { Picker } from '@react-native-picker/picker';
+// import { black } from 'react-native-/lib/typescript/styles/colors';
+// import { pink100 } from 'react-native-paper/lib/typescript/styles/colors';
 
 
 
@@ -119,18 +121,20 @@ function Cus_Service({navigation}) {
 
         {/* ---------------------- card fo a service  --------------------------------*/}
 
-        <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+        <Card style={{ backgroundColor: "#F3F5F7", margin: 10 ,paddingTop:10,flexDirection:'row',}}>
+          <View style={{flex:1,backgroundColor:'#F3F5F7',justifyContent:'center',alignItems:'center'}}>
+          <Avatar.Image
+            source={require("../../assests/imgs/User01.jpg")}
+            // style={{ marginBottom: 10 }}
+            // style={{ marginRight: 100, marginLeft: 100 }}
+            size={100}
+/> 
+          </View>
               {/* <Card.Cover */}
-              <Avatar.Image
 
-                        source={require("../../assests/imgs/User01.jpg")}
-                        // style={{ marginBottom: 10 }}
-                        style={{ marginRight: 100, marginLeft: 100 }}
-                        size={100}
-              /> 
               <Card.Content>
                 <View style={{ flexDirection: "column" }}>
-                  <View style={{ flexDirection: "column" }}>
+                  <View style={{ flexDirection: "column" ,justifyContent:'center',alignItems:'center'}}>
                     <Title>Namal Perera</Title>
                     <Paragraph>
                       Plumber|Member since 2015 {'\n'} 
@@ -187,7 +191,7 @@ function Cus_Service({navigation}) {
           <Card.Content> */}
             
             {/* <Card.Cover></Card.Cover> */}
-            <View style={{ marginRight: 35 }} isDisabled={true}>
+            <View style={{}} isDisabled={true}>
               <Rating
                 showRating
                 isDisabled={false}
@@ -201,9 +205,8 @@ function Cus_Service({navigation}) {
             </View>
           {/* </Card.Content>
         </Card> */}
-                  <Text>Job Count (5)</Text>
-
-
+  
+          <Text>Job Count (5)</Text>
                   <View
                     style={{
                       flexDirection: "column",
