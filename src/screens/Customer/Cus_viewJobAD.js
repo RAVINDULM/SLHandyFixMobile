@@ -39,7 +39,7 @@ const ServPro_Profile = ({ navigation }) => {
             flexDirection: "column",
             alignContent: "center",
             alignItems: "center",
-            paddingTop: 10,
+            // paddingTop: 10,
           }}
         >
           <ImageBackground

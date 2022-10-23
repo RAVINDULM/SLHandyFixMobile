@@ -26,15 +26,7 @@ const Cus_spProfileView = ({ navigation }) => {
         margin: 10,
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginTop: 20,
-        }}
-      >
-      </View>
-
+      
       <ScrollView style={{ padding: 20 }}>
         {/*---------------------------------------------------------- Profile picture section -----------------------------------------------------------------------------------*/}
         <View
@@ -42,7 +34,7 @@ const Cus_spProfileView = ({ navigation }) => {
             flexDirection: "column",
             alignContent: "center",
             alignItems: "center",
-            paddingTop: 50,
+            // paddingTop: 50,
           }}
         >
           <ImageBackground
