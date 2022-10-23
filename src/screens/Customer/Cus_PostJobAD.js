@@ -25,6 +25,9 @@ import * as ImagePicker from 'expo-image-picker';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 
 function Cus_PostJobAD({navigation}) {
+
+  const [selectedCategory, setSelectedCategory] = useState("category");
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
     <ScrollView style={{ paddingLeft: 20, paddingRight: 20,paddingBottom: 20, }}>
@@ -62,6 +65,7 @@ function Cus_PostJobAD({navigation}) {
                   onChangeText={handleChange('title')}
                   value={values.title}
                   label="Title"
+                  mode="outlined"
                   placeholder="Enter your job title..."
                 />
                 
@@ -70,6 +74,7 @@ function Cus_PostJobAD({navigation}) {
                   onChangeText={handleChange('description')}
                   value={values.description}
                   label="Job Description"
+                  mode="outlined"
                   placeholder="Enter your job details here..."
                 />
 
@@ -118,6 +123,7 @@ function Cus_PostJobAD({navigation}) {
                   onChangeText={handleChange('address')}
                   value={values.location}
                   label="Address"
+                  mode="outlined"
                   placeholder="Enter the address where you want the job to occur..."
                 />
                 {/* <Picker
@@ -133,10 +139,11 @@ function Cus_PostJobAD({navigation}) {
                 </Picker> */}
                 <Picker
                   selectedCategory={selectedCategory}
+                  
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
                 >
-                  <Picker.Item label="Category" value="c1" />
+                  <Picker.Item label="Category" value="c1" enabled={false} />
                   <Picker.Item label="Plumber" value="c2" />
                   <Picker.Item label="Mason" value="c3" />
                   <Picker.Item label="Eleectrician" value="c4" />
@@ -149,6 +156,7 @@ function Cus_PostJobAD({navigation}) {
                   onChangeText={handleChange('image')}
                   value={values.requireddate}
                   label="Choose Image"
+                  mode="outlined"
                 />
 
         {/* <View style={styles.container}>
@@ -188,13 +196,13 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   buttonSubmit: {
-    width:140,
+    width:110,
     marginTop: 26,
     paddingVertical: 10,
     backgroundColor: "#2538B8"
   },
   buttonCancel: {
-    width:140,
+    width:110,
     marginTop: 26,
     paddingVertical: 10,
     backgroundColor: "silver"

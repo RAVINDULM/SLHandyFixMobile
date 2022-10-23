@@ -1,4 +1,5 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState } from "react";
 import { Searchbar } from 'react-native-paper';
 
 import {
@@ -8,6 +9,7 @@ import {
   faLocationDot,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import Icon from 'react-native-ionicons';
 
 import {
   SafeAreaView,
@@ -39,13 +41,13 @@ import {
 
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { Picker } from '@react-native-picker/picker';
-// import { black } from 'react-native-/lib/typescript/styles/colors';
-// import { pink100 } from 'react-native-paper/lib/typescript/styles/colors';
-
-
-
+import { Ionicons } from '@expo/vector-icons';
 
 function Cus_Service({navigation}) {
+
+  const [selectedCategory, setSelectedCategory] = useState("category");
+  const [selectedLocation, setselectedLocation] = useState("location");
+
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -55,7 +57,7 @@ function Cus_Service({navigation}) {
 
   return (
     <SafeAreaView>
-        <ScrollView style={{ padding: 20 }}>
+        <ScrollView style={{ padding: 20,marginBottom:10 }}>
         {/* <View
           style={{
             flexDirection: "row",
@@ -84,7 +86,7 @@ function Cus_Service({navigation}) {
         </View> */}
 
         <Searchbar
-            // icon="camera"
+            icon={() => <Ionicons name="search-outline" size={30} />}  
             placeholder="Search Service Provider"
             onChangeText={onChangeSearch}
             value={searchQuery}
@@ -121,20 +123,18 @@ function Cus_Service({navigation}) {
 
         {/* ---------------------- card fo a service  --------------------------------*/}
 
-        <Card style={{ backgroundColor: "#F3F5F7", margin: 10 ,paddingTop:10,flexDirection:'row',}}>
-          <View style={{flex:1,backgroundColor:'#F3F5F7',justifyContent:'center',alignItems:'center'}}>
-          <Avatar.Image
-            source={require("../../assests/imgs/User01.jpg")}
-            // style={{ marginBottom: 10 }}
-            // style={{ marginRight: 100, marginLeft: 100 }}
-            size={100}
-/> 
-          </View>
+        <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
               {/* <Card.Cover */}
+              <Avatar.Image
 
+                        source={require("../../assests/imgs/User01.jpg")}
+                        // style={{ marginBottom: 10 }}
+                        style={{ marginRight: 100, marginLeft: 100 }}
+                        size={100}
+              /> 
               <Card.Content>
                 <View style={{ flexDirection: "column" }}>
-                  <View style={{ flexDirection: "column" ,justifyContent:'center',alignItems:'center'}}>
+                  <View style={{ flexDirection: "column" }}>
                     <Title>Namal Perera</Title>
                     <Paragraph>
                       Plumber|Member since 2015 {'\n'} 
@@ -191,7 +191,7 @@ function Cus_Service({navigation}) {
           <Card.Content> */}
             
             {/* <Card.Cover></Card.Cover> */}
-            <View style={{}} isDisabled={true}>
+            <View style={{ marginRight: 35 }} isDisabled={true}>
               <Rating
                 showRating
                 isDisabled={false}
@@ -205,8 +205,9 @@ function Cus_Service({navigation}) {
             </View>
           {/* </Card.Content>
         </Card> */}
-  
-          <Text>Job Count (5)</Text>
+                  <Text>Job Count (5)</Text>
+
+
                   <View
                     style={{
                       flexDirection: "column",
@@ -242,6 +243,127 @@ function Cus_Service({navigation}) {
                 </View>
               </Card.Content>
             </Card>    
+
+            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+              {/* <Card.Cover */}
+              <Avatar.Image
+
+                        source={require("../../assests/imgs/User01.jpg")}
+                        // style={{ marginBottom: 10 }}
+                        style={{ marginRight: 100, marginLeft: 100 }}
+                        size={100}
+              /> 
+              <Card.Content>
+                <View style={{ flexDirection: "column" }}>
+                  <View style={{ flexDirection: "column" }}>
+                    <Title>Namal Perera</Title>
+                    <Paragraph>
+                      Plumber|Member since 2015 {'\n'} 
+                      No30, Mahawela Road, Galle. {'\n'} 
+                    </Paragraph>
+                    {/* <View style={{ flexDirection: "row" }}>
+                      <Chip
+                        onPress={() => console.log("Pressed location")}
+                        style={{ marginBottom: 5, marginRight: 10 }}
+                      >
+                        <View>
+                          <FontAwesomeIcon icon={faLocationDot} size={0} />
+                        </View>
+                        <Text>Location</Text>
+                      </Chip>
+                      <Chip
+                        onPress={() => console.log("Pressed date")}
+                        style={{ marginBottom: 5 }}
+                      >
+                        <View>
+                          <FontAwesomeIcon icon={faCalendar} size={0} />
+                        </View>
+                        <Text>12/08/2022</Text>
+                      </Chip>
+                    </View>
+
+                    <View style={{ flexDirection: "row" }}>
+                      <Avatar.Image
+                        size={24}
+                        source={require("../../assests/imgs/User01.jpg")}
+                        style={{ marginRight: 10, marginLeft: 10 }}
+                      />
+                      <Text>John doe</Text>
+
+                      <Chip
+                        onPress={() => console.log("Pressed location")}
+                        style={{ marginBottom: 5, marginRight: 10 }}
+                      >
+                        <View>
+                          <FontAwesomeIcon icon={faClock} size={0} />
+                        </View>
+                        <Text>10.47 pm</Text>
+                      </Chip>
+                    </View> */}
+                  </View>
+ {/* ---------------------- rating component  --------------------------------*/}
+                  {/* <Card
+          style={{
+            margin: 10,
+            borderRadius: 10,
+            // backgroundColor: "#F3F5F7"
+          }}
+        >
+          <Card.Content> */}
+            
+            {/* <Card.Cover></Card.Cover> */}
+            <View style={{ marginRight: 35 }} isDisabled={true}>
+              <Rating
+                showRating
+                isDisabled={false}
+                // ratingContainerStyle={{
+                //   backgroundColor: "yellow",
+                //   padding: 10,
+                // }}
+                onFinishRating={ratingCompleted}
+                style={{ paddingVertical: 10 }}
+              />
+            </View>
+          {/* </Card.Content>
+        </Card> */}
+                  <Text>Job Count (5)</Text>
+
+
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      paddingLeft: 20,
+                      marginTop: 20,
+                    }}
+                  >
+                    {/* <Button
+                      style={{ marginBottom: 10 }}
+                      mode="outlined"
+                      onPress={() => setVisible(true)}
+                    >
+                      {" "}
+                      Accept{" "}
+                    </Button> */}
+                    <Button
+                      style={{ marginBottom: 10 }}
+                      mode="outlined"
+                      onPress={() => {navigation.navigate('Service Provider Profile')}}
+                    >
+                      {" "}
+                      View more
+
+                    </Button>
+                    <Button
+                      mode="outlined"
+                      onPress={() => navigation.navigate("Cus_PlaceJobs")}
+                    >
+                      {" "}
+                      Place Your Job
+                    </Button>
+                  </View>
+                </View>
+              </Card.Content>
+            </Card>  
 {/* -------------------------ending of one card------------------------ */}
 
       </ScrollView>
