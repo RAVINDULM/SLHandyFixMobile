@@ -13,6 +13,8 @@ import {
 
 import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
+import * as Yup from "yup";
+import Axios from "axios";
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
 function Cus_PlaceJobs({navigation} ) {
@@ -86,11 +88,12 @@ function Cus_PlaceJobs({navigation} ) {
                 />
 
                 <Picker
+                placeholder="Start Year" 
                   selectedValue={selectedValue}
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                 >
-                  <Picker.Item label="District" value="d1" />
+                  <Picker.Item label="District" enabled={false}/>
                   <Picker.Item label="Matara" value="d2" />
                   <Picker.Item label="Galle" value="d3" />
                   <Picker.Item label="Hambantota" value="d4" />
@@ -102,7 +105,7 @@ function Cus_PlaceJobs({navigation} ) {
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
                 >
-                  <Picker.Item label="Category" value="c1" />
+                  <Picker.Item label="Category"enabled={false} />
                   <Picker.Item label="Plumber" value="c2" />
                   <Picker.Item label="Mason" value="c3" />
                   <Picker.Item label="Eleectrician" value="c4" />

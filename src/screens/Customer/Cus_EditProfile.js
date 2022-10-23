@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 // import PhotoUpload from 'react-native-photo-upload'
 
+// import PhoneInput from 'react-phone-number-input'
+
 import {
   SafeAreaView,
   Image,
@@ -21,6 +23,7 @@ import { Button, TextInput, Appbar } from 'react-native-paper';
 
 function Cus_EditProfile({navigation}) {
 
+  const [value, setValue] = useState()
   const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");
 
@@ -116,6 +119,11 @@ function Cus_EditProfile({navigation}) {
                   label="Last Name"
                   placeholder="Enter your last name..."
                 />
+
+                 {/* <PhoneInput
+                  placeholder="Enter phone number"
+                  value={value}
+                  onChange={setValue}/> */}
 
                 <TextInput 
                   style= {styles.textinput}
