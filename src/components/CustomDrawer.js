@@ -19,6 +19,7 @@ import FontAwesome, {
   BrandIcons,
 } from "react-native-fontawesome";
 import { AuthContext } from "../context/AuthContext";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const CustomDrawer = (props) => {
   const { Logout } = useContext(AuthContext);
@@ -79,7 +80,7 @@ const CustomDrawer = (props) => {
           style={{ paddingVertical: 15, borderRadius: 6, margin: 4 }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {/* <Ionicons name="share-social-outline" size={22} /> */}
+            <Ionicons name="color-palette-outline" size={22} color="#fff" />
             <Text
               style={{
                 fontSize: 15,
@@ -99,7 +100,7 @@ const CustomDrawer = (props) => {
           style={{ paddingVertical: 15, borderRadius: 8, margin: 4 }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {/* <Ionicons name="exit-outline" size={22} /> */}
+            <Ionicons name="exit-outline" size={22} color="#fff" />
             <Text
               style={{
                 fontSize: 15,

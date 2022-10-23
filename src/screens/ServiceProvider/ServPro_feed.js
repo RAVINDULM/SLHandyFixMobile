@@ -34,6 +34,10 @@ import {
 
 // dialog box react native paper
 import { Dialog, Portal } from "react-native-paper";
+import { Rating } from "react-native-ratings";
+import { Ionicons } from "@expo/vector-icons";
+import { useEffect } from "react";
+import axios from "axios";
 
 // const Acccept = () => {
 //   console.log("accept called");
@@ -51,10 +55,28 @@ import { Dialog, Portal } from "react-native-paper";
 //     </Portal>
 //   );
 // };
-
+const timeicon = <Ionicons name="time-outline" />;
 const ServPro_feed = () => {
   const [visible, setVisible] = React.useState(false);
   const hideDialog = () => setVisible(false);
+
+  // fetch data from backend
+
+  const [posts, setPosts] = useState([]);
+  // AsyncStorage.setItem("userToken", JSON.stringify(userToken));
+  // const value = AsyncStorage.getItem('userToken');
+  useEffect(() => {
+    console.log("gget jobs called");
+    axios
+      .get("http://192.168.43.39:5000/api/v1/servprov/getJobposts")
+      .then((res) => {
+        setPosts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView style={{ padding: 20 }}>
@@ -92,65 +114,138 @@ const ServPro_feed = () => {
               </Dialog>
             </Portal>
             {/* ----------------------------------------------------- dialog box ends -------------------------------------------------------------------*/}
-
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginBottom: 20,
+              }}
+            >
+              <Text style={{ fontSize: 25, fontFamily: "Roboto-Medium" }}>
+                Welcome Back John Doe !
+              </Text>
+              {/* </ImageBackground> */}
+            </View>
             {/* ---------------------------------------------------- card fo a job requests ------------------------------------------------------------ */}
           </View>
           <View>
-            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
-              <Card.Cover
-                source={{ uri: "https://picsum.photos/700" }}
-                style={{ marginBottom: 10 }}
-              />
-              <Card.Content>
-                <View style={{ flexDirection: "column" }}>
+            {posts.map((posts) => (
+              <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+                <Card.Cover
+                  source={{ uri: "https://picsum.photos/700" }}
+                  style={{ marginBottom: 10 }}
+                />
+                <Card.Content>
                   <View style={{ flexDirection: "column" }}>
-                    <Title>Plumbing work</Title>
-                    <Paragraph>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Aut, ullam quidem iste eos maiores rem voluptates
-                      laboriosam eum quos ut.
-                    </Paragraph>
-                    <View style={{ flexDirection: "row" }}>
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
+                    <View style={{ flexDirection: "column" }}>
+                      {/* Job details card */}
+                      <Card.Content
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: 10,
+                        }}
                       >
-                        <View>
-                          <FontAwesomeIcon icon={faLocationDot} size={0} />
-                        </View>
-                        <Text>Location</Text>
-                      </Chip>
-                      <Chip
-                        onPress={() => console.log("Pressed date")}
-                        style={{ marginBottom: 5 }}
+                        <Title key={posts.post_id}> {posts.title} </Title>
+                        <Paragraph>{posts.description}</Paragraph>
+                        <Card.Actions>
+                          <View style={{ flexDirection: "row" }}>
+                            <Chip
+                              onPress={() => console.log("Pressed location")}
+                              style={{ marginBottom: 5, marginRight: 10 }}
+                            >
+                              <View>
+                                <FontAwesomeIcon
+                                  icon={faLocationDot}
+                                  size={0}
+                                />
+                              </View>
+                              <Text> {posts.location}</Text>
+                            </Chip>
+                            <Chip
+                              onPress={() => console.log("Pressed date")}
+                              style={{ marginBottom: 5 }}
+                            >
+                              <View>
+                                <FontAwesomeIcon icon={faCalendar} size={0} />
+                              </View>
+                              <Text>{posts.date}</Text>
+                            </Chip>
+                          </View>
+                        </Card.Actions>
+                      </Card.Content>
+
+                      {/* Post details card */}
+                      <Card.Content
+                        style={{
+                          backgroundColor: "white",
+                          borderRadius: 10,
+                          marginTop: 10,
+                          padding: 10,
+                        }}
                       >
-                        <View>
-                          <FontAwesomeIcon icon={faCalendar} size={0} />
-                        </View>
-                        <Text>12/08/2022</Text>
-                      </Chip>
+                        <Card.Actions>
+                          <Avatar.Image
+                            size={24}
+                            source={require("../../assests/imgs/User01.jpg")}
+                            style={{ marginRight: 10 }}
+                          />
+                          <View style={{ flexDirection: "column" }}>
+                            <Text>John doe</Text>
+                            <View style={{ flexDirection: "row" }}>
+                              <Rating
+                                size={8}
+                                imageSize={12}
+                                showRating={false}
+                                isDisabled={false}
+                                ratingContainerStyle={{
+                                  padding: 10,
+                                }}
+                                starContainerStyle={{
+                                  backgroundColor: "black",
+                                }}
+                              />
+                              <Text
+                                style={{
+                                  fontSize: 10,
+                                  color: "#F0C30E",
+                                  marginLeft: 1,
+                                }}
+                              >
+                                (16)
+                              </Text>
+                            </View>
+                          </View>
+
+                          <Chip
+                            // icon={timeicon}
+                            onPress={() => console.log("Pressed location")}
+                            style={{
+                              marginLeft: 10,
+                              // backgroundColor: "yellow",
+                            }}
+                          >
+                            <Ionicons name="time" size={20} />
+                            <Text style={{ marginLeft: 5 }}> @10.47</Text>
+                          </Chip>
+                        </Card.Actions>
+                      </Card.Content>
                     </View>
 
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Image
-                        size={24}
-                        source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
-                      />
-                      <Text>John doe</Text>
+                    {/* //card actions */}
+                    <Card.Actions>
+                      <Ionicons name="person-add-outline" />
+                      <Text style={{ marginLeft: 5 }}>
+                        {posts.requestCount}
+                      </Text>
 
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
+                      <Button
+                        style={{ marginLeft: 160 }}
+                        onPress={() => setVisible(true)}
                       >
-                        <View>
-                          <FontAwesomeIcon icon={faClock} size={0} />
-                        </View>
-                        <Text>10.47 pm</Text>
-                      </Chip>
-                    </View>
-                  </View>
-                  <View
+                        Request
+                      </Button>
+                    </Card.Actions>
+                    {/* <View
                     style={{
                       flexDirection: "column",
                       paddingLeft: 20,
@@ -180,247 +275,11 @@ const ServPro_feed = () => {
                       {" "}
                       View more
                     </Button>
+                  </View> */}
                   </View>
-                </View>
-              </Card.Content>
-            </Card>
-
-            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
-              <Card.Cover
-                source={{ uri: "https://picsum.photos/700" }}
-                style={{ marginBottom: 10 }}
-              />
-              <Card.Content>
-                <View style={{ flexDirection: "column" }}>
-                  <View style={{ flexDirection: "column" }}>
-                    <Title>Plumbing work</Title>
-                    <Paragraph>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Aut, ullam quidem iste eos maiores rem voluptates
-                      laboriosam eum quos ut.
-                    </Paragraph>
-                    <View style={{ flexDirection: "row" }}>
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faLocationDot} size={0} />
-                        </View>
-                        <Text>Location</Text>
-                      </Chip>
-                      <Chip
-                        onPress={() => console.log("Pressed date")}
-                        style={{ marginBottom: 5 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faCalendar} size={0} />
-                        </View>
-                        <Text>12/08/2022</Text>
-                      </Chip>
-                    </View>
-
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Image
-                        size={24}
-                        source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
-                      />
-                      <Text>John doe</Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "column",
-                      paddingLeft: 20,
-                      marginTop: 20,
-                    }}
-                  >
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => setVisible(true)}
-                    >
-                      {" "}
-                      Accept{" "}
-                    </Button>
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => console.log("")}
-                    >
-                      {" "}
-                      Reject
-                    </Button>
-                    <Button
-                      mode="outlined"
-                      onPress={() => console.log("Pressed")}
-                    >
-                      {" "}
-                      View more
-                    </Button>
-                  </View>
-                </View>
-              </Card.Content>
-            </Card>
-
-            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
-              <Card.Cover
-                source={{ uri: "https://picsum.photos/700" }}
-                style={{ marginBottom: 10 }}
-              />
-              <Card.Content>
-                <View style={{ flexDirection: "column" }}>
-                  <View style={{ flexDirection: "column" }}>
-                    <Title>Plumbing work</Title>
-                    <Paragraph>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Aut, ullam quidem iste eos maiores rem voluptates
-                      laboriosam eum quos ut.
-                    </Paragraph>
-                    <View style={{ flexDirection: "row" }}>
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faLocationDot} size={0} />
-                        </View>
-                        <Text>Location</Text>
-                      </Chip>
-                      <Chip
-                        onPress={() => console.log("Pressed date")}
-                        style={{ marginBottom: 5 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faCalendar} size={0} />
-                        </View>
-                        <Text>12/08/2022</Text>
-                      </Chip>
-                    </View>
-
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Image
-                        size={24}
-                        source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
-                      />
-                      <Text>John doe</Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "column",
-                      paddingLeft: 20,
-                      marginTop: 20,
-                    }}
-                  >
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => setVisible(true)}
-                    >
-                      {" "}
-                      Accept{" "}
-                    </Button>
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => console.log("")}
-                    >
-                      {" "}
-                      Reject
-                    </Button>
-                    <Button
-                      mode="outlined"
-                      onPress={() => console.log("Pressed")}
-                    >
-                      {" "}
-                      View more
-                    </Button>
-                  </View>
-                </View>
-              </Card.Content>
-            </Card>
-
-            <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
-              <Card.Cover
-                source={{ uri: "https://picsum.photos/700" }}
-                style={{ marginBottom: 10 }}
-              />
-              <Card.Content>
-                <View style={{ flexDirection: "column" }}>
-                  <View style={{ flexDirection: "column" }}>
-                    <Title>Plumbing work</Title>
-                    <Paragraph>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Aut, ullam quidem iste eos maiores rem voluptates
-                      laboriosam eum quos ut.
-                    </Paragraph>
-                    <View style={{ flexDirection: "row" }}>
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faLocationDot} size={0} />
-                        </View>
-                        <Text>Location</Text>
-                      </Chip>
-                      <Chip
-                        onPress={() => console.log("Pressed date")}
-                        style={{ marginBottom: 5 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faCalendar} size={0} />
-                        </View>
-                        <Text>12/08/2022</Text>
-                      </Chip>
-                    </View>
-
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Image
-                        size={24}
-                        source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
-                      />
-                      <Text>John doe</Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "column",
-                      paddingLeft: 20,
-                      marginTop: 20,
-                    }}
-                  >
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => setVisible(true)}
-                    >
-                      {" "}
-                      Accept{" "}
-                    </Button>
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => console.log("")}
-                    >
-                      {" "}
-                      Reject
-                    </Button>
-                    <Button
-                      mode="outlined"
-                      onPress={() => console.log("Pressed")}
-                    >
-                      {" "}
-                      View more
-                    </Button>
-                  </View>
-                </View>
-              </Card.Content>
-            </Card>
+                </Card.Content>
+              </Card>
+            ))}
           </View>
         </View>
       </ScrollView>

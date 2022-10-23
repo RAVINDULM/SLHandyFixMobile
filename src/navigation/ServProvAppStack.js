@@ -8,12 +8,12 @@ import CustomDrawer from "../components/CustomDrawer";
 import ServProv_Jobs from "../screens/ServiceProvider/ServProv_Jobs";
 import ServProv_Profile from "../screens/ServiceProvider/ServPro_Profile";
 
-import ServProv_Feed from "../screens/ServiceProvider/ServPro_feed";
+// import ServProv_analyticStack from "../screens/ServiceProvider";
 import JobSaved from "../screens/ServiceProvider/JobOrderSaved";
 import TransactionCompleted from "../screens/ServiceProvider/TransactionCompleted";
-import ServProv_calanader from "../screens/ServiceProvider/ServProv_calanader";
 
-import HomeStack from "../navigation/ServProStacks/ServProvHomeStack";
+// import stacks
+import ServProv_analyticStack from "../navigation/ServProStacks/ServPro_AnalyticStack";
 import CalanderStack from "../navigation/ServProStacks/ServProvCalanderStack";
 import JobRequestsStack from "./ServProStacks/ServPro_JobReqStack";
 // react native paper app bar
@@ -21,6 +21,8 @@ import { Appbar } from "react-native-paper";
 import { Menu } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import TabNavigator from "./TabNavigator";
+import { Ionicons } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -41,10 +43,63 @@ const ServProvAppStack = () => {
         },
       }}
     >
-      <Drawer.Screen name="Home" component={HomeStack} />
-      <Drawer.Screen name="Calendar" component={CalanderStack} />
-      <Drawer.Screen name="Job Requests" component={JobRequestsStack} />
-      <Drawer.Screen name="Feed" component={ServProv_Feed} />
+      <Drawer.Screen
+        name="Home"
+        component={TabNavigator}
+        options={{
+          title: "Home",
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              style={{ marginRight: -15 }}
+              name="md-home"
+              size={size}
+              color={focused ? "#2538B8" : "#fff"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Calendar"
+        component={CalanderStack}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              style={{ marginRight: -15 }}
+              name="calendar-outline"
+              size={size}
+              color={focused ? "#2538B8" : "#fff"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Job Requests"
+        component={JobRequestsStack}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              style={{ marginRight: -15 }}
+              name="briefcase-outline"
+              size={size}
+              color={focused ? "#2538B8" : "#fff"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Progress"
+        component={ServProv_analyticStack}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              style={{ marginRight: -15 }}
+              name="analytics-outline"
+              size={size}
+              color={focused ? "#2538B8" : "#fff"}
+            />
+          ),
+        }}
+      />
 
       {/* insert these items in dialog box show after completion and create same for error */}
 

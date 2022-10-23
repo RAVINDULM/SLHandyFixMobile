@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     console.log("email :", email);
     console.log("password :", password);
     axios
-      .post("http://192.168.43.39:5000/api/v1/user/login", {
+      .post("http://192.168.43.119:5000/api/v1/user/login", {
         email,
         password,
       })
@@ -44,15 +44,14 @@ export const AuthProvider = ({ children }) => {
       // console.log("is logged in user token before set token ", userToken);
       let userToken = await AsyncStorage.getItem("userToken");
       console.log("is logged in AsyncStorage before set token ", userToken);
-      if (userToken == "null" || userToken == null){
+      if (userToken == "null" || userToken == null) {
         setUserToken(null);
-      }
-      else{ 
+      } else {
         setUserToken(userToken);
       }
       console.log("is logged in user token after set token ", userToken);
-     
-    //   console.log("is logged in user token", userToken);
+
+      //   console.log("is logged in user token", userToken);
       setIsLoading(false);
     } catch (e) {
       console.log("is logged in error: ", e);

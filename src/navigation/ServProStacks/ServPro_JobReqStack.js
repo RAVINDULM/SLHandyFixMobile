@@ -22,7 +22,7 @@ const JobRequestsStack = ({ navigation }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="ServProv_Calander"
+        name="ServProv_Jobs"
         component={ServProv_Jobs}
         options={({ route, navigation }) => ({
           header: () => (
@@ -34,7 +34,7 @@ const JobRequestsStack = ({ navigation }) => {
                   style={{ marginLeft: 10 }}
                 />
               </TouchableOpacity>
-              <Appbar.Content title={route.name} />
+              <Appbar.Content title="Job Requests" />
             </Appbar.Header>
           ),
         })}

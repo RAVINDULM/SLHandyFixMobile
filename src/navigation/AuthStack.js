@@ -17,6 +17,12 @@ import { Appbar } from "react-native-paper";
 import { Menu } from "react-native-paper";
 const Stack = createStackNavigator();
 
+import {
+  faCheck,
+  faChevronLeft,
+  faCreditCard,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 // const SerProRegisterStack = ()=>{
 //   <Stack.Navigator>
 //   <Stack.Screen options={{headerShown: false}}  name="ServProv_RegisterDetails" component={ServProv_RegisterDetails} />
@@ -91,6 +97,7 @@ const AuthStack = ({ navigation }) => {
                 onPress={() => navigation.navigate("AuthHomeServProv")}
               />
               <Appbar.Content title={route.name} />
+              <Appbar.Action icon={faCheck} size={24} />
             </Appbar.Header>
           ),
         })}

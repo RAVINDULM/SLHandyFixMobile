@@ -6,7 +6,7 @@ import { Menu } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // import relavant screens
-import ServProv_Home from "../../screens/ServiceProvider/ServPro_home";
+import ServProv_feed from "../../screens/ServiceProvider/ServPro_feed";
 import ServPro_Profile from "../../screens/ServiceProvider/ServPro_Profile";
 
 import TabNavigator from "../TabNavigator";
@@ -33,7 +33,7 @@ const HomeStack = () => {
 
       <Stack.Screen
         name="ServProv_Home"
-        component={ServProv_Home}
+        component={ServProv_feed}
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header
@@ -52,7 +52,7 @@ const HomeStack = () => {
                 />
               </TouchableOpacity>
 
-              <Appbar.Content title={route.name} />
+              <Appbar.Content title="Home" />
               <TouchableOpacity onPress={() => navigation.navigate("Jobs")}>
                 <ImageBackground
                   source={require("../../assests/imgs/User01.jpg")}

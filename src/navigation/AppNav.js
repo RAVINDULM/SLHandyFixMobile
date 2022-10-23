@@ -15,6 +15,7 @@ import ServProvAppStack from "../navigation/ServProvAppStack";
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthContext } from "../context/AuthContext";
 import jwt_decode from "jwt-decode";
+import TabNavigator from "./TabNavigator";
 
 function AppNav() {
   const { isLoading, userToken } = useContext(AuthContext);

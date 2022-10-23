@@ -104,19 +104,6 @@ const ServPro_home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView style={{ padding: 20 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 20,
-          }}
-        >
-          <Text style={{ fontSize: 25, fontFamily: "Roboto-Medium" }}>
-            Welcome Back John Doe !
-          </Text>
-          {/* </ImageBackground> */}
-        </View>
-
         {/* <AirbnbRating
           count={11}
           reviews={[

@@ -12,18 +12,18 @@ import {
   faTable,
 } from "@fortawesome/free-solid-svg-icons";
 // import relavant screens
-import ServProv_Calander from "../../screens/ServiceProvider/ServProv_calanader";
+import ServProv_analytics from "../../screens/ServiceProvider/ServPro_home";
 
 import TabNavigator from "../TabNavigator";
 import { TouchableOpacity } from "react-native-gesture-handler";
 const Stack = createStackNavigator();
 
-const CalendarStack = ({ navigation }) => {
+const ServPro_AnalyticStack = ({ navigation }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="ServProv_Calander"
-        component={ServProv_Calander}
+        name="ServProv_analytics"
+        component={ServProv_analytics}
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
@@ -35,7 +35,8 @@ const CalendarStack = ({ navigation }) => {
                 />
               </TouchableOpacity>
               {/* <Appbar.Content title={route.name} /> */}
-              <Appbar.Content title="Calander" />
+
+              <Appbar.Content title="Progress" />
             </Appbar.Header>
           ),
         })}
@@ -49,4 +50,4 @@ const CalendarStack = ({ navigation }) => {
   );
 };
 
-export default CalendarStack;
+export default ServPro_AnalyticStack;

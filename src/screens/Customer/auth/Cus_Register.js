@@ -30,8 +30,10 @@ const Cus_Register = () => {
 
   const genderhandlePress = () => setgenderExpanded(!genderExpanded);
   const jobrolehandlePress = () => setjobRoleExpanded(!jobRoleExpanded);
-  const mobilenumberhandlePress = () => setmobileNumberExpanded(!mobileNumberExpanded);
-  const bankdetailshandlePress = () => setbankDetailsExpanded(!bankDetailsExpanded);
+  const mobilenumberhandlePress = () =>
+    setmobileNumberExpanded(!mobileNumberExpanded);
+  const bankdetailshandlePress = () =>
+    setbankDetailsExpanded(!bankDetailsExpanded);
   const passwordhandlePress = () => setpasswordExpanded(!passwordExpanded);
   const namehandlePress = () => setnameExpanded(!nameExpanded);
   console.log("gender here", gender);
@@ -55,10 +57,9 @@ const Cus_Register = () => {
         // backgroundColor: 'yellow'
       }}
     >
-      
       <ScrollView>
         {/* ----------------------------------------------------------- Heading -------------------------------------------- */}
-        
+
         <Text
           style={{
             fontSize: 28,
@@ -83,9 +84,9 @@ const Cus_Register = () => {
         >
           <ImageBackground
             source={require("../../../assests/imgs/User01.jpg")}
-            style={{ width: 120, height: 120, }}
+            style={{ width: 120, height: 120 }}
             imageStyle={{ borderRadius: 60 }}
-          />         
+          />
         </View>
 
         <List.Section title="">
@@ -95,26 +96,26 @@ const Cus_Register = () => {
             expanded={nameExpanded}
             onPress={namehandlePress}
           >
-        {/* ----------------------------------------------------------- First Name -------------------------------------------- */}
-        <TextInput
-          label="First Name"
-          value={fName}
-          error
-          onChangeText={(fName) => setfName(fName)}
-        />
+            {/* ----------------------------------------------------------- First Name -------------------------------------------- */}
+            <TextInput
+              label="First Name"
+              value={fName}
+              error
+              onChangeText={(fName) => setfName(fName)}
+            />
 
-        {/* ----------------------------------------------------------- First Name -------------------------------------------- */}
+            {/* ----------------------------------------------------------- First Name -------------------------------------------- */}
 
-        {/* ----------------------------------------------------------- Last Name -------------------------------------------- */}
-        <TextInput
-          label="Last Name"
-          value={lName}
-          // error
-          onChangeText={(lName) => setlName(lName)}
-        />
+            {/* ----------------------------------------------------------- Last Name -------------------------------------------- */}
+            <TextInput
+              label="Last Name"
+              value={lName}
+              // error
+              onChangeText={(lName) => setlName(lName)}
+            />
 
-        {/* ----------------------------------------------------------- Last Name -------------------------------------------- */}
-        </List.Accordion>
+            {/* ----------------------------------------------------------- Last Name -------------------------------------------- */}
+          </List.Accordion>
         </List.Section>
         {/* ----------------------------------------------------------- Gender -------------------------------------------- */}
 
@@ -135,7 +136,6 @@ const Cus_Register = () => {
         </List.Section>
 
         {/* ----------------------------------------------------------- Gender -------------------------------------------- */}
-
 
         {/* ----------------------------------------------------------- Mobile number -------------------------------------------- */}
 
@@ -194,7 +194,6 @@ const Cus_Register = () => {
 
         {/* ----------------------------------------------------------- Mobile number -------------------------------------------- */}
 
-      
         <List.Section title="">
           <List.Accordion
             style={{ marginBottom: 1 }}

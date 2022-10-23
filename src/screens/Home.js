@@ -15,28 +15,32 @@ const { width, height } = Dimensions.get("window");
 const COLORS = { primary: "#2538B8", white: "#fff" };
 
 const Home = ({ navigation }) => {
-  
-  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primary }}>
       <View style={{ alignItems: "center" }}>
         <Image
-          source= {require("../assests/imgs/Logo.png")}
-          style={{ height: "70%", width, resizeMode: "contain", margin: 30}}
+          source={require("../assests/imgs/Logo.png")}
+          style={{ height: "70%", width, resizeMode: "contain", margin: 30 }}
         />
       </View>
       <View style={{ alignItems: "center", height: 50 }}>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => navigation.replace("AuthHomeServProv")}>
-          <Text style={{ fontWeight: "bold", fontSize: 18 }}>I WANT TO WORK</Text>
+          onPress={() => navigation.replace("AuthHomeServProv")}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+            I WANT TO WORK
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={{ alignItems: "center", height: 50, margin: 10 }}>
-        <TouchableOpacity  
+        <TouchableOpacity
           style={styles.btn}
-          onPress={() => navigation.replace("AuthHomeCustomer")}>
-          <Text style={{ fontWeight: "bold", fontSize: 18 }}>I WANT TO HIRE</Text>
+          onPress={() => navigation.replace("AuthHomeCustomer")}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+            I WANT TO HIRE
+          </Text>
         </TouchableOpacity>
       </View>
       {/* <View style={{ alignItems: "center", height: 50, margin: 10 }}>
@@ -50,7 +54,6 @@ const Home = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
-  
   image: {
     height: "100%",
     width: "100%",
