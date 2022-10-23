@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 // import PhotoUpload from 'react-native-photo-upload'
 
+// import PhoneInput from 'react-phone-number-input'
+
 import {
   SafeAreaView,
   Image,
@@ -24,6 +26,7 @@ import DatePicker from 'react-native-datepicker';
 
 function Cus_EditProfile({ navigation }) {
 
+  const [value, setValue] = useState()
   const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");
 

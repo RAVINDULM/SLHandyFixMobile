@@ -25,6 +25,9 @@ import * as ImagePicker from 'expo-image-picker';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 
 function Cus_PostJobAD({navigation}) {
+
+  const [selectedCategory, setSelectedCategory] = useState("category");
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
     <ScrollView style={{ paddingLeft: 20, paddingRight: 20,paddingBottom: 20, }}>
