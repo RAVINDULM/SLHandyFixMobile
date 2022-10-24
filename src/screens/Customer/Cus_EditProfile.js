@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+// import axios from "axios";
+import Axios from "axios";
+
+
 // import PhotoUpload from 'react-native-photo-upload'
 
 // import PhoneInput from 'react-phone-number-input'
@@ -23,70 +27,50 @@ import { Button, TextInput, Appbar } from 'react-native-paper';
 import PhoneInput from 'react-native-phone-input'
 import DatePicker from 'react-native-datepicker';
 
+// exports.createEditProfile = (req, res) => {
+//   const {
+//     firstName, 
+//     lastName, 
+//     contactNo, 
+//     address, 
+//     email,
+//   } =  new CustomerModel(req.body);
+//   console.log("advertisement controller called", req.body);
+//   console.log("advertisement controller called", req.file.path);
+
+//   CustomerModel.createEditProfile(
+//     {
+//     firstName: firstName,
+//     lastName: lastName, 
+//     contactNo: contactNo, 
+//     address: address, 
+//     email:email, 
+//     },
+//     (err, customer) => {
+//       if (err){
+//         res.send(err);
+//       } else if (!customer.length){
+//         res.send("Customer advertisement send successfully!");
+//       }
+//     }
+//   )
+// }
+
 
 function Cus_EditProfile({ navigation }) {
 
   const [value, setValue] = useState()
-  const [selectedValue, setSelectedValue] = useState("district");
+  // const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");
 
   return (
     <SafeAreaView>
       <ScrollView style={{ padding: 20 }}>
-        {/* <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            // marginTop: ,
-          }}
-        >
-         
-        </View>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/menu.png")}
-              style={{ width: 30, height: 30 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 18}}>
-            Edit Profile
-          </Text>
-      
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/User01.jpg")}
-              style={{ width: 40, height: 40 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-        </View> */}
-
 
         <View style={styles.content}>
 
-          {/* <PhotoUpload
-          onPhotoSelect={avatar => {
-            if (avatar) {
-              console.log('Image base64 string: ', avatar)
-            }
-          }}
-        >
-          <Image
-            style={{
-              paddingVertical: 30,
-              width: 150,
-              height: 150,
-              borderRadius: 75
-            }}
-            resizeMode='cover'
-            source={{
-              uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
-            }}
-          />
-        </PhotoUpload> */}
 
-          <Formik
+          {/* <Formik
             initialValues={{ title: '' }}
             // validate={values => {
             //   let errors = {};
@@ -104,14 +88,32 @@ function Cus_EditProfile({ navigation }) {
               Keyboard.dismiss();
             }
             }
-          >
+          > */}
+
+                  <Formik
+                  initialValues={{ firstName: "", lastName: "", contactNo: "", email: "" }}
+                      onSubmit={(values) => {
+                          console.log(values); 
+                          Axios.post("10.22.163.170:5000/api/v1/customer/editProfile", {
+                          firstName: values.firstName,
+                          lastName: values.lastName, 
+                          contactNo: values.contactNo, 
+                          // address: values.address, 
+                          email: values.email, 
+                          }).then(() => {
+                          alert("successfully added!");
+                          navigate("Cus_PostJobAD") 
+                          });
+                      }}
+                >
+
             {({ handleChange, handleSubmit, values, errors }) => (
               <View>
                 <TextInput
                   style={styles.textinput}
                   mode="outlined"
-                  onChangeText={handleChange('firstname')}
-                  value={values.firstname}
+                  onChangeText={handleChange('firstName')}
+                  value={values.firstName}
                   label="First Name"
                   placeholder="Enter your first name..."
                 />
@@ -119,8 +121,8 @@ function Cus_EditProfile({ navigation }) {
                 <TextInput
                   mode="outlined"
                   style={styles.textinput}
-                  onChangeText={handleChange('lastname')}
-                  value={values.lastname}
+                  onChangeText={handleChange('lastName')}
+                  value={values.lastName}
                   label="Last Name"
                   placeholder="Enter your last name..."
                 />
@@ -128,10 +130,10 @@ function Cus_EditProfile({ navigation }) {
                 <TextInput
                   mode="outlined"
                   style={styles.textinput}
-                  onChangeText={handleChange('phonenumber')}
-                  value={values.phonenumber}
-                  label="Phone Number"
-                  placeholder="Enter your phone number..."
+                  onChangeText={handleChange('contactNo')}
+                  value={values.contactNo}
+                  label="Contact Number"
+                  placeholder="Enter your Contact Number..."
 
                 />
 
@@ -143,23 +145,24 @@ function Cus_EditProfile({ navigation }) {
 
                 <TextInput
                   style={styles.textinput}
-                  onChangeText={handleChange('dateofbirth')}
-                  value={values.dateofbirth}
-                  label="Date of Birth"
-                  placeholder="mm/dd/yyyy"
+                  mode="outlined"
+                  onChangeText={handleChange('email')}
+                  value={values.email}
+                  label="Email"
+                  placeholder="email"
                 />
                 
 
-                <TextInput
+                {/* <TextInput
                   mode="outlined"
                   style={styles.textinput}
                   onChangeText={handleChange('address')}
                   value={values.address}
                   label="Address"
                   placeholder="Enter your address here..."
-                />
+                /> */}
 
-                <Picker
+                {/* <Picker
                   selectedValue={selectedValue}
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
@@ -169,7 +172,7 @@ function Cus_EditProfile({ navigation }) {
                   <Picker.Item label="Galle" value="d3" />
                   <Picker.Item label="Hambantota" value="d4" />
                   <Picker.Item label="Colombo" value="d5" />
-                </Picker>
+                </Picker> */}
 
                 <View style={styles.buttonview}>
                   <Button onPress={handleChange} style={styles.buttonCancel} color="white">Cancel</Button>

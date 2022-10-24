@@ -1,4 +1,5 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState } from "react";
 import { Searchbar } from 'react-native-paper';
 
 import {
@@ -42,10 +43,11 @@ import { Rating, AirbnbRating } from "react-native-ratings";
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 
-
-
-
 function Cus_Service({navigation}) {
+
+  const [selectedCategory, setSelectedCategory] = useState("category");
+  const [selectedLocation, setselectedLocation] = useState("location");
+
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
