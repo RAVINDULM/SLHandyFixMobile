@@ -25,6 +25,8 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
+import { useEffect } from "react";
+import Axios from "axios";
 
 // const optionsPerPage = [2, 3, 4];
 
@@ -40,7 +42,27 @@ const Cus_home = ({ navigation }) => {
   const [visible, setVisible] = React.useState(false);
   const hideDialog = () => setVisible(false);
 
+  const [joblist,setjoblist] =useState([]);
+
+  const getcustomerId=1;
+
+  useEffect(() => {
+    // 10.22.163.187:5000/api/v1/
+    console.log("get jobs called");
+    
+      Axios.get("http://10.22.166.206:5000/api/v1/customer1/getjoblist/"+getcustomerId)
+      .then((res) => {
+        console.log(res.data);
+        setjoblist(res.data);
+        // setJobid(res.data.jobId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
+    
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", marginTop:10}}>
       <ScrollView style={{ padding: 20 }}>
         <View
