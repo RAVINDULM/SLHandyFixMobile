@@ -94,7 +94,8 @@ function Cus_EditProfile({ navigation }) {
                   initialValues={{ firstName: "", lastName: "", contactNo: "", email: "" }}
                       onSubmit={(values) => {
                           console.log(values); 
-                          Axios.post("10.22.163.170:5000/api/v1/customer/editProfile", {
+                          Axios.put("http://10.22.163.170:5000/api/v1/customer/editProfile", {
+                          id:1,
                           firstName: values.firstName,
                           lastName: values.lastName, 
                           contactNo: values.contactNo, 
@@ -102,7 +103,7 @@ function Cus_EditProfile({ navigation }) {
                           email: values.email, 
                           }).then(() => {
                           alert("successfully added!");
-                          navigate("Cus_PostJobAD") 
+                          navigate("Cus_Profile") 
                           });
                       }}
                 >

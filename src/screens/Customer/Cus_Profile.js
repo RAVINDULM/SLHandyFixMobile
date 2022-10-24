@@ -22,16 +22,17 @@ const[posts, setPosts] = useState([]);
 console.log("mobile prorfile")
 const id = 1;
 useEffect(() => {
-
+  // http://localhost:5000/api/v1/customer/getSingleCustomer/1
   console.log("get customers called");
-  axios.get("https://10.22.163.170:5000/api/v1/customer/getSingleCustomer/"+ id)
+  axios.get("http://10.22.163.170:5000/api/v1/customer/getSingleCustomer/"+ id)
   .then((res) => {
+    console.log(res.data);
     setPosts(res.data);
     })
     .catch ((err) => {
     console.log(err);
     });
-    });
+    },[]);
 
 
 
@@ -80,7 +81,7 @@ useEffect(() => {
               }}
             >
               <Text style={{ fontSize: 18, fontWeight: "bold" }} >
-                Enuli Diaz
+                {posts[0].firstName+ " "+posts[0].lastName}
               </Text>
             
             </View>
@@ -143,7 +144,8 @@ useEffect(() => {
             // key ={posts.id} 
              
           >
-            Enuli
+          {posts[0].firstName+ " "+posts[0].lastName}
+
             {/* {posts.name} */}
           </Text>
   
@@ -167,7 +169,8 @@ useEffect(() => {
               width: 150,
             }}
           >
-            0716248232
+      {posts[0].contactNo}
+
           </Text>
         </View>
         <View
@@ -189,7 +192,7 @@ useEffect(() => {
               width: 250,
             }}
           >
-            28, Pahala Karagahamuna, Kadawatha.
+          {posts[0].area+ " "+posts[0].province}
           </Text>
           {/* <TextInput
             placeholder="Address"
@@ -218,7 +221,7 @@ useEffect(() => {
              // width: 50,
             }}
           >
-            Enuli@gmail.com
+      {posts[0].email}
           </Text>
         </View>
 
@@ -244,7 +247,8 @@ useEffect(() => {
              // width: 50,
             }}
           >
-            NIC
+            {posts[0].nic}
+
           </Text>
         </View>
           
