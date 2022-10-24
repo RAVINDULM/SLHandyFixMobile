@@ -1,4 +1,5 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState } from "react";
 import { Searchbar } from 'react-native-paper';
 
 import {
@@ -45,7 +46,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import  Axios  from 'axios';
 
+function Cus_Service({navigation}) {
 
+  const [selectedCategory, setSelectedCategory] = useState("category");
+  const [selectedLocation, setselectedLocation] = useState("location");
 
 
 function Cus_Service({ navigation }) {
@@ -207,4 +211,7 @@ const styles = StyleSheet.create({
 
 })
 
-export default Cus_Service
+
+};
+
+export default Cus_Service;
