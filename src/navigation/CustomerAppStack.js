@@ -13,7 +13,7 @@ import CusProfileStack from './CusStacks/CusProfileStack';
 import CusHomeStack from './CusStacks/CusHomeStack';
 import CusAdvertisementStack from './CusStacks/CusAdvertisementStack';
 import CusServiceProviderStack from './CusStacks/CusSpList';
-// import Cus_PlaceJobs from '../screens/Customer/Cus_PlaceJobs';
+
 // import Cus_PostJobAD from '../screens/Customer/Cus_PostJobAD';
 // import Cus_Jobs from '../screens/Customer/Cus_Jobs';
 // import Cus_EditProfile from '../screens/Customer/Cus_EditProfile';
@@ -44,6 +44,8 @@ const CustomerAppStack = () => {
       <Drawer.Screen name="My Service" component={CusServiceProviderStack} />
       <Drawer.Screen name="Job Advertisements" component={CusAdvertisementStack} />
       <Drawer.Screen name="Recently Placed Jobs" component={Cus_RecentJob} />
+      
+
       {/* <Drawer.Screen name="Place Jobs" component={Cus_PlaceJobs} /> */}
       {/* <Drawer.Screen name="sp profile view" component={Cus_spProfileView} /> */}
       {/* <Drawer.Screen name="job ad view" component={Cus_viewJobAD} /> */} 

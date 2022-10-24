@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -12,8 +12,29 @@ import {
 import CustomButton from "../../components/CustomButton";
 import { Ionicons } from "@expo/vector-icons";
 
+import axios from "axios";
+
+
 
 const Cus_Profile = ({ navigation }) => {
+
+const[posts, setPosts] = useState([]);
+console.log("mobile prorfile")
+const id = 1;
+useEffect(() => {
+
+  console.log("get customers called");
+  axios.get("https://10.22.163.170:5000/api/v1/customer/getSingleCustomer/"+ id)
+  .then((res) => {
+    setPosts(res.data);
+    })
+    .catch ((err) => {
+    console.log(err);
+    });
+    });
+
+
+
   return (
     <SafeAreaView
       style={{
@@ -58,7 +79,7 @@ const Cus_Profile = ({ navigation }) => {
                 // backgroundColor: 'black'
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }} >
                 Enuli Diaz
               </Text>
             
@@ -78,6 +99,12 @@ const Cus_Profile = ({ navigation }) => {
         <View style={{ paddingTop: 20, paddingBottom: 10 }}>
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>PROFILE</Text>
         </View>
+        
+  <View>
+
+    {/*--{posts.map((posts) => ()--*/}
+
+        
         <View
           style={{
             borderBottomColor: "black",
@@ -87,6 +114,9 @@ const Cus_Profile = ({ navigation }) => {
         {/*---------------------------------------------------------- Profile details heading section ----------------------------------------------------------*/}
 
         {/* ----------------------------------------------------------Profile details section ----------------------------------------------------------*/}
+        
+            {/*--{posts.map((posts) => ()--*/}
+
         <View
           style={{
             flexDirection: "row",
@@ -110,8 +140,11 @@ const Cus_Profile = ({ navigation }) => {
               width: 150,
 
             }}
+            // key ={posts.id} 
+             
           >
-            Enuli Diazz
+            Enuli
+            {/* {posts.name} */}
           </Text>
   
         </View>
@@ -188,7 +221,37 @@ const Cus_Profile = ({ navigation }) => {
             Enuli@gmail.com
           </Text>
         </View>
-      
+
+        <View
+          style={{
+            flexDirection: "row",
+            // justifyContent: 'center',
+            alignItems: "center",
+            margin: 10,
+            // backgroundColor: 'green'
+          }}
+        >
+          <ImageBackground
+            source={require("../../assests/icons/icons8-security-pass-24.png")}
+            style={{ width: 30, height: 30 }}
+            // imageStyle={{ borderRadius: 25 }}
+          />
+          <Text
+            style={{
+              paddingLeft: 20,
+              fontSize: 15,
+              fontWeight: "bold",
+             // width: 50,
+            }}
+          >
+            NIC
+          </Text>
+        </View>
+          
+
+
+  </View>
+
       </ScrollView>
       <View
         style={{
