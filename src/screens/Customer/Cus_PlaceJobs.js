@@ -63,7 +63,7 @@ function Cus_PlaceJobs({ navigation }) {
               // console.log(selectedCategory);
               // console.log("Function called", values);
               Axios.post(
-                "http://192.168.8.101:5000/api/v1/customer1/submitJobRequest",
+                "http://10.22.166.206:5000/api/v1/customer1/submitJobRequest",
                 {
                   title: values.title,
                   requiredDate: pickdate,
