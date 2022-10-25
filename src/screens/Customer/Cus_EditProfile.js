@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+// import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+// import { format } from "date-fns";
+import { Avatar } from "react-native-paper";
 // import axios from "axios";
 import Axios from "axios";
 
@@ -86,7 +89,6 @@ function Cus_EditProfile({ navigation }) {
                   label="Contact Number"
                   placeholder="Enter your Contact Number..."
                 />
-
 
                 <TextInput
                   style={styles.textinput}

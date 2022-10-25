@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+// import React, {useState, useEffect} from 'react';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { format } from "date-fns";
+import utils from "../../utils/config"
 
 import {
   SafeAreaView,
@@ -19,15 +23,34 @@ import {
 
 import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
+import Axios from "axios";
 import { Button, TextInput, Appbar } from 'react-native-paper';
 
 import * as ImagePicker from 'expo-image-picker';
 //import DateTimePicker from '@react-native-community/datetimepicker';
 
+
 function Cus_PostJobAD({navigation}) {
 
-  const [selectedCategory, setSelectedCategory] = useState("category");
-  
+  // const [selectedCategory, setSelectedCategory] = useState("category");
+  const [pickdate, setdatevalue] = useState(new Date());
+
+  console.log(format(pickdate, "MMMM do, yyyy "));
+  const onChange = (event, selecteddate) => {
+    if (event.type != "dismissed") {
+      setdatevalue(selecteddate);
+    }
+  }
+
+  const showdatepicker = () => {
+    DateTimePickerAndroid.open({
+      onChange,
+      value: new Date(),
+      minimumDate: new Date(),
+      mode: "date"
+    })
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
     <ScrollView style={{ paddingLeft: 20, paddingRight: 20,paddingBottom: 20, }}>
@@ -39,26 +62,27 @@ function Cus_PostJobAD({navigation}) {
           }}/>
 
         <View style={styles.content}>
-          <Formik 
-            initialValues={{ title: '' }} 
-            // validate={values => {
-            //   let errors = {};
-            //   if (!values.email) {
-            //     errors.email = 'Required';
-            //   } else if (
-            //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            //   ) {
-            //     errors.email = 'Invalid email address';
-            //   }
-            //   return errors;
-            // }}
-            onSubmit={values => {
-                Alert.alert(JSON.stringify(values, null, 2));
-                Keyboard.dismiss();
-              }
-            }
-          >
-            {({ handleChange, handleSubmit, values, errors }) => (
+
+                <Formik
+                  initialValues={{ title: "", description: "", dueDate: "", address: "" , image: ""}}
+                      onSubmit={(values) => {
+                          console.log(values); 
+                          Axios.post(utils.api+"/customer/addNewAdvertisement", {
+                          title: values.title,
+                          description: values.description, 
+                          dueDate: pickdate, 
+                          address: values.address, 
+                          image: values.image,
+                          serviceProviderId:1,
+                          customerId:1,
+                          status:0,
+                          }).then(() => {
+                          alert("successfully added!");
+                          navigate("Cus_PostJobAD") 
+                          });
+                      }}
+                >
+            {({ handleChange, handleSubmit,resetForm, values, errors }) => (
               <View>
                 <TextInput 
                   style= {styles.textinput}
@@ -78,54 +102,35 @@ function Cus_PostJobAD({navigation}) {
                   placeholder="Enter your job details here..."
                 />
 
-                <TextInput
-                  style= {styles.textinput}
-                  onChangeText={handleChange('duedate')}
-                  value={values.requireddate}
-                  label="Due Date"
-                  placeholder="DD/MM/YYYY"
-                />
-{/* 
-    <View style={styles.container}>
-        <Text style={styles.title}>
-          Due Date – 
-        </Text>
-        <DateTimePicker
-          style={styles.datePickerStyle}
-          date={date} // Initial date from state
-          mode="date" // The enum of date, datetime and time
-          placeholder="select date"
-          format="DD-MM-YYYY"
-          minDate="01-01-2016"
-          maxDate="01-01-2019"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              //display: 'none',
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        />
-      </View> */}
+              <TouchableOpacity onPress={showdatepicker}>
+                  <TextInput
+                    disabled
+                    style={styles.textinput}
+                    value={format(pickdate, "MMMM do, yyyy ")}
+                    label="Required Date"
+                    mode="outlined"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </TouchableOpacity>
 
                 <TextInput
                   style= {styles.textinput}
                   onChangeText={handleChange('address')}
-                  value={values.location}
+                  value={values.address}
                   label="Address"
                   mode="outlined"
                   placeholder="Enter the address where you want the job to occur..."
                 />
+
+                 <TextInput
+                  style= {styles.textinput}
+                  onChangeText={handleChange('image')}
+                  value={values.image}
+                  label="Image"
+                  mode="outlined"
+                  placeholder="Enter a photo"
+                />
+
                 {/* <Picker
                   selectedValue={selectedValue}
                   style={styles.picker}
@@ -137,27 +142,16 @@ function Cus_PostJobAD({navigation}) {
                   <Picker.Item label="Hambantota" value="d4" />
                   <Picker.Item label="Colombo" value="d5" />
                 </Picker> */}
-                <Picker
-                  selectedCategory={selectedCategory}
-                  
-                  style={styles.picker}
-                  onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
-                >
-                  <Picker.Item label="Category" value="c1" enabled={false} />
-                  <Picker.Item label="Plumber" value="c2" />
-                  <Picker.Item label="Mason" value="c3" />
-                  <Picker.Item label="Eleectrician" value="c4" />
-                  <Picker.Item label="Carpenter" value="c5" />
-                  <Picker.Item label="Painter" value="c6" />
-                </Picker>
 
-                <TextInput
+
+
+                {/* <TextInput
                   style= {styles.textinput}
                   onChangeText={handleChange('image')}
                   value={values.requireddate}
                   label="Choose Image"
                   mode="outlined"
-                />
+                /> */}
 
         {/* <View style={styles.container}>
               <Image source={{ uri: "https://i.imgur.com/TkIrScD.png" }} style={{ width: 305, height: 159 }} />
@@ -170,7 +164,7 @@ function Cus_PostJobAD({navigation}) {
               
 
                 <View style={styles.buttonview}>
-                    <Button onPress={handleChange} style={styles.buttonCancel} color="white" >Cancel</Button>
+                    <Button onPress={resetForm} style={styles.buttonCancel} color="white" >Cancel</Button>
                     <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Post</Button>
                     
                 </View>

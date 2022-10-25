@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   View,
   Text,
@@ -75,6 +76,19 @@ const Cus_spProfileView = ({ navigation }) => {
                         source={require("../../assests/icons/icons8-calendar-100.png")}
                         style={{ width: 25, height: 25 }} />
                 </TouchableOpacity>
+
+
+                {/* <TouchableOpacity onPress={showdatepicker}>
+                  <TextInput
+                    disabled
+                    style={styles.textinput}
+                    value={format(pickdate, "MMMM do, yyyy ")}
+                    label="Required Date"
+                    mode="outlined"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </TouchableOpacity> */}
+
               
             </View>
           </View>
@@ -128,49 +142,18 @@ const Cus_spProfileView = ({ navigation }) => {
         {/*---------------------------------------------------------- Profile Update button section ----------------------------------------------------------*/}
       </ScrollView>
 
-      <View style={{display:'flex', flexDirection:'row',justifyContent:'space-around'}}>
-            <Button onPress={() => console.log("Pressed")} style={styles.buttontag} color="white">Chat</Button>
-
-            {/* ---------------rating model button---------------- */}
+      {/* <View style={{display:'flex', flexDirection:'row',justifyContent:'space-around'}}>
+           
             <Pressable
                 style={[styles.button, styles.buttonOpen]}
                 onPress={() => setModalVisible(true)}
               >
                 <Text style={styles.textStyle}>RATE</Text>
             </Pressable>
-      </View>
+      </View> */}
 
 
-     {/* ------------------------rating model -------------------------- */}
-      <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>ADD RATINGS</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable> */}
-    </View>
+    
     </SafeAreaView>
   );
 };
