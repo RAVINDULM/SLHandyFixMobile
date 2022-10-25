@@ -31,6 +31,11 @@ import {
   Appbar,
 } from "react-native-paper";
 
+
+
+// import { IconButton, Colors } from 'react-native-paper';
+
+
 //import { DataTable } from 'react-native-paper';
 
 function Cus_RecentJob({navigation}) {
@@ -52,7 +57,7 @@ function Cus_RecentJob({navigation}) {
             />
           </TouchableOpacity>
           <Text style={{ fontSize: 18}}>
-            Hello John Doe
+           Recently Placed Jobs
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <ImageBackground
@@ -89,82 +94,85 @@ function Cus_RecentJob({navigation}) {
 
       {/* ----------------------------------Adding the table as cards-------------------------------------------------------- */}
 {/* One card reprent a row in the table, starting row */}
-      <View>
+<View>
             <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
               <Card.Content>
                 <View style={{ flexDirection: "row" }}>
-                  <View style={{ flexDirection: "column" }}>
-                 
-                  <Title>ID</Title>
-                   
-                    {/* <Text>Location : Seeduwa</Text> */}
+                  <View style={{ flexDirection: "column",paddingRight:10 }}>
+                    <Title 
+                    style={{ marginBottom: 10 }}
+
+                    > Job Title</Title>
+                    
+                     
                     <View style={{ flexDirection: "row" }}>
                       <Avatar.Image
-                        size={24}
+                        size={50}
                         source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
+                        style={{ marginRight: 10, marginBottom: 10 }}
                       />
-                      <Text>Service Provider</Text>
+                      <Text
+                      >Jhon Doe</Text>
                     </View>
-                    <Chip
-                      onPress={() => console.log("Pressed location")}
-                      style={{ marginBottom: 5 }}
+
+                    {/* <IconButton
+                      icon="camera"
+                      color={Colors.red500}
+                      size={50}
+                      onPress={() => console.log('Pressed')}
+                    />                           */}
+                  <View>
+                  <TouchableOpacity>
+                          <View
+                          style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            margin: 5,
+                          }}
+                        >
+                          <ImageBackground
+                            source={require("../../assests/icons/icons8-communication-50.png")}
+                            style={{ width: 30, height: 30 }}
+                          />
+                          <Text
+                            style={{
+                              paddingLeft: 20,
+                              fontSize: 16,
+                              fontWeight: "bold",
+                              width: 100,
+                            }}
+                          >
+                            CHAT
+                          </Text>
+                        </View>
+
+                </TouchableOpacity>
+                </View>
+
+                    <Button
+                      mode="outlined"
+                      onPress={() => navigation.navigate("")}
                     >
-                      <View>
-                        <FontAwesomeIcon icon={faLocationDot} size={0} />
-                      </View>
-                      <Text>Location</Text>
-                    </Chip>
-                    <Chip
-                      onPress={() => console.log("Pressed date")}
-                      style={{ marginBottom: 5 }}
-                    >
-                      <View>
-                        <FontAwesomeIcon icon={faCalendar} size={0} />
-                      </View>
-                      <Text>Date the job placed</Text>
-                    </Chip>
+                      {" "}
+                      Completed
+                    </Button>
 
                   </View>
+
                   <View style={{ flexDirection: "column", paddingLeft: 20 }}>
-                    {/* <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => setVisible(true)}
-                    >
-                      {" "}
-                      Accept{" "}
-                    </Button>
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => console.log("")}
-                    >
-                      {" "}
-                      Reject
-                    </Button> */}
-                     <Title>Job Title</Title>
-                    
-                     <Chip
-                      onPress={() => console.log("Job Status")}
-                      style={{ marginBottom: 5, backgroundColor: "grey" }}
+                  <Chip
+                      style={{ marginBottom: 5, backgroundColor: "green" }}
                     >
                       
-                      <Text>Job Status</Text>
+                      <Text >Complete(Status)</Text>
                     </Chip>
-
-                    <Button
-                      mode="outlined"
-                      onPress={() => console.log("Pressed")}
-                    >
-                      {" "}
-                    Change 
-                    </Button>
+                   
                   </View>
+                  
                 </View>
               </Card.Content>
             </Card>
-            </View>
+        </View>
 {/* -------------------------------------Ending  row -----------------------------------------------------------------------*/}
 {/* One card reprent a row in the table, starting row */}
 <View>
@@ -299,4 +307,3 @@ function Cus_RecentJob({navigation}) {
 }
 
 export default Cus_RecentJob
-

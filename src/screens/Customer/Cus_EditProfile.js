@@ -2,6 +2,13 @@ import React, { useState } from "react";
 // import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 // import { format } from "date-fns";
 import { Avatar } from 'react-native-paper';
+// import axios from "axios";
+import Axios from "axios";
+
+
+// import PhotoUpload from 'react-native-photo-upload'
+
+// import PhoneInput from 'react-phone-number-input'
 
 import {
   SafeAreaView,
@@ -41,7 +48,7 @@ function Cus_EditProfile({ navigation }) {
   // }
 
   const [value, setValue] = useState()
-  const [selectedValue, setSelectedValue] = useState("district");
+  // const [selectedValue, setSelectedValue] = useState("district");
   const [selectedCategory, setSelectedCategory] = useState("category");
 
   return (
@@ -57,42 +64,40 @@ function Cus_EditProfile({ navigation }) {
         style={{alignItems:"center"}}
         source={require("../../assests/imgs/avatar.jpg")} />
 
-          {/* <PhotoUpload
-          onPhotoSelect={avatar => {
-            if (avatar) {
-              console.log('Image base64 string: ', avatar)
-            }
-          }}
-        >
-          <Image
-            style={{
-              paddingVertical: 30,
-              width: 150,
-              height: 150,
-              borderRadius: 75
-            }}
-            resizeMode='cover'
-            source={{
-              uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
-            }}
-          />
-        </PhotoUpload> */}
 
-          <Formik
+          {/* <Formik
             initialValues={{ title: '' }}
             onSubmit={values => {
               Alert.alert(JSON.stringify(values, null, 2));
               Keyboard.dismiss();
             }
             }
-          >
+          > */}
+
+                  <Formik
+                  initialValues={{ firstName: "", lastName: "", contactNo: "", email: "" }}
+                      onSubmit={(values) => {
+                          console.log(values); 
+                          Axios.post("10.22.163.170:5000/api/v1/customer/editProfile", {
+                          firstName: values.firstName,
+                          lastName: values.lastName, 
+                          contactNo: values.contactNo, 
+                          // address: values.address, 
+                          email: values.email, 
+                          }).then(() => {
+                          alert("successfully added!");
+                          navigate("Cus_PostJobAD") 
+                          });
+                      }}
+                >
+
             {({ handleChange, handleSubmit, values, errors }) => (
               <View>
                 <TextInput
                   style={styles.textinput}
                   mode="outlined"
-                  onChangeText={handleChange('firstname')}
-                  value={values.firstname}
+                  onChangeText={handleChange('firstName')}
+                  value={values.firstName}
                   label="First Name"
                   placeholder="Enter your first name..."
                 />
@@ -100,8 +105,8 @@ function Cus_EditProfile({ navigation }) {
                 <TextInput
                   mode="outlined"
                   style={styles.textinput}
-                  onChangeText={handleChange('lastname')}
-                  value={values.lastname}
+                  onChangeText={handleChange('lastName')}
+                  value={values.lastName}
                   label="Last Name"
                   placeholder="Enter your last name..."
                 />
@@ -126,14 +131,14 @@ function Cus_EditProfile({ navigation }) {
                   />
                 </TouchableOpacity> */}
 
-                <TextInput
+                {/* <TextInput
                   mode="outlined"
                   style={styles.textinput}
                   onChangeText={handleChange('address')}
                   value={values.address}
                   label="Address"
                   placeholder="Enter your address here..."
-                />
+                /> */}
 
                 {/* <Picker
                   selectedValue={selectedValue}
