@@ -41,7 +41,7 @@ const Cus_home = ({ navigation }) => {
 
   const [visible, setVisible] = React.useState(false);
   const hideDialog = () => setVisible(false);
-
+  const [loading, setLoading] = useState(true);
   const [joblist, setjoblist] = useState([]);
   const [statuslist, setstatus] = useState([]);
   const [finalrate, setRatevalue] = useState("");
@@ -56,7 +56,7 @@ const Cus_home = ({ navigation }) => {
   const setRate = () => {
     console.log("rating:" + finalrate);
 
-    Axios.post(utils.api + "/customer1/rateserviceprovider/", { customerId: getcustomerId, serviceProviderId: serviceproviderId, rate: finalrate }).then((res) => {
+    Axios.post(`${utils.api}/customer1/rateserviceprovider/`, { customerId: getcustomerId, serviceProviderId: serviceproviderId, rate: finalrate }).then((res) => {
       alert("succesfully completed")
       setVisible(false);
 
@@ -76,11 +76,14 @@ const Cus_home = ({ navigation }) => {
   useEffect(() => {
     // 10.22.163.187:5000/api/v1/
     console.log("get jobs called");
-
+    console.log("UserID "+getcustomerId)
+    console.log(utils.api + "/customer1/getjoblist/" + getcustomerId)
     Axios.get(utils.api + "/customer1/getjoblist/" + getcustomerId)
       .then((res) => {
-        console.log(res.data);
+        console.log("tf hutto")
+        console.log(res);
         setjoblist(res.data);
+        setLoading(false)
 
         // setJobid(res.data.jobId);
       })
@@ -243,7 +246,7 @@ const Cus_home = ({ navigation }) => {
             </Card>
         </View> */}
           <View>
-            {joblist?.map((joblist) => (
+            {!loading && joblist.map((joblist) => (
               <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
                 <Card.Content>
                   <View style={{ flexDirection: "row" }}>

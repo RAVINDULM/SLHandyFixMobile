@@ -51,6 +51,7 @@ function Cus_Service({ navigation }) {
 
   const [selectedCategory, setSelectedCategory] = useState("category");
   const [selectedLocation, setselectedLocation] = useState("location");
+  const [loading, setLoading] = useState(true);
 
     const [searchQuery, setSearchQuery] = React.useState('');
     const onChangeSearch = query => setSearchQuery(query);
@@ -69,6 +70,7 @@ function Cus_Service({ navigation }) {
         .then((res) => {
           console.log(res.data);
           setJsetserviceprovider(res.data);
+          setLoading(false)
           // setJobid(res.data.jobId);
         })
         .catch((err) => {
@@ -120,7 +122,7 @@ function Cus_Service({ navigation }) {
 
           {/* ---------------------- card fo a service  --------------------------------*/}
 
-          {serviceprovider.length !== 0 && serviceprovider.map((serviceprovider) => (
+          {!loading && serviceprovider.map((serviceprovider) => (
             <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
           
               <Avatar.Image
