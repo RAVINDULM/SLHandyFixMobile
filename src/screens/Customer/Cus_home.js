@@ -72,13 +72,17 @@ const Cus_home = ({ navigation }) => {
   }
 
 
-
+//  useEffect(()=>{
+//   axios.get(utils.api+"/customer1/getjoblist/1").then((res)=>{
+//     console.log(res)
+//   })
+//  },[])
   useEffect(() => {
     // 10.22.163.187:5000/api/v1/
     console.log("get jobs called");
     console.log("UserID "+getcustomerId)
     console.log(utils.api + "/customer1/getjoblist/" + getcustomerId)
-    Axios.get(utils.api + "/customer1/getjoblist/" + getcustomerId)
+    axios.get(utils.api + "/customer1/getjoblist/" + getcustomerId)
       .then((res) => {
         console.log("tf hutto")
         console.log(res);
@@ -87,9 +91,9 @@ const Cus_home = ({ navigation }) => {
 
         // setJobid(res.data.jobId);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      // .catch((err) => {
+      //   console.log(err);
+      // });
 
 
   }, []);
@@ -246,6 +250,8 @@ const Cus_home = ({ navigation }) => {
             </Card>
         </View> */}
           <View>
+            {console.log("========================================")}
+            {console.log(joblist)}
             {!loading && joblist.map((joblist) => (
               <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
                 <Card.Content>
