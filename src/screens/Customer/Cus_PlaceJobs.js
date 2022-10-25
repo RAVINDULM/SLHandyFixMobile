@@ -11,20 +11,19 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { Picker } from '@react-native-picker/picker';
-import { Formik, useFormik } from 'formik';
+import { Picker } from "@react-native-picker/picker";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
-import { Button, TextInput, Appbar } from 'react-native-paper';
+import { Button, TextInput, Appbar } from "react-native-paper";
 import { clockRunning } from "react-native-reanimated";
-import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
-import * as Location from 'expo-location';
+import * as Location from "expo-location";
 import { useEffect } from "react";
-
+import utils from "./../../utils/config";
 
 function Cus_PlaceJobs({ navigation }) {
-
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [pickdate, setdatevalue] = useState(new Date());
@@ -36,23 +35,22 @@ function Cus_PlaceJobs({ navigation }) {
     if (event.type != "dismissed") {
       setdatevalue(selecteddate);
     }
-  }
+  };
 
   const showdatepicker = () => {
     DateTimePickerAndroid.open({
       onChange,
       value: new Date(),
       minimumDate: new Date(),
-      mode: "date"
-    })
-  }
+      mode: "date",
+    });
+  };
 
   useEffect(() => {
     (async () => {
-      
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
         return;
       }
 
@@ -61,9 +59,9 @@ function Cus_PlaceJobs({ navigation }) {
     })();
   }, []);
 
-  useEffect(() => {
-    console.log("location", location)
-  }, [location])
+  // useEffect(() => {
+  //   console.log("location", location)
+  // }, [location])
 
   return (
     <SafeAreaView>
@@ -78,42 +76,48 @@ function Cus_PlaceJobs({ navigation }) {
 
         <View style={styles.content}>
           <Formik
-            initialValues={{ title: '', requireddate: '', description: '', location: '', district: '', category: '' }}
+            initialValues={{
+              title: "",
+              requireddate: "",
+              description: "",
+              location: "",
+              district: "",
+              category: "",
+            }}
             onSubmit={(values) => {
               // console.log(selectedValue);
 
               // console.log(selectedCategory);
               // console.log("Function called", values);
-              Axios.post(
-                "http://10.22.166.206:5000/api/v1/customer1/submitJobRequest",
-                {
-                  title: values.title,
-                  requiredDate: pickdate,
-                  description: values.description,
-                  location: values.location,
-                  district: selectedValue,
-                  category: selectedCategory,
-                  customerId: 1,
-                  serviceProviderId: 1,
-                  status: 1,
-                  image: "gggg",
-                }
-              ).then((response) => {
+              Axios.post(utils.api + "/customer1/submitJobRequest", {
+                title: values.title,
+                requiredDate: pickdate,
+                description: values.description,
+                location:
+                  location != null
+                    ? location.coords.longitude + " " + location.coords.latitude
+                    : null,
+                district: selectedValue,
+                category: selectedCategory,
+                customerId: 1,
+                serviceProviderId: 1,
+                status: 1,
+                image: "gggg",
+              }).then((response) => {
                 if (response.data.error) {
-                  alert(response.data.error)
+                  alert(response.data.error);
                 } else {
                   alert("Your request has been sent successfully!");
-                  navigation.navigate('Cus_Service');
+                  navigation.navigate("Cus_Service");
                 }
               });
-
             }}
           >
             {({ handleChange, handleSubmit, values, errors, resetForm }) => (
               <View>
                 <TextInput
                   style={styles.textinput}
-                  onChangeText={handleChange('title')}
+                  onChangeText={handleChange("title")}
                   value={values.title}
                   label="Title"
                   mode="outlined"
@@ -133,26 +137,40 @@ function Cus_PlaceJobs({ navigation }) {
                   />
                 </TouchableOpacity>
 
-                <TextInput 
+                <TextInput
                   style={styles.textinput}
-                  onChangeText={handleChange('description')}
+                  onChangeText={handleChange("description")}
                   value={values.description}
                   label="Job description"
                   mode="outlined"
                   placeholder="Enter your job details here..."
                 />
 
-                  <TextInput
-                    style={styles.textinput}
-                    value={location}
-                    label="Location"
-                    mode="outlined"
-                  />
+                {console.log(
+                  location != null ? location.coords : "",
+                  "cvbghnjkl"
+                )}
+
+                <TextInput
+                  disabled
+                  style={styles.textinput}
+                  value={
+                    location != null
+                      ? location.coords.longitude +
+                        " " +
+                        location.coords.latitude
+                      : null
+                  }
+                  label="Location"
+                  mode="outlined"
+                />
 
                 <Picker
                   selectedValue={selectedValue}
                   style={styles.picker}
-                  onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedValue(itemValue)
+                  }
                 >
                   <Picker.Item label="District" enabled={false} />
                   <Picker.Item label="Matara" value="Matara" />
@@ -164,7 +182,9 @@ function Cus_PlaceJobs({ navigation }) {
                 <Picker
                   selectedValue={selectedCategory}
                   style={styles.picker}
-                  onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedCategory(itemValue)
+                  }
                 >
                   <Picker.Item label="Category" enabled={false} />
                   <Picker.Item label="Plumber" value="Plumber" />
@@ -175,27 +195,34 @@ function Cus_PlaceJobs({ navigation }) {
                 </Picker>
 
                 <View style={styles.buttonview}>
-                  <Button onPress={resetForm} style={styles.buttonCancel} color="white">Cancel</Button>
-                  <Button onPress={handleSubmit} style={styles.buttonSubmit} color="white">Submit</Button>
+                  <Button
+                    onPress={resetForm}
+                    style={styles.buttonCancel}
+                    color="white"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onPress={handleSubmit}
+                    style={styles.buttonSubmit}
+                    color="white"
+                  >
+                    Submit
+                  </Button>
                 </View>
-
-
               </View>
             )}
           </Formik>
         </View>
       </ScrollView>
-
-
     </SafeAreaView>
-  )
+  );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: "#ecf0f1",
   },
   content: {
     padding: 16,
@@ -204,29 +231,29 @@ const styles = StyleSheet.create({
     width: 110,
     marginTop: 26,
     paddingVertical: 10,
-    backgroundColor: "#2538B8"
+    backgroundColor: "#2538B8",
   },
   buttonCancel: {
     width: 110,
     marginTop: 26,
     paddingVertical: 10,
-    backgroundColor: "silver"
+    backgroundColor: "silver",
   },
   text: {
-    textAlign: 'left',
+    textAlign: "left",
     width: 230,
     fontSize: 16,
-    color: "#000"
+    color: "#000",
   },
   textinput: {
-    borderBottomColor: '#ccc',
+    borderBottomColor: "#ccc",
     backgroundColor: "#fff",
     borderBottomWidth: 1,
     paddingBottom: 3,
     marginBottom: 10,
   },
   picker: {
-    borderBottomColor: '#ccc',
+    borderBottomColor: "#ccc",
     borderBottomWidth: 1,
     paddingBottom: 3,
     marginBottom: 10,
@@ -234,10 +261,10 @@ const styles = StyleSheet.create({
     width: 300,
   },
   buttonview: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  }
-})
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+});
 
-export default Cus_PlaceJobs
+export default Cus_PlaceJobs;

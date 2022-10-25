@@ -1,5 +1,5 @@
 // import React from 'react'
-import React, { useState } from "react";
+import React from "react";
 import { Searchbar } from 'react-native-paper';
 
 import {
