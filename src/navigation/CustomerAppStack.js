@@ -35,7 +35,7 @@ const CustomerAppStack = () => {
       drawerInactiveTintColor: '#fff',
       drawerLabelStyle: {
         // marginLeft: -25,
-        fontFamily: 'Roboto-Medium',
+        // fontFamily: 'Roboto-Medium',
         fontSize: 15,
       },  }}>
 

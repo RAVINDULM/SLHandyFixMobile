@@ -19,12 +19,16 @@ import { Button, TextInput, Appbar } from 'react-native-paper';
 import { clockRunning } from "react-native-reanimated";
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { format } from "date-fns";
+import * as Location from 'expo-location';
+import { useEffect } from "react";
+
 
 function Cus_PlaceJobs({ navigation }) {
 
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [pickdate, setdatevalue] = useState(new Date());
+  const [location, setLocation] = useState(null);
 
   console.log(pickdate);
 
@@ -42,6 +46,24 @@ function Cus_PlaceJobs({ navigation }) {
       mode: "date"
     })
   }
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  useEffect(() => {
+    console.log("location", location)
+  }, [location])
 
   return (
     <SafeAreaView>
@@ -120,16 +142,12 @@ function Cus_PlaceJobs({ navigation }) {
                   placeholder="Enter your job details here..."
                 />
 
-                <TouchableOpacity onPress={()=>navigation.navigate("Cus_Map")}>
                   <TextInput
                     style={styles.textinput}
-                    onChangeText={handleChange('location')}
-                    value={values.location}
+                    value={location}
                     label="Location"
                     mode="outlined"
-                    placeholder="Enter the address where you want the job to occur..."
                   />
-                </TouchableOpacity>
 
                 <Picker
                   selectedValue={selectedValue}
