@@ -1,4 +1,5 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState } from "react";
 import { Searchbar } from 'react-native-paper';
 
 import {
@@ -42,10 +43,11 @@ import { Rating, AirbnbRating } from "react-native-ratings";
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 
-
-
-
 function Cus_Service({navigation}) {
+
+  const [selectedCategory, setSelectedCategory] = useState("category");
+  const [selectedLocation, setselectedLocation] = useState("location");
+
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -56,33 +58,7 @@ function Cus_Service({navigation}) {
   return (
     <SafeAreaView>
         <ScrollView style={{ padding: 20,marginBottom:10 }}>
-        {/* <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop: 20,
-          }}
-        >
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/menu.png")}
-              style={{ width: 30, height: 30 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 18}}>
-            My Services
-          </Text>
       
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/User01.jpg")}
-              style={{ width: 40, height: 40 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-        </View> */}
-
         <Searchbar
             icon={() => <Ionicons name="search-outline" size={30} />}  
             placeholder="Search Service Provider"
@@ -138,45 +114,7 @@ function Cus_Service({navigation}) {
                       Plumber|Member since 2015 {'\n'} 
                       No30, Mahawela Road, Galle. {'\n'} 
                     </Paragraph>
-                    {/* <View style={{ flexDirection: "row" }}>
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faLocationDot} size={0} />
-                        </View>
-                        <Text>Location</Text>
-                      </Chip>
-                      <Chip
-                        onPress={() => console.log("Pressed date")}
-                        style={{ marginBottom: 5 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faCalendar} size={0} />
-                        </View>
-                        <Text>12/08/2022</Text>
-                      </Chip>
-                    </View>
-
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Image
-                        size={24}
-                        source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
-                      />
-                      <Text>John doe</Text>
-
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faClock} size={0} />
-                        </View>
-                        <Text>10.47 pm</Text>
-                      </Chip>
-                    </View> */}
+                   
                   </View>
  {/* ---------------------- rating component  --------------------------------*/}
                   {/* <Card
@@ -224,7 +162,7 @@ function Cus_Service({navigation}) {
                     <Button
                       style={{ marginBottom: 10 }}
                       mode="outlined"
-                      onPress={() => {navigation.navigate('Service Provider Profile')}}
+                      onPress={() => navigation.navigate("Cus_spProfileView")}
                     >
                       {" "}
                       View more
@@ -259,45 +197,7 @@ function Cus_Service({navigation}) {
                       Plumber|Member since 2015 {'\n'} 
                       No30, Mahawela Road, Galle. {'\n'} 
                     </Paragraph>
-                    {/* <View style={{ flexDirection: "row" }}>
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faLocationDot} size={0} />
-                        </View>
-                        <Text>Location</Text>
-                      </Chip>
-                      <Chip
-                        onPress={() => console.log("Pressed date")}
-                        style={{ marginBottom: 5 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faCalendar} size={0} />
-                        </View>
-                        <Text>12/08/2022</Text>
-                      </Chip>
-                    </View>
-
-                    <View style={{ flexDirection: "row" }}>
-                      <Avatar.Image
-                        size={24}
-                        source={require("../../assests/imgs/User01.jpg")}
-                        style={{ marginRight: 10, marginLeft: 10 }}
-                      />
-                      <Text>John doe</Text>
-
-                      <Chip
-                        onPress={() => console.log("Pressed location")}
-                        style={{ marginBottom: 5, marginRight: 10 }}
-                      >
-                        <View>
-                          <FontAwesomeIcon icon={faClock} size={0} />
-                        </View>
-                        <Text>10.47 pm</Text>
-                      </Chip>
-                    </View> */}
+             
                   </View>
  {/* ---------------------- rating component  --------------------------------*/}
                   {/* <Card

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import PhotoUpload from 'react-native-photo-upload'
-
-// import PhoneInput from 'react-phone-number-input'
+// import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+// import { format } from "date-fns";
+import { Avatar } from 'react-native-paper';
 
 import {
   SafeAreaView,
@@ -20,11 +20,25 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
-import PhoneInput from 'react-native-phone-input'
-import DatePicker from 'react-native-datepicker';
-
 
 function Cus_EditProfile({ navigation }) {
+
+  // const [pickdate, setdatevalue] = useState(new Date());
+  // console.log(format(pickdate, "MMMM do, yyyy "));
+  // const onChange = (event, selecteddate) => {
+  //   if (event.type != "dismissed") {
+  //     setdatevalue(selecteddate);
+  //   }
+  // }
+
+  // const showdatepicker = () => {
+  //   DateTimePickerAndroid.open({
+  //     onChange,
+  //     value: new Date(),
+  //     minimumDate: new Date(),
+  //     mode: "date"
+  //   })
+  // }
 
   const [value, setValue] = useState()
   const [selectedValue, setSelectedValue] = useState("district");
@@ -33,37 +47,15 @@ function Cus_EditProfile({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView style={{ padding: 20 }}>
-        {/* <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            // marginTop: ,
-          }}
-        >
-         
-        </View>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/menu.png")}
-              style={{ width: 30, height: 30 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 18}}>
-            Edit Profile
-          </Text>
-      
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/User01.jpg")}
-              style={{ width: 40, height: 40 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-        </View> */}
-
-
+    
         <View style={styles.content}>
+        {/* <ImageBackground
+            source={require('../assets/imgs/avatar.jpg')}
+            style={{ width: 25, height: 25 ,marginTop:10}}
+        /> */}
+        <Avatar.Image size={100}
+        style={{alignItems:"center"}}
+        source={require("../../assests/imgs/avatar.jpg")} />
 
           {/* <PhotoUpload
           onPhotoSelect={avatar => {
@@ -88,17 +80,6 @@ function Cus_EditProfile({ navigation }) {
 
           <Formik
             initialValues={{ title: '' }}
-            // validate={values => {
-            //   let errors = {};
-            //   if (!values.email) {
-            //     errors.email = 'Required';
-            //   } else if (
-            //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            //   ) {
-            //     errors.email = 'Invalid email address';
-            //   }
-            //   return errors;
-            // }}
             onSubmit={values => {
               Alert.alert(JSON.stringify(values, null, 2));
               Keyboard.dismiss();
@@ -132,23 +113,18 @@ function Cus_EditProfile({ navigation }) {
                   value={values.phonenumber}
                   label="Phone Number"
                   placeholder="Enter your phone number..."
-
                 />
 
-                {/* <PhoneInput
-                  style={styles.phoneInput}
-                  defaultCode="IN"
-                 /> */}
-
-
-                <TextInput
-                  style={styles.textinput}
-                  onChangeText={handleChange('dateofbirth')}
-                  value={values.dateofbirth}
-                  label="Date of Birth"
-                  placeholder="mm/dd/yyyy"
-                />
-                
+                {/* <TouchableOpacity onPress={showdatepicker}>
+                  <TextInput
+                    disabled
+                    style={styles.textinput}
+                    value={format(pickdate, "MMMM do, yyyy ")}
+                    label="Date of Birth"
+                    mode="outlined"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </TouchableOpacity> */}
 
                 <TextInput
                   mode="outlined"
@@ -159,7 +135,7 @@ function Cus_EditProfile({ navigation }) {
                   placeholder="Enter your address here..."
                 />
 
-                <Picker
+                {/* <Picker
                   selectedValue={selectedValue}
                   style={styles.picker}
                   onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
@@ -169,7 +145,7 @@ function Cus_EditProfile({ navigation }) {
                   <Picker.Item label="Galle" value="d3" />
                   <Picker.Item label="Hambantota" value="d4" />
                   <Picker.Item label="Colombo" value="d5" />
-                </Picker>
+                </Picker> */}
 
                 <View style={styles.buttonview}>
                   <Button onPress={handleChange} style={styles.buttonCancel} color="white">Cancel</Button>

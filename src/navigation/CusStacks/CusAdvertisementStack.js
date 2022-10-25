@@ -53,11 +53,7 @@ const CusAdvertisementStack = ({ navigation }) => {
             header: () => (
               <Appbar.Header style={{ backgroundColor: "white" }}>
                 <TouchableOpacity onPress={() => navigation.navigate("Cus_JobAD")}>
-                  <FontAwesomeIcon
-                    icon={faStepBackward}
-                    size={24}
-                    style={{ marginLeft: 10 }}
-                  />
+                <Ionicons name="arrow-back-outline" size={30} />
                 </TouchableOpacity>
                 {/* <Appbar.Content title={route.name} /> */}
                 <Appbar.Content title="Advertisement Details" />

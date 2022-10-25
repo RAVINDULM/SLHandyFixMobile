@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   View,
   Text,
@@ -75,6 +76,19 @@ const Cus_spProfileView = ({ navigation }) => {
                         source={require("../../assests/icons/icons8-calendar-100.png")}
                         style={{ width: 25, height: 25 }} />
                 </TouchableOpacity>
+
+
+                {/* <TouchableOpacity onPress={showdatepicker}>
+                  <TextInput
+                    disabled
+                    style={styles.textinput}
+                    value={format(pickdate, "MMMM do, yyyy ")}
+                    label="Required Date"
+                    mode="outlined"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </TouchableOpacity> */}
+
               
             </View>
           </View>
@@ -129,7 +143,7 @@ const Cus_spProfileView = ({ navigation }) => {
       </ScrollView>
 
       <View style={{display:'flex', flexDirection:'row',justifyContent:'space-around'}}>
-            <Button onPress={() => console.log("Pressed")} style={styles.buttontag} color="white">Chat</Button>
+            {/* <Button onPress={() => console.log("Pressed")} style={styles.buttontag} color="white">Chat</Button> */}
 
             {/* ---------------rating model button---------------- */}
             <Pressable
