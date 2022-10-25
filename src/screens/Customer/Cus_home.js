@@ -76,11 +76,12 @@ const Cus_home = ({ navigation }) => {
   useEffect(() => {
     // 10.22.163.187:5000/api/v1/
     console.log("get jobs called");
-
+    console.log("UserID "+getcustomerId)
     Axios.get(utils.api + "/customer1/getjoblist/" + getcustomerId)
       .then((res) => {
+        console.log("tf hutto")
         console.log(res.data);
-        setjoblist(res.data);
+        // setjoblist(res.data);
 
         // setJobid(res.data.jobId);
       })
@@ -243,7 +244,8 @@ const Cus_home = ({ navigation }) => {
             </Card>
         </View> */}
           <View>
-            {joblist?.map((joblist) => (
+          {console.log(joblist)}
+            {joblist.map((joblist) => (
               <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
                 <Card.Content>
                   <View style={{ flexDirection: "row" }}>

@@ -18,6 +18,7 @@ import {
 // import relavant screens
 import Cus_Service from "../../screens/Customer/Cus_Service";
 import Cus_PlaceJobs from "../../screens/Customer/Cus_PlaceJobs";
+import Cus_Map from "../../screens/Customer/map";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
@@ -53,6 +54,22 @@ const CusServiceProviderStack = ({ navigation }) => {
               <Appbar.Header style={{ backgroundColor: "white" }}>
                 {/* <Appbar.BackAction onPress={() => navigation.navigate("Cus_Service")}/> */}
                 <TouchableOpacity onPress={() => navigation.navigate("Cus_Service")}>
+                <Ionicons name="arrow-back-outline" size={30} />
+                </TouchableOpacity>
+                {/* <Appbar.Content title={route.name} /> */}
+                <Appbar.Content title="Place Jobs" />
+              </Appbar.Header>
+            ),
+          })}
+      />
+       <Stack.Screen
+        name="Cus_Map"
+        component={Cus_Map}
+        options={({ route, navigation }) => ({
+            header: () => (
+              <Appbar.Header style={{ backgroundColor: "white" }}>
+                {/* <Appbar.BackAction onPress={() => navigation.navigate("Cus_Service")}/> */}
+                <TouchableOpacity onPress={() => navigation.navigate("Cus_PlaceJobs")}>
                 <Ionicons name="arrow-back-outline" size={30} />
                 </TouchableOpacity>
                 {/* <Appbar.Content title={route.name} /> */}

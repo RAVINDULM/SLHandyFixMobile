@@ -87,7 +87,7 @@ function Cus_PlaceJobs({ navigation }) {
 
             }}
           >
-            {({ handleChange, handleSubmit, values, errors,resetForm }) => (
+            {({ handleChange, handleSubmit, values, errors, resetForm }) => (
               <View>
                 <TextInput
                   style={styles.textinput}
@@ -111,7 +111,7 @@ function Cus_PlaceJobs({ navigation }) {
                   />
                 </TouchableOpacity>
 
-                <TextInput
+                <TextInput 
                   style={styles.textinput}
                   onChangeText={handleChange('description')}
                   value={values.description}
@@ -120,14 +120,16 @@ function Cus_PlaceJobs({ navigation }) {
                   placeholder="Enter your job details here..."
                 />
 
-                <TextInput
-                  style={styles.textinput}
-                  onChangeText={handleChange('location')}
-                  value={values.location}
-                  label="Location"
-                  mode="outlined"
-                  placeholder="Enter the address where you want the job to occur..."
-                />
+                <TouchableOpacity onPress={()=>navigation.navigate("Cus_Map")}>
+                  <TextInput
+                    style={styles.textinput}
+                    onChangeText={handleChange('location')}
+                    value={values.location}
+                    label="Location"
+                    mode="outlined"
+                    placeholder="Enter the address where you want the job to occur..."
+                  />
+                </TouchableOpacity>
 
                 <Picker
                   selectedValue={selectedValue}
