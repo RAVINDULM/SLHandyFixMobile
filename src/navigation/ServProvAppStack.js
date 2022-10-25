@@ -16,6 +16,7 @@ import TransactionCompleted from "../screens/ServiceProvider/TransactionComplete
 import ServProv_analyticStack from "../navigation/ServProStacks/ServPro_AnalyticStack";
 import CalanderStack from "../navigation/ServProStacks/ServProvCalanderStack";
 import JobRequestsStack from "./ServProStacks/ServPro_JobReqStack";
+import ConfimedJobsStack from "./ServProStacks/ServPro_MyJobsStack";
 // react native paper app bar
 import { Appbar } from "react-native-paper";
 import { Menu } from "react-native-paper";
@@ -94,6 +95,20 @@ const ServProvAppStack = () => {
             <Ionicons
               style={{ marginRight: -15 }}
               name="analytics-outline"
+              size={size}
+              color={focused ? "#2538B8" : "#fff"}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="My Jobs"
+        component={ConfimedJobsStack}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              style={{ marginRight: -15 }}
+              name="bookmarks-outline"
               size={size}
               color={focused ? "#2538B8" : "#fff"}
             />

@@ -38,44 +38,30 @@ import { Rating } from "react-native-ratings";
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect } from "react";
 import axios from "axios";
+import utils from "../../utils/config";
 
-// const Acccept = () => {
-//   console.log("accept called");
-//   const [visible, setVisible] = React.useState(false);
-
-//   const hideDialog = () => setVisible(false);
-//   return (
-//     <Portal>
-//       <Dialog visible={visible} onDismiss={hideDialog}>
-//         <Dialog.Title>This is a title</Dialog.Title>
-//         <Dialog.Content>
-//           <Paragraph>This is simple dialog</Paragraph>
-//         </Dialog.Content>
-//       </Dialog>
-//     </Portal>
-//   );
-// };
 const timeicon = <Ionicons name="time-outline" />;
 const ServPro_feed = () => {
   const [visible, setVisible] = React.useState(false);
   const hideDialog = () => setVisible(false);
 
   // fetch data from backend
-
   const [posts, setPosts] = useState([]);
   // AsyncStorage.setItem("userToken", JSON.stringify(userToken));
   // const value = AsyncStorage.getItem('userToken');
   useEffect(() => {
     console.log("gget jobs called");
+    console.log(`${utils.api}/servprov/getJobposts`);
     axios
-      .get("http://192.168.43.39:5000/api/v1/servprov/getJobposts")
+      .get(`${utils.api}/servprov/getJobposts`)
       .then((res) => {
+        console.log(res.data);
         setPosts(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -114,6 +100,7 @@ const ServPro_feed = () => {
               </Dialog>
             </Portal>
             {/* ----------------------------------------------------- dialog box ends -------------------------------------------------------------------*/}
+
             <View
               style={{
                 flexDirection: "row",
@@ -245,37 +232,6 @@ const ServPro_feed = () => {
                         Request
                       </Button>
                     </Card.Actions>
-                    {/* <View
-                    style={{
-                      flexDirection: "column",
-                      paddingLeft: 20,
-                      marginTop: 20,
-                    }}
-                  >
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => setVisible(true)}
-                    >
-                      {" "}
-                      Accept{" "}
-                    </Button>
-                    <Button
-                      style={{ marginBottom: 10 }}
-                      mode="outlined"
-                      onPress={() => console.log("")}
-                    >
-                      {" "}
-                      Reject
-                    </Button>
-                    <Button
-                      mode="outlined"
-                      onPress={() => console.log("Pressed")}
-                    >
-                      {" "}
-                      View more
-                    </Button>
-                  </View> */}
                   </View>
                 </Card.Content>
               </Card>

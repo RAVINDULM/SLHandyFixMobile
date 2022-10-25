@@ -52,6 +52,7 @@ import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { useEffect } from "react";
 // const API_URL = "http://192.168.43.39:5000/";
 
+import utils from "../../../utils/config";
 const ServProv_Register = ({ navigation }) => {
   // calculate dob and gender based on nic
   const [age, setAge] = useState("");
@@ -301,9 +302,7 @@ const ServProv_Register = ({ navigation }) => {
   const hideDialog = () => setVisible(false);
 
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await Axios.post(
-      "http://" + BASE_URL + "servprov/registerPayment"
-    );
+    const response = await Axios.post(`${utils.api}/servprov/registerPayment`);
     console.log(response.data);
     const { clientSecret, error } = await response.data;
     return { clientSecret, error };
@@ -672,7 +671,7 @@ const ServProv_Register = ({ navigation }) => {
                     <View style={{ flex: 1, flexDirection: "row" }}>
                       <View style={{ flex: 1, flexDirection: "column" }}>
                         <TextInput
-                          style={{ height: 40, width: 175 }}
+                          style={{ height: 40 }}
                           label="Mobile number"
                           onChangeText={handleChange("mobileNum")}
                           onBlur={handleBlur("mobileNum")}
@@ -687,73 +686,8 @@ const ServProv_Register = ({ navigation }) => {
                           </Text>
                         )}
                       </View>
-                      <Button
-                        loading={false}
-                        style={{
-                          width: 100,
-                          height: 40,
-                          marginLeft: 10,
-                          marginTop: 5,
-                          paddingLeft: 2,
-                          backgroundColor: "black",
-                        }}
-                        mode="contained"
-                      >
-                        Get OTP
-                      </Button>
                     </View>
-                    <View style={{ flex: 1, flexDirection: "row" }}>
-                      <TextInput
-                        style={{ height: 40, width: 175 }}
-                        label="OTP"
-                        disabled
-                        // onChangeText={handleChange("mobileNum")}
-                        // onBlur={handleBlur("mobileNum")}
-                        // value={values.mobileNum}
-                        mode="outlined"
-                      />
-                      {/* {touched.mobileNum && errors.mobileNum && (
-                        <Text
-                          style={{ fontSize: 14, color: "red", margin: 10 }}
-                        >
-                          {errors.mobileNum}
-                        </Text>
-                      )} */}
 
-                      {/* <Button
-                        loading={false}
-                        style={{
-                          width: 100,
-                          height: 40,
-                          marginLeft: 10,
-                          marginTop: 5,
-                          paddingLeft: 2,
-                          // backgroundColor: "black",
-                        }}
-                        mode="outlined"
-                      >
-                        Verify
-                      </Button> */}
-                      <Chip
-                        style={{
-                          width: 100,
-                          height: 40,
-                          marginLeft: 10,
-                          marginTop: 5,
-                          paddingLeft: 2,
-                          flex: 1,
-                          justifyContent: "center",
-
-                          // backgroundColor: "black",
-                        }}
-                      >
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          size={20}
-                          color="green"
-                        />
-                      </Chip>
-                    </View>
                     {/* ----------------------------------------------------------- Mobile number -------------------------------------------- */}
                     {/* ----------------------------------------------------------- Address -------------------------------------------- */}
                     <TextInput
@@ -981,7 +915,7 @@ const ServProv_Register = ({ navigation }) => {
               disabled={payerror != null}
               type="submit"
             >
-              Register
+              Send Request
             </Button>
             <View
               style={{

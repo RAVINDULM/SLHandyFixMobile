@@ -3,7 +3,7 @@ import { View, ActvityIndicator } from "react-native";
 import { JumpingTransition } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-
+import utils from "../utils/config";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     console.log("email :", email);
     console.log("password :", password);
     axios
-      .post("http://192.168.43.119:5000/api/v1/user/login", {
+      .post(`${utils.api}/user/login`, {
         email,
         password,
       })

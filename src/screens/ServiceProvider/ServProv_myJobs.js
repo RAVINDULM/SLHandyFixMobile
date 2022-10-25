@@ -30,76 +30,40 @@ import {
   Appbar,
 } from "react-native-paper";
 
+// date formter
+import { format, compareAsc } from "date-fns";
 // dialog box react native paper
 import { Dialog, Portal } from "react-native-paper";
 import { useEffect } from "react";
 import axios from "axios";
 import utils from "../../utils/config";
-// const Acccept = () => {
-//   console.log("accept called");
-//   const [visible, setVisible] = React.useState(false);
-
-//   const hideDialog = () => setVisible(false);
-//   return (
-//     <Portal>
-//       <Dialog visible={visible} onDismiss={hideDialog}>
-//         <Dialog.Title>This is a title</Dialog.Title>
-//         <Dialog.Content>
-//           <Paragraph>This is simple dialog</Paragraph>
-//         </Dialog.Content>
-//       </Dialog>
-//     </Portal>
-//   );
-// };
 
 const ServProv_Jobs = () => {
-  const [jobid, setJobid] = useState("");
-
-  // accept job requests
-  const acceptJobRequests = () => {
-    console.log("jobid", jobid);
+  const [jobid, setJobid] = useState(null);
+  const startJob = () => {
+    console.log("first", jobid);
     axios
-      .put(`${utils.api}/servprov/acceptJobRequest/` + jobid)
-      .then((res) => {
-        console.log("data", res.data);
-        hideDialog();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // reject job request
-  const [rejectVisible, setRejectVisible] = React.useState(false);
-  const hideRjectDialog = () => setRejectVisible(false);
-
-  const rejectJobRequests = () => {
-    console.log("jobid", jobid);
-    axios
-      .put(`${utils.api}/servprov/rejectJobRequests/` + jobid)
-      .then((res) => {
-        console.log("data", res.data);
-        hideDialog();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // ------------- get job request data ----------------------
-  const [jobRequests, setJobRequests] = useState([]);
-  // AsyncStorage.setItem("userToken", JSON.stringify(userToken));
-  // const value = AsyncStorage.getItem('userToken');
-  useEffect(() => {
-    // 10.22.163.187:5000/api/v1/
-    console.log("get jobs called");
-    console.log(`${utils.api}/servprov/getJobRequests`);
-    axios
-      .get(`${utils.api}/servprov/getJobRequests`)
+      .put(`${utils.api}/servprov/startJob/ ` + jobid)
       .then((res) => {
         console.log(res.data);
+        hideDialog();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [jobs, setJobs] = useState([]);
+  // AsyncStorage.setItem("userToken", JSON.stringify(userToken));
+  // const value = AsyncStorage.getItem('userToken');
+
+  useEffect(() => {
+    console.log("get jobs called");
+    axios
+      .get(`${utils.api}/servprov/getServiceProviderJobs`)
+      .then((res) => {
         console.log(res.data[0].jobId);
-        setJobRequests(res.data);
+        setJobs(res.data);
         setJobid(res.data[0].jobId);
       })
       .catch((err) => {
@@ -108,7 +72,6 @@ const ServProv_Jobs = () => {
   }, []);
   const [visible, setVisible] = React.useState(false);
   const hideDialog = () => setVisible(false);
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView style={{ padding: 20 }}>
@@ -117,10 +80,10 @@ const ServProv_Jobs = () => {
             {/* -----------------------------------   dialog box start ---------------------------------------------- */}
             <Portal>
               <Dialog visible={visible} onDismiss={hideDialog}>
-                <Dialog.Title>Accept Job</Dialog.Title>
+                <Dialog.Title>Start the Job</Dialog.Title>
                 <Dialog.Content>
                   <Paragraph>
-                    Are You sure You want to accept this job?
+                    Are You sure You you want to start this job?
                   </Paragraph>
                   <View
                     style={{ flexDirection: "row", justifyContent: "center" }}
@@ -128,7 +91,7 @@ const ServProv_Jobs = () => {
                     <Button
                       style={{ marginBottom: 10, marginRight: 10 }}
                       mode="outlined"
-                      onPress={() => acceptJobRequests()}
+                      onPress={() => startJob()}
                     >
                       {" "}
                       Yes{" "}
@@ -146,51 +109,15 @@ const ServProv_Jobs = () => {
               </Dialog>
             </Portal>
             {/* ----------------------------------------------------- dialog box ends -------------------------------------------------------------------*/}
+            {/* ---------------------------------------------------- card fo a job requests ------------------------------------------------------------ */}
           </View>
-
           <View>
-            {/* -----------------------------------   reject dialog box start ---------------------------------------------- */}
-            <Portal>
-              <Dialog visible={rejectVisible} onDismiss={hideRjectDialog}>
-                <Dialog.Title>Accept Job</Dialog.Title>
-                <Dialog.Content>
-                  <Paragraph>
-                    Are You sure You want to reject this job?
-                  </Paragraph>
-                  <View
-                    style={{ flexDirection: "row", justifyContent: "center" }}
-                  >
-                    <Button
-                      style={{ marginBottom: 10, marginRight: 10 }}
-                      mode="outlined"
-                      onPress={() => rejectJobRequests()}
-                    >
-                      {" "}
-                      Yes{" "}
-                    </Button>
-                    <Button
-                      style={{ marginBottom: 10, marginLeft: 10 }}
-                      mode="outlined"
-                      onPress={() => hideRjectDialog()}
-                    >
-                      {" "}
-                      No
-                    </Button>
-                  </View>
-                </Dialog.Content>
-              </Dialog>
-            </Portal>
-            {/* ----------------------------------------------------- reject dialog box ends -------------------------------------------------------------------*/}
-          </View>
-
-          {/* ---------------------------------------------------- card fo a job requests ------------------------------------------------------------ */}
-          <View>
-            {jobRequests.map((jobRequests) => (
+            {jobs.map((jobs) => (
               <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
                 <Card.Content>
                   <View style={{ flexDirection: "row" }}>
                     <View style={{ flexDirection: "column" }}>
-                      <Title key={jobRequests.jobId}>{jobRequests.title}</Title>
+                      <Title key={jobs.jobId}>{jobs.title}</Title>
                       {/* <Text>Location : Seeduwa</Text> */}
                       <Chip
                         onPress={() => console.log("Pressed location")}
@@ -199,9 +126,7 @@ const ServProv_Jobs = () => {
                         <View>
                           <FontAwesomeIcon icon={faLocationDot} size={0} />
                         </View>
-                        <Text key={jobRequests.jobId}>
-                          {jobRequests.location}
-                        </Text>
+                        <Text key={jobs.jobId}>{jobs.location}</Text>
                       </Chip>
                       <Chip
                         onPress={() => console.log("Pressed date")}
@@ -210,8 +135,8 @@ const ServProv_Jobs = () => {
                         <View>
                           <FontAwesomeIcon icon={faCalendar} size={0} />
                         </View>
-                        <Text key={jobRequests.jobId}>
-                          {jobRequests.requiredDate}
+                        <Text key={jobs.jobId}>
+                          {format(new Date(jobs.requiredDate), "MM/dd/yyyy")}
                         </Text>
                       </Chip>
                       <View style={{ flexDirection: "row" }}>
@@ -230,23 +155,21 @@ const ServProv_Jobs = () => {
                         onPress={() => setVisible(true)}
                       >
                         {" "}
-                        Accept{" "}
+                        Start{" "}
                       </Button>
-                      <Button
-                        style={{ marginBottom: 10 }}
-                        mode="outlined"
-                        onPress={() => setRejectVisible(true)}
-                      >
-                        {" "}
-                        Reject
-                      </Button>
-                      <Button
-                        mode="outlined"
-                        onPress={() => console.log("Pressed")}
-                      >
-                        {" "}
-                        View more
-                      </Button>
+                      {
+                        <Button
+                          style={{
+                            marginBottom: 10,
+                            backgroundColor: "yellow",
+                          }}
+                          mode="outlined"
+                          onPress={() => console.log("")}
+                        >
+                          {" "}
+                          OnGoing
+                        </Button>
+                      }
                     </View>
                   </View>
                 </Card.Content>

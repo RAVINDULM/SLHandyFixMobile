@@ -197,7 +197,7 @@ const ServProv_calanader = ({
         renderItem={renderItem}
       />
       <StatusBar />
-      <AnimatedFAB
+      {/* <AnimatedFAB
         icon={faPlus}
         label={"Add new"}
         extended={isExtended}
@@ -206,7 +206,7 @@ const ServProv_calanader = ({
         animateFrom={"right"}
         iconMode={"static"}
         style={[stylesFab.fabStyle, style, fabStyle]}
-      />
+      /> */}
     </View>
   );
 };
