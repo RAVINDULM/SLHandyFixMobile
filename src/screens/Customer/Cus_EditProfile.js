@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+// import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+// import { format } from "date-fns";
+import { Avatar } from 'react-native-paper';
 // import axios from "axios";
 import Axios from "axios";
 
@@ -24,40 +27,25 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import { Formik } from 'formik';
 import { Button, TextInput, Appbar } from 'react-native-paper';
-import PhoneInput from 'react-native-phone-input'
-import DatePicker from 'react-native-datepicker';
-
-// exports.createEditProfile = (req, res) => {
-//   const {
-//     firstName, 
-//     lastName, 
-//     contactNo, 
-//     address, 
-//     email,
-//   } =  new CustomerModel(req.body);
-//   console.log("advertisement controller called", req.body);
-//   console.log("advertisement controller called", req.file.path);
-
-//   CustomerModel.createEditProfile(
-//     {
-//     firstName: firstName,
-//     lastName: lastName, 
-//     contactNo: contactNo, 
-//     address: address, 
-//     email:email, 
-//     },
-//     (err, customer) => {
-//       if (err){
-//         res.send(err);
-//       } else if (!customer.length){
-//         res.send("Customer advertisement send successfully!");
-//       }
-//     }
-//   )
-// }
-
 
 function Cus_EditProfile({ navigation }) {
+
+  // const [pickdate, setdatevalue] = useState(new Date());
+  // console.log(format(pickdate, "MMMM do, yyyy "));
+  // const onChange = (event, selecteddate) => {
+  //   if (event.type != "dismissed") {
+  //     setdatevalue(selecteddate);
+  //   }
+  // }
+
+  // const showdatepicker = () => {
+  //   DateTimePickerAndroid.open({
+  //     onChange,
+  //     value: new Date(),
+  //     minimumDate: new Date(),
+  //     mode: "date"
+  //   })
+  // }
 
   const [value, setValue] = useState()
   // const [selectedValue, setSelectedValue] = useState("district");
@@ -66,23 +54,19 @@ function Cus_EditProfile({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView style={{ padding: 20 }}>
-
+    
         <View style={styles.content}>
+        {/* <ImageBackground
+            source={require('../assets/imgs/avatar.jpg')}
+            style={{ width: 25, height: 25 ,marginTop:10}}
+        /> */}
+        <Avatar.Image size={100}
+        style={{alignItems:"center"}}
+        source={require("../../assests/imgs/avatar.jpg")} />
 
 
           {/* <Formik
             initialValues={{ title: '' }}
-            // validate={values => {
-            //   let errors = {};
-            //   if (!values.email) {
-            //     errors.email = 'Required';
-            //   } else if (
-            //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            //   ) {
-            //     errors.email = 'Invalid email address';
-            //   }
-            //   return errors;
-            // }}
             onSubmit={values => {
               Alert.alert(JSON.stringify(values, null, 2));
               Keyboard.dismiss();
@@ -130,28 +114,22 @@ function Cus_EditProfile({ navigation }) {
                 <TextInput
                   mode="outlined"
                   style={styles.textinput}
-                  onChangeText={handleChange('contactNo')}
-                  value={values.contactNo}
-                  label="Contact Number"
-                  placeholder="Enter your Contact Number..."
-
+                  onChangeText={handleChange('phonenumber')}
+                  value={values.phonenumber}
+                  label="Phone Number"
+                  placeholder="Enter your phone number..."
                 />
 
-                {/* <PhoneInput
-                  style={styles.phoneInput}
-                  defaultCode="IN"
-                 /> */}
-
-
-                <TextInput
-                  style={styles.textinput}
-                  mode="outlined"
-                  onChangeText={handleChange('email')}
-                  value={values.email}
-                  label="Email"
-                  placeholder="email"
-                />
-                
+                {/* <TouchableOpacity onPress={showdatepicker}>
+                  <TextInput
+                    disabled
+                    style={styles.textinput}
+                    value={format(pickdate, "MMMM do, yyyy ")}
+                    label="Date of Birth"
+                    mode="outlined"
+                    placeholder="mm/dd/yyyy"
+                  />
+                </TouchableOpacity> */}
 
                 {/* <TextInput
                   mode="outlined"

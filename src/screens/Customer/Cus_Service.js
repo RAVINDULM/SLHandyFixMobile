@@ -1,5 +1,5 @@
 // import React from 'react'
-import React from "react";
+import React, { useState } from "react";
 import { Searchbar } from 'react-native-paper';
 
 import {
@@ -167,7 +167,7 @@ function Cus_Service({ navigation }) {
                     <Button
                       style={{ marginBottom: 10 }}
                       mode="outlined"
-                      onPress={() => { navigation.navigate('Service Provider Profile') }}
+                      onPress={() => navigation.navigate("Cus_spProfileView")}
                     >
                       {" "}
                       View more

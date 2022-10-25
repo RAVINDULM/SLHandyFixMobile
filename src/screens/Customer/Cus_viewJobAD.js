@@ -10,9 +10,29 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CustomButton from "../../components/CustomButton";
+import utils from "../../utils/config"
 
 const ServPro_Profile = ({ navigation }) => {
+
+  const [jobAddsID , setJobAddsByID] = useState([]);
+  const adId = 1;
+  useEffect(() => {
+    console.log("get jobs called by id");
+    axios
+      .get(utils.api+"/customer/getAllAdvertisementsByID" + adId)
+      .then((res) => {
+        console.log(res.data);
+        setJobAddsByID(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[]);
+  console.log(jobAddsID)
+
   return (
+  
+
     <SafeAreaView
       style={{
         flex: 1,
@@ -31,6 +51,8 @@ const ServPro_Profile = ({ navigation }) => {
         }}
       >
       </View>
+
+      {jobAddsID.map((jobAddsID)=>(
 
       <ScrollView style={{ padding: 20 }}>
         {/*---------------------------------------------------------- Profile picture section -----------------------------------------------------------------------------------*/}
@@ -56,7 +78,7 @@ const ServPro_Profile = ({ navigation }) => {
             }}
           >
             <View style={{flexDirection: "column",alignItems: "center",}}>
-              <Text style={{ fontSize: 18, fontWeight: "bold" }}> Saman Bandara</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }} key={jobAddsID.adId}>{jobAddsID.firstName + " " + jobAddsID.lastName}</Text>
             </View>
 
           </View>
@@ -79,10 +101,10 @@ const ServPro_Profile = ({ navigation }) => {
           <Text style={{ paddingLeft: 30, fontSize: 16, width: 150}}>Painting work</Text>
         </View>
 
-        <View style={styles.textViewStyle}>
+        {/* <View style={styles.textViewStyle}>
           <Text style={styles.textstyle}>Category</Text>
           <Text style={{ paddingLeft: 30, fontSize: 16, width: 150}}>Painter</Text>
-        </View>
+        </View> */}
 
         <View style={styles.textViewStyle}>
           <Text style={styles.textstyle}>Location</Text>
@@ -114,9 +136,12 @@ const ServPro_Profile = ({ navigation }) => {
             />
         </View>
 
- </ScrollView>
-      
+      </ScrollView>
+
+      ))}
+
     </SafeAreaView>
+
   );
 };
 

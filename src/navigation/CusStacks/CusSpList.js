@@ -18,6 +18,7 @@ import {
 // import relavant screens
 import Cus_Service from "../../screens/Customer/Cus_Service";
 import Cus_PlaceJobs from "../../screens/Customer/Cus_PlaceJobs";
+import Cus_spProfileView from "../../screens/Customer/Cus_spProfileView";
 import Cus_Map from "../../screens/Customer/map";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
