@@ -21,7 +21,7 @@ const ServPro_home = ({ navigation }) => {
             justifyContent: 'space-between',
             marginBottom: 20,
           }}>
-          <Text style={{fontSize: 18, fontFamily: 'Roboto-Medium'}}>
+          <Text style={{fontSize: 18, }}>
             Hello John Doe
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
