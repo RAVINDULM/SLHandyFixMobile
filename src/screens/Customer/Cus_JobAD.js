@@ -24,6 +24,7 @@ import {
 import axios from "axios";
 import { clockRunning } from "react-native-reanimated";
 import utils from "../../utils/config"
+import Cus_viewADcard from "./Cus_viewADcard";
 
   const Cus_JobAD = ({ navigation }) => {
     
@@ -84,67 +85,68 @@ import utils from "../../utils/config"
          
             
            {jobAdds.map((jobAdds)=>(
-            
-            <View style={{ flexDirection: "column" }}>
-            <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
-                <Card.Content>
-                    <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
-                          <View style={{ margin: 1,height:60,width:50}}>
-                                <Avatar.Image
-                                  size={50}
-                                  source={require("../../assests/imgs/User01.jpg")}/>
-                          </View>
+            // console.log()
+            <Cus_viewADcard jobAdds={jobAdds} key={jobAdds.adId}/>
+            // <View style={{ flexDirection: "column" }}>
+            // <Card style={{ backgroundColor: "#F3F5F7",marginTop:5,borderColor:"black",borderWidth:1}}>
+            //     <Card.Content>
+            //         <View style={{ flexDirection: "row" , margin: 1,height:60, justifyContent:'space-between'}}>
+            //               <View style={{ margin: 1,height:60,width:50}}>
+            //                     <Avatar.Image
+            //                       size={50}
+            //                       source={require("../../assests/imgs/User01.jpg")}/>
+            //               </View>
 
-                          <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
-                          <Title key={jobAdds.adId}>{jobAdds.title}</Title>
-                          <Text style={{color:"grey"}} key={jobAdds.adId+"12"}>{jobAdds.postDate}</Text>
-                          </View>
+            //               <View style={{  margin: 1,height:60,width:130,paddingLeft:8}}>
+            //               <Title key={jobAdds.adId}>{jobAdds.title}</Title>
+            //               <Text style={{color:"grey"}} key={jobAdds.adId+"12"}>{jobAdds.postDate}</Text>
+            //               </View>
 
-                          {/* <View style={{  margin: 1,height:60,width:70}}>
-                          <Text style={{marginTop:5}}>(Completed)</Text>
-                          </View> */}
+            //               {/* <View style={{  margin: 1,height:60,width:70}}>
+            //               <Text style={{marginTop:5}}>(Completed)</Text>
+            //               </View> */}
                          
-                          <View style={{ margin: 1,height:60,width:30}}>
-                          <TouchableOpacity>
-                                <ImageBackground
-                                  onPress={() => {
-                                  console.log("pusshed")
-                                  navigation.navigate("Cus_viewJobAD")}}
-                                source={require("../../assests/icons/icons8-menu-vertical-32.png")}
-                                style={{ width: 30, height: 30 }}
-                              />
-                            </TouchableOpacity>
-                          </View>
-                    </View>
+            //               <View style={{ margin: 1,height:60,width:30}}>
+            //               <TouchableOpacity>
+            //                     <ImageBackground
+            //                       onPress={() => {
+            //                       console.log("pusshed")
+            //                       navigation.navigate("Cus_viewJobAD")}}
+            //                     source={require("../../assests/icons/icons8-menu-vertical-32.png")}
+            //                     style={{ width: 30, height: 30 }}
+            //                   />
+            //                 </TouchableOpacity>
+            //               </View>
+            //         </View>
 
-                    <View style={styles.secondViewtag}>
-                          <ImageBackground
-                            source={require("../../assests/icons/icons8-location-50.png")}
-                            style={{ width: 25, height: 25 }}
-                            />
-                          <Text style={{paddingLeft: 2,fontSize: 16,width: 150,}} key={jobAdds.adId}> {jobAdds.address}</Text>
-                     </View>
+            //         <View style={styles.secondViewtag}>
+            //               <ImageBackground
+            //                 source={require("../../assests/icons/icons8-location-50.png")}
+            //                 style={{ width: 25, height: 25 }}
+            //                 />
+            //               <Text style={{paddingLeft: 2,fontSize: 16,width: 150,}} key={jobAdds.adId}> {jobAdds.address}</Text>
+            //          </View>
 
-                     {/* I’m searching experienced plumber for repair my house. 
-                                  Please apply if you have experienced that duty. */}
-                    <View style={styles.thirdViewtag}>
-                      <Text key={jobAdds.adId}>{jobAdds.description}</Text>
-                    </View>
+            //          {/* I’m searching experienced plumber for repair my house. 
+            //                       Please apply if you have experienced that duty. */}
+            //         <View style={styles.thirdViewtag}>
+            //           <Text key={jobAdds.adId}>{jobAdds.description}</Text>
+            //         </View>
 
-                    <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
-                          <ImageBackground
-                            source={require("../../assests/icons/user.png")}
-                            style={{ width: 25, height: 25 ,marginTop:10}}
-                            />
-                        <CardButton
-                          onPress={() => {}}
-                          title="Service provider's requests"
-                          color="blue"
-                        />
-                    </View>
-                </Card.Content>
-            </Card>
-            </View>
+            //         <View style={{ flexDirection: "row" ,margin: 1,height:30}}>
+            //               <ImageBackground
+            //                 source={require("../../assests/icons/user.png")}
+            //                 style={{ width: 25, height: 25 ,marginTop:10}}
+            //                 />
+            //             <CardButton
+            //               onPress={() => {}}
+            //               title="Service provider's requests"
+            //               color="blue"
+            //             />
+            //         </View>
+            //     </Card.Content>
+            // </Card>
+            // </View>
 
            ))}
 
