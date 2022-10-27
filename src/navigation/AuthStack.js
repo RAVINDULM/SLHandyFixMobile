@@ -8,6 +8,7 @@ import AuthHomeServProv from "../screens/AuthHomeServProv";
 import AuthHomeCustomer from "../screens/AuthHomeCustomer";
 import Cus_Register from "../screens/Customer/auth/Cus_Register";
 import ServProv_Register from "../screens/ServiceProvider/auth/ServProv_Register";
+import { TouchableOpacity } from "react-native";
 // import ServProv_RegisterPayment  ""
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import OnboardingScreen from '../screens/OnboardingScreen';
@@ -23,6 +24,7 @@ import {
   faCreditCard,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import Ionicons from "@expo/vector-icons/Ionicons";
 // const SerProRegisterStack = ()=>{
 //   <Stack.Navigator>
 //   <Stack.Screen options={{headerShown: false}}  name="ServProv_RegisterDetails" component={ServProv_RegisterDetails} />
@@ -55,8 +57,11 @@ const AuthStack = ({ navigation }) => {
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
-              <Appbar.BackAction onPress={() => navigation.navigate("Home")} />
-              <Appbar.Content title={route.name} />
+              {/* <Appbar.BackAction onPress={() => navigation.navigate("Home")} /> */}
+              <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+                <Ionicons name="arrow-back-outline" size={30} />
+              </TouchableOpacity>
+              <Appbar.Content title="Service Provider" />
             </Appbar.Header>
           ),
         })}
@@ -67,8 +72,11 @@ const AuthStack = ({ navigation }) => {
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
-              <Appbar.BackAction onPress={() => navigation.navigate("Home")} />
-              <Appbar.Content title={route.name} />
+              {/* <Appbar.BackAction onPress={() => navigation.navigate("Home")} /> */}
+              <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+                <Ionicons name="arrow-back-outline" size={30} />
+              </TouchableOpacity>
+              <Appbar.Content title="Customer" />
             </Appbar.Header>
           ),
         })}
@@ -79,10 +87,15 @@ const AuthStack = ({ navigation }) => {
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
-              <Appbar.BackAction
+              {/* <Appbar.BackAction
                 onPress={() => navigation.navigate("AuthHomeCustomer")}
-              />
-              <Appbar.Content title={route.name} />
+              /> */}
+              <TouchableOpacity
+                onPress={() => navigation.navigate("AuthHomeCustomer")}
+              >
+                <Ionicons name="arrow-back-outline" size={30} />
+              </TouchableOpacity>
+              <Appbar.Content title="Register" />
             </Appbar.Header>
           ),
         })}
@@ -93,10 +106,12 @@ const AuthStack = ({ navigation }) => {
         options={({ route, navigation }) => ({
           header: () => (
             <Appbar.Header style={{ backgroundColor: "white" }}>
-              <Appbar.BackAction
+              <TouchableOpacity
                 onPress={() => navigation.navigate("AuthHomeServProv")}
-              />
-              <Appbar.Content title={route.name} />
+              >
+                <Ionicons name="arrow-back-outline" size={30} />
+              </TouchableOpacity>
+              <Appbar.Content title="Register" />
               <Appbar.Action icon={faCheck} size={24} />
             </Appbar.Header>
           ),

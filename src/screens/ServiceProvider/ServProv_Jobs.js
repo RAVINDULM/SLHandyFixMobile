@@ -35,6 +35,9 @@ import { Dialog, Portal } from "react-native-paper";
 import { useEffect } from "react";
 import axios from "axios";
 import utils from "../../utils/config";
+
+// date formter
+import { format, compareAsc } from "date-fns";
 // const Acccept = () => {
 //   console.log("accept called");
 //   const [visible, setVisible] = React.useState(false);
@@ -200,7 +203,7 @@ const ServProv_Jobs = () => {
                           <FontAwesomeIcon icon={faLocationDot} size={0} />
                         </View>
                         <Text key={jobRequests.jobId}>
-                          {jobRequests.location}
+                          {jobRequests.district}
                         </Text>
                       </Chip>
                       <Chip
@@ -211,7 +214,10 @@ const ServProv_Jobs = () => {
                           <FontAwesomeIcon icon={faCalendar} size={0} />
                         </View>
                         <Text key={jobRequests.jobId}>
-                          {jobRequests.requiredDate}
+                          {format(
+                            new Date(jobRequests.requiredDate),
+                            "MM/dd/yyyy"
+                          )}
                         </Text>
                       </Chip>
                       <View style={{ flexDirection: "row" }}>

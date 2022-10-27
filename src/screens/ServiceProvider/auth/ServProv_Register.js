@@ -61,15 +61,6 @@ const ServProv_Register = ({ navigation }) => {
 
   // image picker function
   const [image, setImage] = useState(null);
-
-  // useEffect(async () => {
-  //   if (Platform.OS !== "web") {
-  //     const { status } = await ImagePicker.requestCameraPermissionsAsync();
-  //     if (status !== "granted") {
-  //       alert("Permission denied !");
-  //     }
-  //   }
-  // });
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
 
@@ -386,21 +377,21 @@ const ServProv_Register = ({ navigation }) => {
         }}
         validateOnMount={true}
         onSubmit={(values) => {
-          Axios.post(
-            "http://192.168.43.119:5000/api/v1/servprov/createAccountReq",
-            {
-              fName: values.fName,
-              lName: values.lName,
-              gender: genderNIC,
-              jobRole: values.jobRole,
-              mobileNum: values.mobileNum,
-              dob: birthdate,
-              district: values.district,
-              address: values.address,
-              // qualifications: values.qualifications,
-              age: values.age,
-            }
-          );
+          // Axios.post(
+          //   "http://192.168.43.119:5000/api/v1/servprov/createAccountReq",
+          //   {
+          //     fName: values.fName,
+          //     lName: values.lName,
+          //     gender: genderNIC,
+          //     jobRole: values.jobRole,
+          //     mobileNum: values.mobileNum,
+          //     dob: birthdate,
+          //     district: values.district,
+          //     address: values.address,
+          //     // qualifications: values.qualifications,
+          //     age: values.age,
+          //   }
+          // );
           alert("Your request has been sent successfully!");
           navigation.replace("Login");
         }}
@@ -902,6 +893,38 @@ const ServProv_Register = ({ navigation }) => {
                     {/* ----------------------------------------------------------- Payment -------------------------------------------- */}
                   </Card.Content>
                 </Card>
+
+                <Card style={{ margin: 10 }}>
+                  <Card.Title
+                    title="Password"
+                    // left={LeftContent}
+                  />
+
+                  <Card.Content>
+                    {/* ----------------------------------------------------------- password -------------------------------------------- */}
+                    <View style={{ flex: 1, flexDirection: "row" }}>
+                      <View style={{ flex: 1, flexDirection: "column" }}>
+                        <TextInput
+                          style={{ height: 40 }}
+                          label="Password"
+                          onChangeText={handleChange("mobileNum")}
+                          onBlur={handleBlur("mobileNum")}
+                          value={values.mobileNum}
+                          mode="outlined"
+                        />
+                        {touched.mobileNum && errors.mobileNum && (
+                          <Text
+                            style={{ fontSize: 14, color: "red", margin: 10 }}
+                          >
+                            {errors.mobileNum}
+                          </Text>
+                        )}
+                      </View>
+                    </View>
+
+                    {/* ----------------------------------------------------------- password -------------------------------------------- */}
+                  </Card.Content>
+                </Card>
               </View>
               {/* ----------------------------------------------------------- Submit button -------------------------------------------- */}
             </ScrollView>
@@ -915,7 +938,7 @@ const ServProv_Register = ({ navigation }) => {
               disabled={payerror != null}
               type="submit"
             >
-              Send Request
+              Register
             </Button>
             <View
               style={{

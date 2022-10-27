@@ -112,6 +112,7 @@ const ServProv_Jobs = () => {
             {/* ---------------------------------------------------- card fo a job requests ------------------------------------------------------------ */}
           </View>
           <View>
+            <View></View>
             {jobs.map((jobs) => (
               <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
                 <Card.Content>
@@ -149,27 +150,62 @@ const ServProv_Jobs = () => {
                       </View>
                     </View>
                     <View style={{ flexDirection: "column", paddingLeft: 20 }}>
-                      <Button
-                        style={{ marginBottom: 10 }}
-                        mode="outlined"
-                        onPress={() => setVisible(true)}
+                      <View
+                        style={{
+                          flexDirection: "column",
+                          paddingLeft: 20,
+                          paddingBottom: 20,
+                        }}
                       >
-                        {" "}
-                        Start{" "}
-                      </Button>
-                      {
-                        <Button
+                        <View
                           style={{
-                            marginBottom: 10,
-                            backgroundColor: "yellow",
+                            backgroundColor:
+                              jobs.status == 0
+                                ? "red"
+                                : jobs.status == 1
+                                ? "green"
+                                : jobs.status == 2
+                                ? "grey"
+                                : jobs.status == 3
+                                ? "blue"
+                                : "green",
+                            width: 100,
+                            height: 25,
+                            borderRadius: 10,
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
                           }}
+                        >
+                          <Text key={jobs.jobId} style={{ fontSize: 17 }}>
+                            {jobs.status == 0
+                              ? "Rejected"
+                              : jobs.status == 1
+                              ? "pending"
+                              : jobs.status == 2
+                              ? "accepted"
+                              : jobs.status == 3
+                              ? "started"
+                              : "completed"}
+                          </Text>
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column", paddingLeft: 20 }}
+                      >
+                        <Button
+                          disabled={
+                            jobs.status == 3 || jobs.status == 4 ? true : false
+                          }
+                          style={{ marginBottom: 10 }}
                           mode="outlined"
-                          onPress={() => console.log("")}
+                          onPress={() => setVisible(true)}
                         >
                           {" "}
-                          OnGoing
+                          Start{" "}
                         </Button>
-                      }
+                        {}
+                      </View>
                     </View>
                   </View>
                 </Card.Content>

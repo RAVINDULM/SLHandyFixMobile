@@ -40,6 +40,9 @@ import { useEffect } from "react";
 import axios from "axios";
 import utils from "../../utils/config";
 
+// date formter
+import { format, compareAsc } from "date-fns";
+
 const timeicon = <Ionicons name="time-outline" />;
 const ServPro_feed = () => {
   const [visible, setVisible] = React.useState(false);
@@ -50,8 +53,6 @@ const ServPro_feed = () => {
   // AsyncStorage.setItem("userToken", JSON.stringify(userToken));
   // const value = AsyncStorage.getItem('userToken');
   useEffect(() => {
-    console.log("gget jobs called");
-    console.log(`${utils.api}/servprov/getJobposts`);
     axios
       .get(`${utils.api}/servprov/getJobposts`)
       .then((res) => {
@@ -118,10 +119,10 @@ const ServPro_feed = () => {
           <View>
             {posts.map((posts) => (
               <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
-                <Card.Cover
+                {/* <Card.Cover
                   source={{ uri: "https://picsum.photos/700" }}
                   style={{ marginBottom: 10 }}
-                />
+                /> */}
                 <Card.Content>
                   <View style={{ flexDirection: "column" }}>
                     <View style={{ flexDirection: "column" }}>
@@ -146,7 +147,7 @@ const ServPro_feed = () => {
                                   size={0}
                                 />
                               </View>
-                              <Text> {posts.location}</Text>
+                              <Text> {posts.address}</Text>
                             </Chip>
                             <Chip
                               onPress={() => console.log("Pressed date")}
@@ -155,7 +156,9 @@ const ServPro_feed = () => {
                               <View>
                                 <FontAwesomeIcon icon={faCalendar} size={0} />
                               </View>
-                              <Text>{posts.date}</Text>
+                              <Text>
+                                {format(new Date(posts.dueDate), "MM/dd/yyyy")}
+                              </Text>
                             </Chip>
                           </View>
                         </Card.Actions>
@@ -212,7 +215,10 @@ const ServPro_feed = () => {
                             }}
                           >
                             <Ionicons name="time" size={20} />
-                            <Text style={{ marginLeft: 5 }}> @10.47</Text>
+                            <Text style={{ marginLeft: 5 }}>
+                              {" "}
+                              @{posts.postTime}
+                            </Text>
                           </Chip>
                         </Card.Actions>
                       </Card.Content>

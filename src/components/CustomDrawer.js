@@ -48,7 +48,7 @@ const CustomDrawer = (props) => {
                 marginBottom: 5,
               }}
             >
-              John Doe
+              Kavinda Gimhan
             </Text>
 
             <Text

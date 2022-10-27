@@ -837,7 +837,83 @@ const ServProv_Register = ({ navigation }) => {
                 </Card>
 
                 {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  Payment details +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+                <Card style={{ margin: 10 }}>
+                  <Card.Title
+                    title="Payment"
+                    // left={LeftContent}
+                  />
 
+                  <Card.Content>
+                    {/* ----------------------------------------------------------- Payment -------------------------------------------- */}
+
+                    <View style={styles.container}>
+                      {/* <TextInput
+                    mode="outlined"
+                    autoCapitalize="none"
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    onChange={(value) => setEmail(value.nativeEvent.text)}
+                    style={styles.input}
+                  /> */}
+                      <CardField
+                        postalCodeEnabled={true}
+                        placeholder={{
+                          number: "4242 4242 4242 4242",
+                        }}
+                        cardStyle={styles.card}
+                        style={styles.cardContainer}
+                        onCardChange={(cardDetails) => {
+                          setPayerror("");
+                          setCardDetails(cardDetails);
+                        }}
+                      />
+
+                      {{ payerror } && (
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            color: "red",
+                            marginBottom: 10,
+                            marginLeft: 10,
+                          }}
+                        >
+                          {payerror}
+                        </Text>
+                      )}
+                      {/* <Button
+                        onPress={handlePayPress}
+                        title="Pay"
+                        disabled={loading}
+                      /> */}
+                      {paid ? (
+                        <Button
+                          icon={faCheck}
+                          color="green"
+                          mode="contained"
+                          // onPress={handlePayPress}
+                          // disabled={true}
+                          // loading={loading}
+                        >
+                          {/* <FontAwesomeIcon icon={faCheck} /> */}
+                          Paid
+                        </Button>
+                      ) : (
+                        <Button
+                          icon={faCheck}
+                          color="black"
+                          mode="contained"
+                          onPress={handlePayPress}
+                          disabled={loading}
+                          loading={loading}
+                        >
+                          {/* <FontAwesomeIcon icon={faCheck} /> */}
+                          Pay $10.99
+                        </Button>
+                      )}
+                    </View>
+                    {/* ----------------------------------------------------------- Payment -------------------------------------------- */}
+                  </Card.Content>
+                </Card>
                 {/* <Card style={{ margin: 10 }}>
                   <Card.Title
                     title="Payment"
