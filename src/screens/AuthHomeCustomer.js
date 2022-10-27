@@ -20,17 +20,16 @@ const AuthHomeCustomer = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <View>
-        <View style={[tw`bg-white flex-row z-100 `]}>
+        {/* <View style={[tw`bg-white flex-row z-100 `]}>
           <TouchableOpacity
             style={{ padding: 10 }}
             onPress={() => {
               navigation.navigate("Home");
             }}
           >
-            {/* <Text>Back</Text> */}
             <FontAwesomeIcon icon={faChevronLeft} size={30} />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <Image
           source={require("../assests/imgs/TopLeftCorner.png")}
           style={{

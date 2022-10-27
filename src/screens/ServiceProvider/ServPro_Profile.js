@@ -18,26 +18,19 @@ const ServPro_Profile = ({ navigation }) => {
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
-        margin: 10 ,
+        margin: 10,
         // alignItems: "center",
         // backgroundColor: 'yellow'
       }}
     >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginTop: 20,
-          }}
-        >
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <ImageBackground
-              source={require("../../assests/imgs/menu.png")}
-              style={{ width: 30, height: 30 }}
-              imageStyle={{ borderRadius: 25 }}
-            />
-          </TouchableOpacity>
-          {/* <Text style={{ fontSize: 18}}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: 20,
+        }}
+      >
+        {/* <Text style={{ fontSize: 18}}>
           </Text>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <ImageBackground
@@ -46,7 +39,7 @@ const ServPro_Profile = ({ navigation }) => {
               imageStyle={{ borderRadius: 25 }}
             />
           </TouchableOpacity> */}
-        </View>
+      </View>
 
       <ScrollView style={{ padding: 20 }}>
         {/*---------------------------------------------------------- Profile picture section -----------------------------------------------------------------------------------*/}
@@ -61,7 +54,7 @@ const ServPro_Profile = ({ navigation }) => {
         >
           <ImageBackground
             source={require("../../assests/imgs/User01.jpg")}
-            style={{ width: 120, height: 120, }}
+            style={{ width: 120, height: 120 }}
             imageStyle={{ borderRadius: 60 }}
           />
           <View
@@ -95,7 +88,7 @@ const ServPro_Profile = ({ navigation }) => {
             >
               <ImageBackground
                 source={require("../../assests/icons/icons8-edit-30.png")}
-                style={{ width: 25, height: 25, }}
+                style={{ width: 25, height: 25 }}
               />
             </View>
           </View>
@@ -318,8 +311,8 @@ const ServPro_Profile = ({ navigation }) => {
             style={{ paddingLeft: 25, fontSize: 16, width: 150 }}
           />
         </View>
-        
-{/*            
+
+        {/*            
         <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
   <Text>Centered text</Text>
 </View> */}
@@ -327,19 +320,19 @@ const ServPro_Profile = ({ navigation }) => {
         {/*---------------------------------------------------------- Profile details section ----------------------------------------------------------*/}
 
         {/*---------------------------------------------------------- Profile Update button section ----------------------------------------------------------*/}
-        
+
         {/*---------------------------------------------------------- Profile Update button section ----------------------------------------------------------*/}
       </ScrollView>
       <View
-          style={{
-            // borderBottomColor: "black",
-            // backgroundColor: 'yellow',
-            justifyContent: 'center',
-            // borderBottomWidth: 2,
-            margin: 10,
-          }}
-        >
-      <CustomButton label={"Update Profile"} />
+        style={{
+          // borderBottomColor: "black",
+          // backgroundColor: 'yellow',
+          justifyContent: "center",
+          // borderBottomWidth: 2,
+          margin: 10,
+        }}
+      >
+        <CustomButton label={"Update Profile"} />
       </View>
     </SafeAreaView>
   );

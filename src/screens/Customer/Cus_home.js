@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 import {
   faCalendar,
@@ -17,7 +17,7 @@ import {
   Chip,
   Dialog,
   Paragraph,
-  Portal
+  Portal,
 } from "react-native-paper";
 
 import {
@@ -37,8 +37,6 @@ import axios from "axios";
 // const optionsPerPage = [2, 3, 4];
 
 const Cus_home = ({ navigation }) => {
-
-
   const [visible, setVisible] = React.useState(false);
   const hideDialog = () => setVisible(false);
   const [loading, setLoading] = useState(true);
@@ -50,56 +48,56 @@ const Cus_home = ({ navigation }) => {
 
   const ratingCompleted = (rating) => {
     setRatevalue(rating);
-
   };
 
   const setRate = () => {
     console.log("rating:" + finalrate);
 
-    Axios.post(`${utils.api}/customer1/rateserviceprovider/`, { customerId: getcustomerId, serviceProviderId: serviceproviderId, rate: finalrate }).then((res) => {
-      alert("succesfully completed")
-      setVisible(false);
-
-    }).catch((err) => {
-      console.log(err);
+    Axios.post(`${utils.api}/customer1/rateserviceprovider/`, {
+      customerId: getcustomerId,
+      serviceProviderId: serviceproviderId,
+      rate: finalrate,
     })
-
-  }
+      .then((res) => {
+        alert("succesfully completed");
+        setVisible(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   function setserviceprovidertoID(sepID) {
     console.log(sepID);
     setspId(sepID);
     setVisible(true);
   }
 
-
-//  useEffect(()=>{
-//   axios.get(utils.api+"/customer1/getjoblist/1").then((res)=>{
-//     console.log(res)
-//   })
-//  },[])
+  //  useEffect(()=>{
+  //   axios.get(utils.api+"/customer1/getjoblist/1").then((res)=>{
+  //     console.log(res)
+  //   })
+  //  },[])
   useEffect(() => {
     // 10.22.163.187:5000/api/v1/
     console.log("get jobs called");
-    console.log("UserID "+getcustomerId)
-    console.log(utils.api + "/customer1/getjoblist/" + getcustomerId)
-    axios.get(utils.api + "/customer1/getjoblist/" + getcustomerId)
+    console.log("UserID " + getcustomerId);
+    console.log(utils.api + "/customer1/getjoblist/" + getcustomerId);
+    axios
+      .get(utils.api + "/customer1/getjoblist/" + getcustomerId)
       .then((res) => {
-        console.log("tf hutto")
+        console.log("tf hutto");
         console.log(res);
         setjoblist(res.data);
-        setLoading(false)
+        setLoading(false);
 
         // setJobid(res.data.jobId);
-      })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-
-
+      });
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   }, []);
 
   return (
-
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", marginTop: 10 }}>
       <ScrollView style={{ padding: 20 }}>
         <View>
@@ -108,7 +106,7 @@ const Cus_home = ({ navigation }) => {
             <Dialog visible={visible} onDismiss={hideDialog}>
               <Dialog.Title style={{ textAlign: "center" }}>Rate</Dialog.Title>
               <Dialog.Content>
-                <Paragraph style={{ textAlign: "center", fontSize: 17 }} >
+                <Paragraph style={{ textAlign: "center", fontSize: 17 }}>
                   Rate your service provider to complete
                 </Paragraph>
                 <View style={{ marginRight: 35 }} isDisabled={true}>
@@ -120,7 +118,11 @@ const Cus_home = ({ navigation }) => {
                   />
                 </View>
                 <View
-                  style={{ flexDirection: "row", justifyContent: "center", marginTop: 10 }}
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginTop: 10,
+                  }}
                 >
                   <Button
                     style={{ marginBottom: 10, marginRight: 10, width: 100 }}
@@ -134,7 +136,6 @@ const Cus_home = ({ navigation }) => {
                     style={{ marginBottom: 10, marginLeft: 10, width: 100 }}
                     mode="outlined"
                     onPress={() => setRate()}
-
                   >
                     {" "}
                     Rate
@@ -152,57 +153,65 @@ const Cus_home = ({ navigation }) => {
             justifyContent: "space-between",
             // marginTop: 20
           }}
-        >
-
-        </View>
+        ></View>
 
         {/* ---------------------------number cards---------------------------------- */}
 
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
+        >
           <View style={styles.mainContainer}>
             <View style={styles.subcontainer}>
-              <Text style={{ fontSize: 35, color: 'white', marginLeft: 15 }}>4</Text>
+              <Text style={{ fontSize: 35, color: "white", marginLeft: 15 }}>
+                4
+              </Text>
             </View>
 
-            <View style={{ justifyContent: 'center' }}>
+            <View style={{ justifyContent: "center" }}>
               <Text style={{ fontSize: 20 }}>Placed Jobs</Text>
             </View>
           </View>
 
           <View style={styles.mainContainer}>
             <View style={styles.subcontainer}>
-              <Text style={{ fontSize: 35, color: 'white', marginLeft: 15 }}>4</Text>
+              <Text style={{ fontSize: 35, color: "white", marginLeft: 15 }}>
+                4
+              </Text>
             </View>
 
-            <View style={{ justifyContent: 'center' }}>
+            <View style={{ justifyContent: "center" }}>
               <Text style={{ fontSize: 20 }}>Accepted Jobs</Text>
             </View>
           </View>
 
           <View style={styles.mainContainer}>
             <View style={styles.subcontainer}>
-              <Text style={{ fontSize: 35, color: 'white', marginLeft: 15 }}>4</Text>
+              <Text style={{ fontSize: 35, color: "white", marginLeft: 15 }}>
+                4
+              </Text>
             </View>
 
-            <View style={{ justifyContent: 'center' }}>
+            <View style={{ justifyContent: "center" }}>
               <Text style={{ fontSize: 20 }}>Completed Jobs</Text>
             </View>
           </View>
         </View>
 
-
-
-
         {/* ----------------------------------------------------ongoing job cards--------------------------------------------------------- */}
-        <View style={{ backgroundColor: 'lightgrey', paddingTop: 10 }}>
-
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{
-              fontSize: 20,
-              color: "black",
-              fontWeight: '500'
-            }}>My Jobs
+        <View style={{ backgroundColor: "lightgrey", paddingTop: 10 }}>
+          <View style={{ alignItems: "center" }}>
+            <Text
+              style={{
+                fontSize: 20,
+                color: "black",
+                fontWeight: "500",
+              }}
+            >
+              My Jobs
             </Text>
           </View>
           {/* <View>
@@ -252,77 +261,119 @@ const Cus_home = ({ navigation }) => {
           <View>
             {console.log("========================================")}
             {console.log(joblist)}
-            {!loading && joblist.map((joblist) => (
-              <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
-                <Card.Content>
-                  <View style={{ flexDirection: "row" }}>
-                    <View style={{ flexDirection: "column", paddingRight: 10 }}>
-                      <Title key={joblist.serviceproviderId}
-                        style={{ marginBottom: 10 }}
+            {!loading &&
+              joblist.map((joblist) => (
+                <Card style={{ backgroundColor: "#F3F5F7", margin: 10 }}>
+                  <Card.Content>
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{ flexDirection: "column", paddingRight: 10 }}
+                      >
+                        <Title
+                          key={joblist.serviceproviderId}
+                          style={{ marginBottom: 10 }}
+                        >
+                          {" "}
+                          {joblist.title || "User"}
+                        </Title>
 
-                      > {joblist.title || "User"}</Title>
-
-
-                      <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Avatar.Image
-                          size={50}
-                          source={require("../../assests/imgs/User01.jpg")}
-                          style={{ marginRight: 10, marginBottom: 10 }}
-                        />
-                        <Text key={joblist.serviceproviderId} style={{ fontSize: 17 }}>{joblist.firstName + " " + joblist.lastName}</Text>
-                      </View>
-                      <View>
-                        <TouchableOpacity>
-                          <View
-                            style={{
-                              flexDirection: "row",
-                              alignItems: "center",
-                              margin: 5,
-                            }}
+                        <View
+                          style={{ flexDirection: "row", alignItems: "center" }}
+                        >
+                          <Avatar.Image
+                            size={50}
+                            source={require("../../assests/imgs/User01.jpg")}
+                            style={{ marginRight: 10, marginBottom: 10 }}
+                          />
+                          <Text
+                            key={joblist.serviceproviderId}
+                            style={{ fontSize: 17 }}
                           >
-                            <ImageBackground
-                              source={require("../../assests/icons/icons8-communication-50.png")}
-                              style={{ width: 30, height: 30 }}
-                            />
-                            <Text
+                            {joblist.firstName + " " + joblist.lastName}
+                          </Text>
+                        </View>
+                        <View>
+                          <TouchableOpacity>
+                            <View
                               style={{
-                                paddingLeft: 20,
-                                fontSize: 16,
-                                fontWeight: "bold",
-                                width: 100,
+                                flexDirection: "row",
+                                alignItems: "center",
+                                margin: 5,
                               }}
                             >
-                              CHAT
-                            </Text>
-                          </View>
+                              <ImageBackground
+                                source={require("../../assests/icons/icons8-communication-50.png")}
+                                style={{ width: 30, height: 30 }}
+                              />
+                              <Text
+                                style={{
+                                  paddingLeft: 20,
+                                  fontSize: 16,
+                                  fontWeight: "bold",
+                                  width: 100,
+                                }}
+                              >
+                                CHAT
+                              </Text>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
 
-                        </TouchableOpacity>
+                        <Button
+                          disabled={joblist.status == 3 ? false : true}
+                          mode="outlined"
+                          onPress={(e) =>
+                            setserviceprovidertoID(joblist.serviceProviderId)
+                          }
+                        >
+                          {" "}
+                          Completed
+                        </Button>
                       </View>
 
-                      <Button disabled={joblist.status == 3 ? false : true}
-                        mode="outlined"
-                        onPress={(e) => setserviceprovidertoID(joblist.serviceProviderId)}
-                      >
-                        {" "}
-                        Completed
-                      </Button>
-                    </View>
-
-                    <View style={{ flexDirection: "column", paddingLeft: 20 }}>
                       <View
-                        style={{ backgroundColor: joblist.status == 0 ? 'red' : joblist.status == 1 ? "green" : joblist.status == 2 ? "grey" : joblist.status == 3 ? "blue" : "green", width: 100, height: 25, borderRadius: 10, flexDirection: "row", justifyContent: "center", alignItems: "center" }}
+                        style={{ flexDirection: "column", paddingLeft: 20 }}
                       >
-
-                        <Text key={joblist.serviceproviderId} style={{ fontSize: 17 }}>{joblist.status == 0 ? 'Rejected' : joblist.status == 1 ? "pending" : joblist.status == 2 ? "accepted" : joblist.status == 3 ? "completed" : "started"}</Text>
+                        <View
+                          style={{
+                            backgroundColor:
+                              joblist.status == 0
+                                ? "red"
+                                : joblist.status == 1
+                                ? "green"
+                                : joblist.status == 2
+                                ? "grey"
+                                : joblist.status == 3
+                                ? "blue"
+                                : "green",
+                            width: 100,
+                            height: 25,
+                            borderRadius: 10,
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Text
+                            key={joblist.serviceproviderId}
+                            style={{ fontSize: 17 }}
+                          >
+                            {joblist.status == 0
+                              ? "Rejected"
+                              : joblist.status == 1
+                              ? "pending"
+                              : joblist.status == 2
+                              ? "accepted"
+                              : joblist.status == 3
+                              ? "completed"
+                              : "started"}
+                          </Text>
+                        </View>
                       </View>
-
                     </View>
-
-                  </View>
-                </Card.Content>
-              </Card>
-            ))}
-
+                  </Card.Content>
+                </Card>
+              ))}
           </View>
 
           {/* <View>
@@ -414,7 +465,6 @@ const Cus_home = ({ navigation }) => {
               </Card.Content>
             </Card>
         </View> */}
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -423,28 +473,28 @@ const Cus_home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'baseline',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "baseline",
+    justifyContent: "center",
     width: 100,
     height: 120,
     backgroundColor: "#F3F5F7",
     margin: 10,
     elevation: 10,
-    borderRadius: 5
+    borderRadius: 5,
   },
 
   subcontainer: {
-    backgroundColor: '#2538B8',
+    backgroundColor: "#2538B8",
     borderRadius: 25,
     marginBottom: 15,
     marginTop: 6,
     width: 50,
     height: 50,
-    justifyContent: 'center'
-  }
-})
+    justifyContent: "center",
+  },
+});
 
 export default Cus_home;

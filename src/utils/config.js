@@ -1,4 +1,2 @@
-
-const url = { api: "http://10.102.99.49:5000/api/v1" };
-
+const url = { api: "http://10.22.163.187:5000/api/v1" };
 export default url;

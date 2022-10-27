@@ -3,7 +3,7 @@ import { View, ActvityIndicator } from "react-native";
 import { JumpingTransition } from "react-native-reanimated";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-
+import utils from "../utils/config";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     console.log("email :", email);
     console.log("password :", password);
     axios
-      .post("http://10.105.39.94:5000/api/v1/user/login", {
+      .post(`${utils.api}/user/login`, {
         email,
         password,
       })
@@ -44,15 +44,14 @@ export const AuthProvider = ({ children }) => {
       // console.log("is logged in user token before set token ", userToken);
       let userToken = await AsyncStorage.getItem("userToken");
       console.log("is logged in AsyncStorage before set token ", userToken);
-      if (userToken == "null" || userToken == null){
+      if (userToken == "null" || userToken == null) {
         setUserToken(null);
-      }
-      else{ 
+      } else {
         setUserToken(userToken);
       }
       console.log("is logged in user token after set token ", userToken);
-     
-    //   console.log("is logged in user token", userToken);
+
+      //   console.log("is logged in user token", userToken);
       setIsLoading(false);
     } catch (e) {
       console.log("is logged in error: ", e);
